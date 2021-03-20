@@ -1,7 +1,8 @@
 const Button = {
   baseStyle: {
     fontWeight: '500',
-    borderRadius: 'base',
+    borderRadius: 'xl',
+    lineHeight: 1,
     _hover: {
       textDecoration: 'none',
     },
@@ -10,34 +11,9 @@ const Button = {
     colorScheme: 'white',
   },
   variants: {
-    solid: (props) => {
-      const style = {
-        _hover: {
-          opacity: 0.8,
-        },
-      }
-      if (props.colorScheme === 'white') {
-        style['color'] = 'black'
-        style['bg'] = 'white'
-      }
-      if (props.colorScheme === 'black') {
-        style['color'] = 'white'
-        style['bg'] = 'black'
-      }
-      return style
-    },
-    outline: (props) => {
-      const style = {
-        border: '1px solid',
-      }
-      if (props.colorScheme === 'white') {
-        style['color'] = 'white'
-        style['_hover'] = {
-          bg: '#696969',
-        }
-      }
-      return style
-    },
+    solid: () => ({
+      background: 'linear-gradient(to right, #8CA6DB, #B993D6)',
+    }),
   },
   sizes: {
     md: {
@@ -50,6 +26,9 @@ const Button = {
       fontSize: '12px',
       px: '16px',
       letterSpacing: '.4px',
+    },
+    lg: {
+      height: '52px',
     },
   },
 }

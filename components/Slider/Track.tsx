@@ -1,13 +1,14 @@
-import { Box } from '@chakra-ui/react'
+import { Box, useTheme } from '@chakra-ui/react'
 
 export const Track = ({ source, target, getTrackProps }) => {
+  const theme = useTheme()
   return (
     <Box
       position="absolute"
       transform="translate(0%, -50%)"
       height="5px"
       zIndex="1"
-      backgroundColor="gray.400"
+      background={theme.gradient.blueViolet}
       borderRadius="5px"
       cursor="pointer"
       left={`${source.percent}%`}

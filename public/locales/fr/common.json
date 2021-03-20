@@ -1,11 +1,19 @@
 {
   "filters": {
+    "submit": "Rechercher",
     "price": {
       "title": "Sélectionner son budget",
       "min": "prix min",
       "max": "prix max",
       "minFull": "prix minimum",
       "maxFull": "prix maximum"
+    },
+    "location": {
+      "placeholder": "Où ?"
+    },
+    "size": {
+      "placeholder": "Taille",
+      "nbRoom": "nombre de pièce"
     }
   }
 }

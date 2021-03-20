@@ -15,20 +15,16 @@ const PriceButton = ({}: IPriceButton) => {
 
   return (
     <Flex alignItems="center">
-      <Flex
-        border="1px solid"
-        borderColor="gray.300"
-        borderRadius="35px"
-        p="5px 25px"
-        cursor="pointer"
-      >
+      <Flex layerStyle="filter">
         <Box>
           <Text color="gray.300" fontSize="xs" whiteSpace="nowrap">
             {t('filters.price.min')}
           </Text>
           <Flex alignItems="center" fontSize="sm" w="60px">
             <Box>$</Box>
-            <Box pl={1.5}>{min}</Box>
+            <Text pl={1.5} isTruncated>
+              {min}
+            </Text>
           </Flex>
         </Box>
         <Flex alignItems="center">
@@ -40,7 +36,9 @@ const PriceButton = ({}: IPriceButton) => {
           </Text>
           <Flex alignItems="center" fontSize="sm" w="60px">
             <Box>$</Box>
-            <Box pl={1.5}>{max}</Box>
+            <Text pl={1.5} isTruncated>
+              {max}
+            </Text>
           </Flex>
         </Box>
       </Flex>

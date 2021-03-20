@@ -11,9 +11,9 @@ import {
   StatLabel,
   Flex,
   Button,
-  Icon,
   Input,
   Circle,
+  useTheme,
 } from '@chakra-ui/react'
 import PriceSlider from '~components/Slider/PriceSlider'
 import { useTranslation } from 'next-i18next'
@@ -25,6 +25,7 @@ interface IPricePopover {
 
 const PricePopover = ({ children }: IPricePopover) => {
   const { t } = useTranslation()
+  const theme = useTheme()
   const { register } = useFormContext()
 
   return (
@@ -70,7 +71,7 @@ const PricePopover = ({ children }: IPricePopover) => {
                   </Flex>
                 </StatNumber>
               </Stat>
-              <Circle size="10px" mx={2.5} mt={5} backgroundColor="gray.300" />
+              <Circle size="10px" mx={2.5} mt={5} />
               <Stat>
                 <StatLabel>{t('filters.price.maxFull')}</StatLabel>
                 <StatNumber>
@@ -103,7 +104,7 @@ const PricePopover = ({ children }: IPricePopover) => {
             borderTop="1px solid"
             borderColor="gray.200"
           >
-            <Button colorScheme="blue">{t('filters.search')}</Button>
+            <Button>{t('filters.submit')}</Button>
           </Flex>
         </PopoverBody>
       </PopoverContent>

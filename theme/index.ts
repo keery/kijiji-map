@@ -76,6 +76,9 @@ const theme = extendTheme({
   breakpoints: {
     xl: '87.5rem',
   },
+  gradient: {
+    blueViolet: 'linear-gradient(to right, #8CA6DB, #B993D6)',
+  },
   space: {
     full: '-1.5rem',
     px: '1px',
@@ -122,34 +125,12 @@ const theme = extendTheme({
     64: '16rem',
   },
   layerStyles: {
-    userBox: {
-      px: 8,
-      py: 4,
-      shadow: 'md',
-      borderRadius: 'md',
-      border: '1px solid',
-      borderColor: 'gray.300',
-      flex: 1,
-    },
-    shadowBox: {
-      px: 8,
-      py: 4,
-      shadow: 'md',
-      borderRadius: 'md',
-      border: '1px solid',
-      borderColor: 'gray.300',
-    },
-    selected: {
+    filter: {
+      height: '52px',
+      borderRadius: 'xl',
+      border: '1px solid #ADADAD',
+      padding: '5px 25px',
       cursor: 'pointer',
-      background: 'linear-gradient(90deg, #474747 0%, #101010 100%)',
-      color: 'white',
-    },
-    selectable: {
-      cursor: 'pointer',
-      transition: 'background-color ease-in-out .1s',
-      _hover: {
-        backgroundColor: 'gray.500',
-      },
     },
   },
 })

@@ -21,10 +21,12 @@ const Filters = () => {
       <HStack
         py={5}
         px={5}
-        w="100%"
         spacing={4}
         borderBottom="1px solid"
         borderColor="gray.100"
+        backgroundColor="white"
+        display="inline-flex"
+        borderRadius="full"
       >
         <FilterLocation control={form.control} />
         <FilterPrice />

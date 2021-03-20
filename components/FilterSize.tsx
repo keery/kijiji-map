@@ -55,7 +55,7 @@ const FilterSize = ({ control }) => {
   const input = getInputProps()
 
   return (
-    <HStack maxW="320px" layerStyle="filter" px="10px">
+    <HStack maxW="320px" layerStyle="filter" px="10px" backgroundColor="white">
       <SizeButton {...dec}>-</SizeButton>
       <Box>
         <Text color="gray.300" fontSize="xs" whiteSpace="nowrap">

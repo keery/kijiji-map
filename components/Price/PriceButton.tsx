@@ -15,7 +15,7 @@ const PriceButton = ({}: IPriceButton) => {
 
   return (
     <Flex alignItems="center">
-      <Flex layerStyle="filter">
+      <Flex layerStyle="filter" backgroundColor="white">
         <Box>
           <Text color="gray.300" fontSize="xs" whiteSpace="nowrap">
             {t('filters.price.min')}

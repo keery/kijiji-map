@@ -1,3 +1,11 @@
 {
-  "Hello": "Bonjour"
+  "filters": {
+    "price": {
+      "title": "Sélectionner son budget",
+      "min": "prix min",
+      "max": "prix max",
+      "minFull": "prix minimum",
+      "maxFull": "prix maximum"
+    }
+  }
 }

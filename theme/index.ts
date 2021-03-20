@@ -19,21 +19,17 @@ const theme = extendTheme({
     },
   },
   fonts: {
-    body: 'Montserrat, sans-serif',
-    heading: 'Montserrat, serif',
+    body: 'mabry, sans-serif',
+    heading: 'mabry, serif',
   },
   fontSizes: {
-    xxs: '.75rem',
-    xs: '.8rem',
-    sm: '.9rem',
+    xs: '12px',
+    sm: '.925rem',
     md: '1rem',
     lg: '1.2rem',
-    xl: '1.5rem',
+    xl: '1.35rem',
     '2xl': '1.6rem',
-    '3xl': '2rem',
-    '4xl': '2.5rem',
-    '5xl': '3rem',
-    '6xl': '3.5rem',
+    '3xl': '2.15rem',
   },
   colors: {
     gray: {
@@ -49,11 +45,12 @@ const theme = extendTheme({
       '900': '#1A1A1A',
     },
   },
-  borderRadius: {
+  radii: {
     sm: '2px',
     md: '4px',
     lg: '6px',
-    xl: '8px',
+    xl: '32px',
+    xxl: '40px',
   },
   shadows: {
     sm: '0 2px 4px 0 rgba(0,0,0,0.05)',

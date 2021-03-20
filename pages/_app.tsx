@@ -1,20 +1,11 @@
-import React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
-import NextApp, { AppProps } from "next/app";
-import "../styles/globals.css";
-import theme from "../theme";
-import { client } from "~api/client-react-query";
-import { QueryClientProvider } from "react-query";
-import { appWithTranslation } from "next-i18next";
-import Bugsnag, { isBugsnagEnabled } from "~utils/bugsnag";
-import { BugsnagErrorBoundary } from "@bugsnag/plugin-react";
-import ErrorPage from "~pages/_error";
-
-let ErrorBoundary: BugsnagErrorBoundary;
-
-if (isBugsnagEnabled) {
-  ErrorBoundary = Bugsnag.getPlugin("react").createErrorBoundary(React);
-}
+import React from 'react'
+import { ChakraProvider } from '@chakra-ui/react'
+import NextApp, { AppProps } from 'next/app'
+import '../styles/globals.css'
+import theme from '../theme'
+import { client } from '~api/client-react-query'
+import { QueryClientProvider } from 'react-query'
+import { appWithTranslation } from 'next-i18next'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const content = (
@@ -23,25 +14,14 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
       </ChakraProvider>
     </QueryClientProvider>
-  );
+  )
 
-  if (isBugsnagEnabled) {
-    return (
-      <ErrorBoundary
-        // @ts-ignore
-        FallbackComponent={ErrorPage}
-      >
-        {content}
-      </ErrorBoundary>
-    );
-  }
-
-  return content;
-};
+  return content
+}
 
 App.getInitialProps = async (appContext) => {
-  const appProps = await NextApp.getInitialProps(appContext);
-  return { ...appProps };
-};
+  const appProps = await NextApp.getInitialProps(appContext)
+  return { ...appProps }
+}
 
-export default appWithTranslation(App);
+export default appWithTranslation(App)

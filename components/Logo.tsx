@@ -9,15 +9,17 @@ const Logo = () => {
       alignItems="center"
       fontSize="xl"
       borderRadius="xl"
-      backgroundColor="white"
+      backgroundColor="rgb(177 137 210 / 8%)"
       p="10px 20px"
+      border="1px solid"
+      borderColor="gray.100"
     >
       <HomeIcon fontSize="30px" fill={theme.colors.purple['300']} />
       <Text
         pl={3}
         fontWeight="bold"
         letterSpacing="0.8"
-        background="linear-gradient(to right, #8CA6DB, #B993D6)"
+        background={theme.gradient.blueViolet}
         bgClip="text"
       >
         sweet home

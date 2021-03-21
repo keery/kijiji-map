@@ -10,6 +10,7 @@ import {
   ButtonProps,
 } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
+import { useFormContext } from 'react-hook-form'
 
 const SizeButton = ({ children, ...rest }: ButtonProps) => {
   const theme = useTheme()
@@ -30,7 +31,8 @@ const SizeButton = ({ children, ...rest }: ButtonProps) => {
   )
 }
 
-const FilterSize = ({ control }) => {
+const FilterSize = () => {
+  const { register } = useFormContext()
   const { t } = useTranslation()
   const [size, setSize] = useState<number>(1)
   const {
@@ -64,6 +66,8 @@ const FilterSize = ({ control }) => {
         <Box pos="relative" w="fit-content" m="0 auto">
           <Input
             {...input}
+            name="size"
+            ref={register}
             border="none"
             px={0}
             value={size}

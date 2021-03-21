@@ -58,9 +58,6 @@ const getStyle = (theme) => {
           borderRadius: '100%',
           marginRight: '5px',
         },
-        ':hover': {
-          borderColor: theme.colors.gray['300'],
-        },
       }
     },
     option: (styles, { data, isSelected }) => {
@@ -82,7 +79,7 @@ const getStyle = (theme) => {
           background: `url(/assets/img/${getPicto(
             data.value,
           )}) center no-repeat, ${theme.gradient.blueViolet}`,
-          borderRadius: theme.radii.lg,
+          borderRadius: '8px',
           backgroundColor: isSelected
             ? theme.colors.blue['200']
             : theme.colors.gray['100'],

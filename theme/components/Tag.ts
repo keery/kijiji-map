@@ -2,11 +2,10 @@ const Tag = {
   variants: {
     subtle: {
       container: {
-        backgroundColor: 'transparent',
-        border: '1px solid',
-        borderColor: 'black',
-        fontSize: 'xxs',
-        px: 4,
+        fontSize: 'sm',
+        px: 2,
+        textTransform: 'capitalize',
+        borderRadius: 'md',
       },
     },
   },
@@ -19,7 +18,7 @@ const Tag = {
     },
     md: {
       container: {
-        py: 2,
+        py: 1.5,
         letterSpacing: 'wide',
         borderRadius: 'sm',
       },

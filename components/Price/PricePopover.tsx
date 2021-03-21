@@ -55,7 +55,7 @@ const PricePopover = ({ children }: IPricePopover) => {
                     alignItems="center"
                     border="1px solid"
                     borderColor="gray.300"
-                    borderRadius="lg"
+                    borderRadius="10px"
                     py={2}
                     px={2}
                   >
@@ -79,7 +79,7 @@ const PricePopover = ({ children }: IPricePopover) => {
                     alignItems="center"
                     border="1px solid"
                     borderColor="gray.300"
-                    borderRadius="lg"
+                    borderRadius="10px"
                     py={2}
                     px={2.5}
                   >

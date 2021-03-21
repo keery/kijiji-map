@@ -1,22 +1,20 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { search, categories } from "kijiji-scraper";
+import { NextApiRequest, NextApiResponse } from 'next'
+import { search, categories } from 'kijiji-scraper'
 
 const testOptions = {
   maxResults: 50,
-};
+}
 
 const testParams = {
   locationId: 1700281, // Same as kijiji.locations.ONTARIO.OTTAWA_GATINEAU_AREA.OTTAWA
   categoryId: categories.REAL_ESTATE.FOR_RENT.LONG_TERM_RENTALS, // Same as kijiji.categories.CARS_AND_VEHICLES
-  sortByName: "priceAsc", // Show the cheapest listings first
-};
+  sortByName: 'priceAsc', // Show the cheapest listings first
+}
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  search(testParams, testOptions)
-    .then((ads) => {
-      console.log("ads", ads);
-    })
-    .catch((err) => console.error(err));
+  const result = await search(testParams, testOptions).catch((err) =>
+    console.error(err),
+  )
 
   //   const requestParams: Request = {
   //     method: method as Method,
@@ -43,5 +41,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   //       data: response.data,
   //     }))
 
-  //   return res.status(status).json(data)
-};
+  return res.status(200).json(result)
+}

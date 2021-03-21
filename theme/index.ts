@@ -60,7 +60,7 @@ const theme = extendTheme({
   radii: {
     sm: '2px',
     md: '4px',
-    lg: '6px',
+    lg: '20px',
     xl: '32px',
     xxl: '40px',
   },
@@ -140,7 +140,7 @@ const theme = extendTheme({
     filter: {
       height: '52px',
       borderRadius: 'xl',
-      border: '1px solid #ADADAD',
+      border: '1px solid #E5E5E5',
       padding: '5px 25px',
       cursor: 'pointer',
     },

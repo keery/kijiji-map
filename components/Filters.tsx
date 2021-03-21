@@ -18,16 +18,7 @@ const Filters = () => {
 
   return (
     <FormProvider {...form}>
-      <HStack
-        py={5}
-        px={5}
-        spacing={4}
-        borderBottom="1px solid"
-        borderColor="gray.100"
-        backgroundColor="white"
-        display="inline-flex"
-        borderRadius="full"
-      >
+      <HStack spacing={4} backgroundColor="white" display="inline-flex">
         <FilterLocation control={form.control} />
         <FilterPrice />
         <FilterSize />

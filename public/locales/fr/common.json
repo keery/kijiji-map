@@ -15,5 +15,22 @@
       "placeholder": "Taille",
       "nbRoom": "nombre de pièce"
     }
-  }
+  },
+  "ad": {
+    "attribute": {
+      "furnished": "Meublé",
+      "furnishedNo": "Non meublé",
+      "bedroom": "{{nb}} chambre(s)",
+      "parking": "{{nb}} Stationnement inclus",
+      "heat": "Chauffage compris",
+      "heatNo": "Chauffage non compris",
+      "water": "Eau comprise",
+      "waterNo": "Eau non comprise",
+      "electric": "Electricité comprise",
+      "electricNo": "Electricité non comprise"
+    }
+  },
+  "apartment": "Appartement",
+  "basement-apartment": "RDC appartement",
+  "house": "Maison"
 }

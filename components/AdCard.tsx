@@ -45,11 +45,13 @@ const AdCard = ({ ad }: IAdCard) => {
     <Link
       w="100%"
       href={ad.url}
-      _hover={{ textDecoration: 'none' }}
+      _hover={{ textDecoration: 'none', boxShadow: '0px 0px 10px #9c9c9c' }}
       borderRadius="30px"
       p="10px"
+      pr={4}
       boxShadow="0px 0px 7px #ccc"
       overflow="hidden"
+      isExternal
     >
       <Flex w="100%">
         <Box w="250px" h="200px" borderRadius="20px" overflow="hidden">
@@ -113,18 +115,26 @@ const AdCard = ({ ad }: IAdCard) => {
             alignItems="center"
             spacing={3}
           >
-            <AttributeCard
-              name="bedroom"
-              icon={<Bed fontSize="20px" />}
-              value={ad.attributes.numberparkingspots}
-            />
-            <Divider orientation="vertical" h="85%" />
-            <AttributeCard
-              name="parking"
-              icon={<Car fontSize="20px" />}
-              value={ad.attributes.numberparkingspots}
-            />
-            <Divider orientation="vertical" h="85%" />
+            {ad.attributes.numberbedrooms !== 'Not Available' && (
+              <>
+                <AttributeCard
+                  name="bedroom"
+                  icon={<Bed fontSize="20px" />}
+                  value={ad.attributes.numberbedrooms}
+                />
+                <Divider orientation="vertical" h="85%" />
+              </>
+            )}
+            {ad.attributes.numberparkingspots !== 'Not Available' && (
+              <>
+                <AttributeCard
+                  name="parking"
+                  icon={<Car fontSize="20px" />}
+                  value={ad.attributes.numberparkingspots}
+                />
+                <Divider orientation="vertical" h="85%" />
+              </>
+            )}
             <AttributeCard
               name="electric"
               icon={<Electric fontSize="20px" />}

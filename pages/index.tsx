@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react'
 import { Box, Container, Flex } from '@chakra-ui/react'
 import { GetServerSideProps, NextPage } from 'next'
 import { SSRConfig } from 'next-i18next'
@@ -9,11 +10,15 @@ import Logo from '~components/Logo'
 import ListAds from '~components/ListAds'
 import ListAdsSkeleton from '~components/ListAdsSkeleton'
 import Loading from '~components/Loading'
+import { data } from '~data'
 
 const Map = dynamic(() => import('~components/Map'), { ssr: false })
 
+const ads = data
+const isLoading = false
 const Home: NextPage = () => {
-  const { data: ads, isLoading } = useSearch()
+  // const { data: ads, isLoading } = useSearch()
+  // ads?.map((ad) => console.log(ad.attributes.location))
 
   return (
     <Flex backgroundColor="gray.400" h="100vh" direction="column">
@@ -34,7 +39,7 @@ const Home: NextPage = () => {
         <Loading isLoading={isLoading} skeleton={<ListAdsSkeleton />}>
           <ListAds ads={ads} />
         </Loading>
-        <Map />
+        <Map ads={ads} />
       </Flex>
     </Flex>
   )

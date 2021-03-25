@@ -21,3 +21,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.leaflet-container a {
+  color: white !important;
+}
+.map .leaflet-popup-content p,
+.map .leaflet-popup-content {
+  margin: 0;
+}
+.map .leaflet-popup-content {
+  /* padding: 10px; */
+}
+.map .leaflet-popup-content-wrapper {
+  border-radius: 30px;
+  padding: 0;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  display: none;
+}

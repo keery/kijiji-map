@@ -12,18 +12,19 @@ import { Ad } from 'kijiji-scraper'
 import Leaflet from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import MapPlaceholder from './MapPlaceholder'
+import MapPopup from './MapPopup'
 
 interface IMarker {
-  id: string
+  ad: Ad
   geojson: GeoJsonObject
 }
 
-const Marker = ({ geojson, id }: IMarker) => {
+const Marker = ({ geojson, ad }: IMarker) => {
   const markerRef = useRef(null)
 
   return (
     <GeoJSON
-      key={id}
+      key={ad.url}
       ref={markerRef}
       data={geojson}
       pointToLayer={(feature, latlng) => {
@@ -35,7 +36,9 @@ const Marker = ({ geojson, id }: IMarker) => {
         })
       }}
       style={{ fillColor: 'blue' }}
-    />
+    >
+      <MapPopup ad={ad} />
+    </GeoJSON>
   )
 }
 
@@ -58,7 +61,7 @@ const convertAdsToMarker = (ads: Ad[]) => {
     return (
       <Marker
         key={ad.url}
-        id={ad.url}
+        ad={ad}
         geojson={{
           type: 'Feature' as 'Feature',
           properties: {},
@@ -89,6 +92,7 @@ const Map = ({ ads, ...rest }: IMap) => {
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%', flexGrow: 1 }}
         placeholder={<MapPlaceholder />}
+        className="map"
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

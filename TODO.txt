@@ -1,3 +1,4 @@
 Newsletter with daily selection
 Add backend to persist ads
 Home design
+Like favorites ads

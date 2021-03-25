@@ -32,5 +32,8 @@
   },
   "apartment": "Appartement",
   "basement-apartment": "RDC appartement",
-  "house": "Maison"
+  "house": "Maison",
+  "popup": {
+    "seeMore": "Voir l'annonce"
+  }
 }

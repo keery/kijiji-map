@@ -26,9 +26,10 @@ import Electric from 'public/assets/img/electric.svg'
 
 interface IAdCard {
   ad: Ad
+  setFocus: (ad: string | null) => void
 }
 
-const AdCard = ({ ad }: IAdCard) => {
+const AdCard = ({ ad, setFocus }: IAdCard) => {
   const { t, i18n } = useTranslation('common')
 
   const date = useMemo(
@@ -51,6 +52,8 @@ const AdCard = ({ ad }: IAdCard) => {
       boxShadow="0px 0px 7px #ccc"
       overflow="hidden"
       isExternal
+      onMouseEnter={() => setFocus(ad.url)}
+      onMouseLeave={() => setFocus(null)}
     >
       <Flex w="100%" className="adCard">
         <Box w="250px" h="200px" borderRadius="20px" overflow="hidden">

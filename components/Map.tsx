@@ -17,9 +17,10 @@ import MapPopup from './MapPopup'
 interface IMarker {
   ad: Ad
   geojson: GeoJsonObject
+  isFocus: boolean
 }
 
-const Marker = ({ geojson, ad }: IMarker) => {
+const Marker = ({ geojson, ad, isFocus }: IMarker) => {
   const markerRef = useRef(null)
 
   return (
@@ -30,12 +31,13 @@ const Marker = ({ geojson, ad }: IMarker) => {
       pointToLayer={(feature, latlng) => {
         return Leaflet.marker(latlng, {
           icon: Leaflet.icon({
-            iconUrl: '/assets/img/pin-map.svg',
+            iconUrl: isFocus
+              ? '/assets/img/pin-map-focus.svg'
+              : '/assets/img/pin-map.svg',
             iconSize: [30, 30],
           }),
         })
       }}
-      style={{ fillColor: 'blue' }}
     >
       <MapPopup ad={ad} />
     </GeoJSON>
@@ -55,13 +57,15 @@ const MapContent = ({ children }) => {
   return <FeatureGroup ref={groupRef}>{children}</FeatureGroup>
 }
 
-const convertAdsToMarker = (ads: Ad[]) => {
+const convertAdsToMarker = (ads: Ad[], adToFocus: string | null) => {
   if (!ads) return []
   return ads.map((ad) => {
+    const isFocus = adToFocus === ad.url
     return (
       <Marker
-        key={ad.url}
+        key={`${ad.url}-${isFocus ? 'focus' : ''}`}
         ad={ad}
+        isFocus={isFocus}
         geojson={{
           type: 'Feature' as 'Feature',
           properties: {},
@@ -79,10 +83,14 @@ const convertAdsToMarker = (ads: Ad[]) => {
 }
 interface IMap extends BoxProps {
   ads: Ad[]
+  adToFocus: string | null
 }
 
-const Map = ({ ads, ...rest }: IMap) => {
-  const markers = useMemo(() => convertAdsToMarker(ads), [ads])
+const Map = ({ ads, adToFocus, ...rest }: IMap) => {
+  const markers = useMemo(() => convertAdsToMarker(ads, adToFocus), [
+    ads,
+    adToFocus,
+  ])
 
   return (
     <Box width="100%" {...rest}>

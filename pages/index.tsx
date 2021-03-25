@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Flex } from '@chakra-ui/react'
 import { GetServerSideProps, NextPage } from 'next'
 import { SSRConfig } from 'next-i18next'
@@ -17,9 +17,9 @@ const Map = dynamic(() => import('~components/Map'), { ssr: false })
 const ads = data
 const isLoading = false
 const Home: NextPage = () => {
+  const [adToFocus, setFocus] = useState(null)
   // const { data: ads, isLoading } = useSearch()
   // ads?.map((ad) => console.log(ad.attributes.location))
-
   return (
     <Flex backgroundColor="gray.400" h="100vh" direction="column">
       <Container
@@ -37,9 +37,9 @@ const Home: NextPage = () => {
       </Container>
       <Flex overflow="hidden" flex={1}>
         <Loading isLoading={isLoading} skeleton={<ListAdsSkeleton />}>
-          <ListAds ads={ads} />
+          <ListAds ads={ads} setFocus={setFocus} />
         </Loading>
-        <Map ads={ads} />
+        <Map ads={ads} adToFocus={adToFocus} />
       </Flex>
     </Flex>
   )

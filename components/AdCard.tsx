@@ -3,7 +3,6 @@ import { Ad } from 'kijiji-scraper'
 import {
   Flex,
   Text,
-  Image,
   Box,
   HStack,
   Tag,
@@ -16,14 +15,14 @@ import { useTranslation } from 'next-i18next'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import frLocale from 'date-fns/locale/fr'
 import AttributeCard from '~components/AttributeCard'
-import FallbackImage from '~components/FallbackImage'
+import Carousel from '~components/Carousel'
 import Building from 'public/assets/img/building.svg'
+import Couch from 'public/assets/img/couch.svg'
 import Bed from 'public/assets/img/bed.svg'
 import Car from 'public/assets/img/car.svg'
 import Water from 'public/assets/img/water.svg'
 import Heat from 'public/assets/img/heat.svg'
 import Electric from 'public/assets/img/electric.svg'
-import Couch from 'public/assets/img/couch.svg'
 
 interface IAdCard {
   ad: Ad
@@ -53,15 +52,9 @@ const AdCard = ({ ad }: IAdCard) => {
       overflow="hidden"
       isExternal
     >
-      <Flex w="100%">
+      <Flex w="100%" className="adCard">
         <Box w="250px" h="200px" borderRadius="20px" overflow="hidden">
-          <Image
-            src={ad.image}
-            w="100%"
-            h="100%"
-            objectFit="cover"
-            fallback={<FallbackImage />}
-          />
+          <Carousel slides={ad.images} />
         </Box>
         <Flex
           pl={5}

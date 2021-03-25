@@ -32,6 +32,7 @@
     "react-leaflet": "^3.1.0",
     "react-query": "^3.9.8",
     "react-select": "^4.3.0",
+    "swiper": "^6.5.0",
     "yup": "^0.32.8"
   },
   "devDependencies": {

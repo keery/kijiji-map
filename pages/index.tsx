@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react'
-import { Box, Container, Flex } from '@chakra-ui/react'
+import React from 'react'
+import { Container, Flex } from '@chakra-ui/react'
 import { GetServerSideProps, NextPage } from 'next'
 import { SSRConfig } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'

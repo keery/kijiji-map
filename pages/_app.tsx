@@ -6,6 +6,7 @@ import theme from '../theme'
 import { client } from '~api/client-react-query'
 import { QueryClientProvider } from 'react-query'
 import { appWithTranslation } from 'next-i18next'
+import 'swiper/swiper-bundle.min.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const content = (

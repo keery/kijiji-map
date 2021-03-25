@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   Flex,
-  Image,
   Box,
   Text,
   Button,
@@ -10,11 +9,11 @@ import {
   TagLeftIcon,
   TagLabel,
 } from '@chakra-ui/react'
-import FallbackImage from '~components/FallbackImage'
 import { Popup } from 'react-leaflet'
 import { Ad } from 'kijiji-scraper'
 import Couch from 'public/assets/img/couch.svg'
 import { useTranslation } from 'next-i18next'
+import Carousel from '~components/Carousel'
 
 interface IMapPopup {
   ad: Ad
@@ -25,15 +24,9 @@ const MapPopup = ({ ad }: IMapPopup) => {
 
   return (
     <Popup maxWidth={300}>
-      <Flex w="100%" direction="column">
+      <Flex w="100%" direction="column" className="custom-popup">
         <Box w="100%" h="200px" borderTopRadius="20px" overflow="hidden">
-          <Image
-            src={ad.image}
-            w="100%"
-            h="100%"
-            objectFit="cover"
-            fallback={<FallbackImage />}
-          />
+          <Carousel slides={ad.images} />
         </Box>
         <Box px={4} py={2} pb={3.5}>
           <Text fontSize="lg" isTruncated fontWeight="500">

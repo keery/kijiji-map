@@ -11,6 +11,7 @@ import { GeoJsonObject } from 'geojson'
 import { Ad } from 'kijiji-scraper'
 import Leaflet from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import MapPlaceholder from './MapPlaceholder'
 
 interface IMarker {
   id: string
@@ -87,6 +88,7 @@ const Map = ({ ads, ...rest }: IMap) => {
         zoom={12}
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%', flexGrow: 1 }}
+        placeholder={<MapPlaceholder />}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

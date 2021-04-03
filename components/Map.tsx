@@ -66,17 +66,19 @@ const convertAdsToMarker = (ads: Ad[], adToFocus: string | null) => {
         key={`${ad.url}-${isFocus ? 'focus' : ''}`}
         ad={ad}
         isFocus={isFocus}
-        geojson={{
-          type: 'Feature' as 'Feature',
-          properties: {},
-          geometry: {
-            type: 'Point',
-            coordinates: [
-              ad.attributes.coordinates[0],
-              ad.attributes.coordinates[1],
-            ],
-          },
-        }}
+        geojson={
+          {
+            type: 'Feature' as 'Feature',
+            properties: {},
+            geometry: {
+              type: 'Point',
+              coordinates: [
+                ad.attributes.coordinates[0],
+                ad.attributes.coordinates[1],
+              ],
+            },
+          } as GeoJsonObject
+        }
       />
     )
   })
@@ -104,7 +106,7 @@ const Map = ({ ads, adToFocus, ...rest }: IMap) => {
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
         />
         <MapContent>{markers}</MapContent>
       </MapContainer>

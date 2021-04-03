@@ -86,6 +86,7 @@ const theme = extendTheme({
     },
   },
   breakpoints: {
+    base: '0em',
     xl: '87.5rem',
   },
   gradient: {
@@ -147,4 +148,5 @@ const theme = extendTheme({
   },
 })
 
+// @ts-ignore
 export default extendTheme(theme)

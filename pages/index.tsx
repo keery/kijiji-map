@@ -37,8 +37,10 @@ const Home: NextPage = () => {
       </Container>
       <Flex overflow="hidden" flex={1}>
         <Loading isLoading={isLoading} skeleton={<ListAdsSkeleton />}>
+          {/* @ts-ignore */}
           <ListAds ads={ads} setFocus={setFocus} />
         </Loading>
+        {/* @ts-ignore */}
         <Map ads={ads} adToFocus={adToFocus} />
       </Flex>
     </Flex>

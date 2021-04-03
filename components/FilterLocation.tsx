@@ -48,6 +48,9 @@ const getStyle = (theme) => {
         width: '250px',
         paddingRight: 10,
         paddingLeft: 10,
+        ':hover': {
+          borderColor: theme.colors.inputHover,
+        },
         ':before': {
           ...before,
           height: '35px',

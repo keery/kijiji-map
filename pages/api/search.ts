@@ -8,52 +8,20 @@ import {
 import mbxClient from '@mapbox/mapbox-sdk'
 import geocodingService from '@mapbox/mapbox-sdk/services/geocoding'
 
-const DEFAULT_OPTIONS: ScraperOptions = {
+interface IOptions extends ScraperOptions {
+  maxResults?: number
+  minResults?: number
+}
+
+const DEFAULT_OPTIONS: IOptions = {
   maxResults: 10,
 }
 
 const DEFAULT_PARAMS: SearchParameters = {
   adType: 'OFFERED',
   locationId: 1700281,
-  categoryId: categories.REAL_ESTATE.FOR_RENT.LONG_TERM_RENTALS, // Same as kijiji.categories.CARS_AND_VEHICLES
-  sortByName: 'priceAsc', // Show the cheapest listings first
-}
-
-const postalCode = {
-  NL: ['A'],
-  NS: ['B'],
-  PE: ['C'],
-  NB: ['E'],
-  QC: ['G', 'H', 'J'],
-  ON: ['K', 'L', 'M', 'N', 'P'],
-  MB: ['R'],
-  SK: ['S'],
-  AB: ['T'],
-  BC: ['V'],
-  NU: ['X'],
-  NT: ['X'],
-  YT: ['Y'],
-}
-
-const matchingPostalCode = {
-  A: 'NL',
-  B: 'NS',
-  C: 'PE',
-  E: 'NB',
-  G: 'QC',
-  H: 'QC',
-  J: 'QC',
-  K: 'ON',
-  L: 'ON',
-  M: 'ON',
-  N: 'ON',
-  P: 'ON',
-  R: 'MB',
-  S: 'SK',
-  T: 'AB',
-  V: 'BC',
-  X: 'NU',
-  Y: 'YT',
+  categoryId: categories.REAL_ESTATE.FOR_RENT.LONG_TERM_RENTALS,
+  sortByName: 'priceAsc',
 }
 
 const baseClient = mbxClient({ accessToken: process.env.MAPBOX_PUBLIC_TOKEN })

@@ -13,7 +13,7 @@ const ListAds = ({ ads, setFocus }: IListAds) => {
     <Box
       backgroundColor="white"
       w="45vw"
-      minW="650px"
+      minW="680px"
       maxW="750px"
       overflowY="auto"
       px={6}

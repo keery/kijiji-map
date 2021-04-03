@@ -97,7 +97,7 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
                 background="linear-gradient(to right, #8CA6DB, #B993D6)"
                 bgClip="text"
               >
-                $ {ad.attributes.price}
+                {ad.attributes.price ? `$ ${ad.attributes.price}` : '--'}
               </Text>
             </Flex>
           </Flex>

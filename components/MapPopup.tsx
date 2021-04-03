@@ -24,7 +24,7 @@ const MapPopup = ({ ad }: IMapPopup) => {
 
   return (
     <Popup maxWidth={300}>
-      <Flex w="100%" direction="column" className="custom-popup">
+      <Flex w="100%" direction="column" className="custom-popup" role="group">
         <Box w="100%" h="200px" borderTopRadius="20px" overflow="hidden">
           <Carousel slides={ad.images} />
         </Box>

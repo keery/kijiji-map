@@ -3,13 +3,17 @@ const Button = {
     fontWeight: '500',
     borderRadius: 'xl',
     lineHeight: 1,
-    background: 'linear-gradient(to right, #8CA6DB, #B993D6)',
     _hover: {
       textDecoration: 'none',
     },
   },
   defaultProps: {
     colorScheme: 'white',
+  },
+  variants: {
+    solid: {
+      bg: 'linear-gradient(to right, #8CA6DB, #B993D6)',
+    },
   },
   sizes: {
     md: {

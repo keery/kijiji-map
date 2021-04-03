@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SwiperCore, { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Image } from '@chakra-ui/react'
+import { Image, Text } from '@chakra-ui/react'
 import FallbackImage from '~components/FallbackImage'
 
 interface ICarousel {
@@ -10,9 +10,18 @@ interface ICarousel {
 SwiperCore.use([Navigation])
 
 const Carousel = ({ slides = [] }: ICarousel) => {
+  const [currentSlide, setCurrentSlide] = useState(1)
   if (slides.length === 0) return <FallbackImage />
   return (
-    <Swiper slidesPerView="auto" navigation observer parallax>
+    <Swiper
+      slidesPerView="auto"
+      navigation
+      observer
+      parallax
+      onSlideChangeTransitionEnd={({ activeIndex }) =>
+        setCurrentSlide(activeIndex + 1)
+      }
+    >
       {slides.map((slide) => (
         <SwiperSlide key={slide}>
           <Image
@@ -24,6 +33,19 @@ const Carousel = ({ slides = [] }: ICarousel) => {
           />
         </SwiperSlide>
       ))}
+      <Text
+        opacity={0}
+        _groupHover={{
+          opacity: 1,
+        }}
+        pos="absolute"
+        right={4}
+        bottom={4}
+        color="white"
+        zIndex={6}
+        fontWeight="500"
+        textShadow="0px 1px 4px #000"
+      >{`${currentSlide}/${slides.length}`}</Text>
     </Swiper>
   )
 }

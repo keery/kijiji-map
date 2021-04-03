@@ -55,7 +55,7 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
       onMouseEnter={() => setFocus(ad.url)}
       onMouseLeave={() => setFocus(null)}
     >
-      <Flex w="100%" className="adCard">
+      <Flex w="100%" className="adCard" role="group">
         <Box w="250px" h="200px" borderRadius="20px" overflow="hidden">
           <Carousel slides={ad.images} />
         </Box>

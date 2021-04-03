@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Flex } from '@chakra-ui/react'
+import { Container, Flex, Box } from '@chakra-ui/react'
 import { GetServerSideProps, NextPage } from 'next'
 import { SSRConfig } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -14,12 +14,12 @@ import { data } from '~data'
 
 const Map = dynamic(() => import('~components/Map'), { ssr: false })
 
-const ads = data
-const isLoading = false
+// const ads = data
+// const isLoading = false
 const Home: NextPage = () => {
   const [adToFocus, setFocus] = useState(null)
-  // const { data: ads, isLoading } = useSearch()
-  // ads?.map((ad) => console.log(ad.attributes.location))
+  const { data: ads, isLoading } = useSearch()
+
   return (
     <Flex backgroundColor="gray.400" h="100vh" direction="column">
       <Container
@@ -36,10 +36,19 @@ const Home: NextPage = () => {
         <Filters />
       </Container>
       <Flex overflow="hidden" flex={1}>
-        <Loading isLoading={isLoading} skeleton={<ListAdsSkeleton />}>
-          {/* @ts-ignore */}
-          <ListAds ads={ads} setFocus={setFocus} />
-        </Loading>
+        <Box
+          backgroundColor="white"
+          w="45vw"
+          minW="680px"
+          maxW="750px"
+          overflowY="auto"
+          px={6}
+        >
+          <Loading isLoading={isLoading} skeleton={<ListAdsSkeleton />}>
+            {/* @ts-ignore */}
+            <ListAds ads={ads} setFocus={setFocus} />
+          </Loading>
+        </Box>
         {/* @ts-ignore */}
         <Map ads={ads} adToFocus={adToFocus} />
       </Flex>

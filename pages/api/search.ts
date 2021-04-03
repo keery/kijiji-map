@@ -1,13 +1,19 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { search, categories } from 'kijiji-scraper'
+import {
+  search,
+  categories,
+  ScraperOptions,
+  SearchParameters,
+} from 'kijiji-scraper'
 import mbxClient from '@mapbox/mapbox-sdk'
 import geocodingService from '@mapbox/mapbox-sdk/services/geocoding'
 
-const testOptions = {
+const DEFAULT_OPTIONS: ScraperOptions = {
   maxResults: 10,
 }
 
-const testParams = {
+const DEFAULT_PARAMS: SearchParameters = {
+  adType: 'OFFERED',
   locationId: 1700281,
   categoryId: categories.REAL_ESTATE.FOR_RENT.LONG_TERM_RENTALS, // Same as kijiji.categories.CARS_AND_VEHICLES
   sortByName: 'priceAsc', // Show the cheapest listings first
@@ -53,9 +59,10 @@ const matchingPostalCode = {
 const baseClient = mbxClient({ accessToken: process.env.MAPBOX_PUBLIC_TOKEN })
 const geocoder = geocodingService(baseClient)
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const result = await search(testParams, testOptions).catch((err) =>
-    console.error(err),
-  )
+  const result = await search(
+    { ...DEFAULT_PARAMS, ...req.body },
+    DEFAULT_OPTIONS,
+  ).catch((err) => console.error(err))
 
   if (!result || result.length === 0) {
     return res.status(200).json(result)
@@ -66,7 +73,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       geocoder
         .forwardGeocode({
           query: ad.attributes.location,
-          // query: '6645 Rue de Terrebonne, Montréal, QC, H4B 1B5',
           limit: 1,
           countries: ['ca'],
         })

@@ -14,7 +14,8 @@ const sliderStyle = {
 }
 
 const SliderPrice = (props: ISliderPrice) => {
-  const { setValue } = useFormContext()
+  const { setValue, getValues } = useFormContext()
+  const { max, min } = getValues(['max', 'min'])
 
   const onUpdate = (value) => {
     setValue('min', value[0])
@@ -28,7 +29,7 @@ const SliderPrice = (props: ISliderPrice) => {
       domain={[+DEFAULT_MIN_PRICE, +DEFAULT_MAX_PRICE]}
       rootStyle={sliderStyle}
       onUpdate={throttle(onUpdate, 150)}
-      values={[+DEFAULT_MIN_PRICE, +DEFAULT_MAX_PRICE]}
+      values={[+min || DEFAULT_MIN_PRICE, +max || DEFAULT_MAX_PRICE]}
     >
       <Rail>
         {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}

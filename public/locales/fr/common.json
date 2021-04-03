@@ -1,6 +1,7 @@
 {
   "filters": {
     "submit": "Rechercher",
+    "searching": "En chargement",
     "price": {
       "title": "Sélectionner son budget",
       "min": "prix min",

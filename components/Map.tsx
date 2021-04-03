@@ -44,15 +44,18 @@ const Marker = ({ geojson, ad, isFocus }: IMarker) => {
   )
 }
 
-const MapContent = ({ children }) => {
+const MapContent = ({ children, ads }) => {
   const map = useMap()
   const groupRef = useRef(null)
 
   useEffect(() => {
-    if (groupRef.current) {
+    if (
+      groupRef.current &&
+      Object.keys(groupRef.current.getBounds()).length > 0
+    ) {
       map.fitBounds(groupRef.current.getBounds())
     }
-  }, [groupRef])
+  }, [groupRef.current, ads])
 
   return <FeatureGroup ref={groupRef}>{children}</FeatureGroup>
 }
@@ -84,11 +87,11 @@ const convertAdsToMarker = (ads: Ad[], adToFocus: string | null) => {
   })
 }
 interface IMap extends BoxProps {
-  ads: Ad[]
+  ads?: Ad[]
   adToFocus: string | null
 }
 
-const Map = ({ ads, adToFocus, ...rest }: IMap) => {
+const Map = ({ ads = [], adToFocus, ...rest }: IMap) => {
   const markers = useMemo(() => convertAdsToMarker(ads, adToFocus), [
     ads,
     adToFocus,
@@ -108,7 +111,7 @@ const Map = ({ ads, adToFocus, ...rest }: IMap) => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
         />
-        <MapContent>{markers}</MapContent>
+        <MapContent ads={ads}>{markers}</MapContent>
       </MapContainer>
     </Box>
   )

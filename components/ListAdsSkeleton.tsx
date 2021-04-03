@@ -3,7 +3,7 @@ import { Skeleton, VStack } from '@chakra-ui/react'
 
 const ListAdsSkeleton = () => {
   return (
-    <VStack spacing={6} py={6} w="45vw" maxW="750px" bg="white" px={6}>
+    <VStack spacing={6} py={6} w="100%" bg="white">
       <Skeleton borderRadius="30px" w="100%" minH="220px" />
       <Skeleton borderRadius="30px" w="100%" minH="220px" />
       <Skeleton borderRadius="30px" w="100%" minH="220px" />

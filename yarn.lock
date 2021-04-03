@@ -4084,10 +4084,10 @@ keyv@3.0.0:
   dependencies:
     json-buffer "3.0.0"
 
-kijiji-scraper@^6.1.2:
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/kijiji-scraper/-/kijiji-scraper-6.1.2.tgz#9038c1d8904a577459a58fabd0f59384c873a7f6"
-  integrity sha512-/8BOvaWRhs61oKOgLfAx6ILMGfd6WF9pCVGCaOSfr0opxwbAKXgEM+Gza+L5w+pUs+Z4ZzcTiuSNtQiOgs/d1Q==
+kijiji-scraper@^6.1.4:
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/kijiji-scraper/-/kijiji-scraper-6.1.4.tgz#f6455f6f84b8df78f8a5b2776698295e8c2801fc"
+  integrity sha512-ZZfb+wGYqVWWk09nqNXWeRtFa4L+dzyZ5ByuhRXIfoSsIonsi6JgIHXopx5duUtyb6fjNqc0upNLjVDt7il9mQ==
   dependencies:
     cheerio "^0.22.0"
     node-fetch "^2.6.1"

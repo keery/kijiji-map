@@ -13,7 +13,7 @@ import {
   Button,
   Input,
   Circle,
-  useTheme,
+  useDisclosure,
 } from '@chakra-ui/react'
 import PriceSlider from '~components/Slider/PriceSlider'
 import { useTranslation } from 'next-i18next'
@@ -25,11 +25,11 @@ interface IPricePopover {
 
 const PricePopover = ({ children }: IPricePopover) => {
   const { t } = useTranslation()
-  const theme = useTheme()
+  const { onOpen, onClose, isOpen } = useDisclosure()
   const { register } = useFormContext()
 
   return (
-    <Popover>
+    <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
       <PopoverTrigger>
         <Box>{children}</Box>
       </PopoverTrigger>
@@ -104,7 +104,9 @@ const PricePopover = ({ children }: IPricePopover) => {
             borderTop="1px solid"
             borderColor="gray.200"
           >
-            <Button>{t('filters.submit')}</Button>
+            <Button type="submit" onClick={onClose}>
+              {t('filters.submit')}
+            </Button>
           </Flex>
         </PopoverBody>
       </PopoverContent>

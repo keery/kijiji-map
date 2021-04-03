@@ -1,5 +1,5 @@
 import { useQuery, UseQueryOptions } from 'react-query'
-import { client } from '~api/api'
+import { search } from '~api/requests'
 import { SearchOptions, SearchParameters, Ad } from 'kijiji-scraper'
 
 export const useSearch = (
@@ -8,8 +8,8 @@ export const useSearch = (
   queryOptions?: UseQueryOptions<Ad[]>,
 ) => {
   return useQuery(
-    ['search', params],
-    () => client.post('/api/search', { test: 'coucu' }).then((res) => res.data),
+    'search',
+    () => search(params).then((res) => res.data),
 
     queryOptions,
   )

@@ -47,7 +47,7 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
       href={ad.url}
       _hover={{ textDecoration: 'none', boxShadow: '0px 0px 10px #9c9c9c' }}
       borderRadius="30px"
-      p="10px"
+      p={2.5}
       pr={4}
       boxShadow="0px 0px 7px #ccc"
       overflow="hidden"

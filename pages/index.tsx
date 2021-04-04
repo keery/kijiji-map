@@ -14,11 +14,11 @@ import { data } from '~data'
 
 const Map = dynamic(() => import('~components/Map'), { ssr: false })
 
-// const ads = data
-// const isLoading = false
+const ads = data
+const isLoading = false
 const Home: NextPage = () => {
   const [adToFocus, setFocus] = useState(null)
-  const { data: ads, isLoading } = useSearch()
+  // const { data: ads, isLoading } = useSearch()
 
   return (
     <Flex backgroundColor="gray.400" h="100vh" direction="column">

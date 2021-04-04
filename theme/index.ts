@@ -145,6 +145,9 @@ const theme = extendTheme({
       border: '1px solid #E5E5E5',
       padding: '5px 25px',
       cursor: 'pointer',
+      _hover: {
+        borderColor: 'inputHover',
+      },
     },
   },
 })

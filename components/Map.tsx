@@ -75,10 +75,7 @@ const convertAdsToMarker = (ads: Ad[], adToFocus: string | null) => {
             properties: {},
             geometry: {
               type: 'Point',
-              coordinates: [
-                ad.attributes.coordinates[0],
-                ad.attributes.coordinates[1],
-              ],
+              coordinates: [ad.latitude, ad.longitude],
             },
           } as GeoJsonObject
         }

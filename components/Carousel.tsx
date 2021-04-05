@@ -33,19 +33,21 @@ const Carousel = ({ slides = [] }: ICarousel) => {
           />
         </SwiperSlide>
       ))}
-      <Text
-        opacity={0}
-        _groupHover={{
-          opacity: 1,
-        }}
-        pos="absolute"
-        right={4}
-        bottom={4}
-        color="white"
-        zIndex={6}
-        fontWeight="500"
-        textShadow="0px 1px 4px #000"
-      >{`${currentSlide}/${slides.length}`}</Text>
+      {slides.length > 1 && (
+        <Text
+          opacity={0}
+          _groupHover={{
+            opacity: 1,
+          }}
+          pos="absolute"
+          right={4}
+          bottom={4}
+          color="white"
+          zIndex={6}
+          fontWeight="500"
+          textShadow="0px 1px 4px #000"
+        >{`${currentSlide}/${slides.length}`}</Text>
+      )}
     </Swiper>
   )
 }

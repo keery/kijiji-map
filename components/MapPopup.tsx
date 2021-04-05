@@ -36,7 +36,7 @@ const MapPopup = ({ ad }: IMapPopup) => {
             <Tag variant="subtle" colorScheme="blue" alignSelf="center">
               <TagLeftIcon boxSize="16px" as={Couch} />
               <TagLabel>
-                {ad.attributes.furnished
+                {ad.furnished
                   ? t('ad.attribute.furnished')
                   : t('ad.attribute.furnishedNo')}
               </TagLabel>
@@ -47,7 +47,7 @@ const MapPopup = ({ ad }: IMapPopup) => {
               background="linear-gradient(to right, #8CA6DB, #B993D6)"
               bgClip="text"
             >
-              {ad.attributes.price ? `$ ${ad.attributes.price}` : '--'}
+              {ad.price ? `$ ${ad.price}` : '--'}
             </Text>
           </Flex>
           <Button as={Link} href={ad.url} isExternal w="100%">

@@ -1,15 +1,15 @@
 import { useQuery, UseQueryOptions } from 'react-query'
-import { search } from '~api/requests'
+import { getAds } from '~api/requests'
 import { SearchOptions, SearchParameters, Ad } from 'kijiji-scraper'
 
-export const useSearch = (
+export const useAds = (
   params?: SearchParameters,
   searchOptions?: SearchOptions,
   queryOptions?: UseQueryOptions<Ad[]>,
 ) => {
   return useQuery(
-    'search',
-    () => search(params).then((res) => res.data),
+    'ads',
+    () => getAds(params).then((res) => res.data),
 
     queryOptions,
   )

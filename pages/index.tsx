@@ -4,7 +4,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import { SSRConfig } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
-import { useSearch } from '~hooks/useSearch'
+import { useAds } from '~hooks/useAds'
 import Filters from '~components/Filters'
 import Logo from '~components/Logo'
 import ListAds from '~components/ListAds'
@@ -18,7 +18,7 @@ const ads = data
 const isLoading = false
 const Home: NextPage = () => {
   const [adToFocus, setFocus] = useState(null)
-  // const { data: ads, isLoading } = useSearch()
+  const { data: ads, isLoading } = useAds()
 
   return (
     <Flex backgroundColor="gray.400" h="100vh" direction="column">

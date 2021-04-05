@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { HStack, Button } from '@chakra-ui/react'
 import FilterPrice from '~components/Price/FilterPrice'
-import { search } from '~api/requests'
+import { getAds } from '~api/requests'
 import FilterLocation from '~components/FilterLocation'
 import FilterSize from '~components/FilterSize'
 import { LOCAL_STORAGE_SEARCH } from '~constants'
@@ -16,7 +16,6 @@ const Filters = () => {
   const [isLoading, setLoading] = useState(false)
   const queryClient = useQueryClient()
   const { t } = useTranslation('common')
-
   const form = useForm({
     defaultValues: getDefaultValue(),
   })
@@ -30,7 +29,7 @@ const Filters = () => {
     }
     setLoading(true)
     await queryClient
-      .fetchQuery('search', () => search(params).then((res) => res.data))
+      .fetchQuery('search', () => getAds(params).then((res) => res.data))
       .finally(() => setLoading(false))
   }
 

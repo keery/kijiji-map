@@ -75,12 +75,12 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
               <HStack justifyContent="flex-start">
                 <Tag variant="subtle" colorScheme="blue">
                   <TagLeftIcon boxSize="16px" as={Building} />
-                  <TagLabel>{ad.attributes.unittype}</TagLabel>
+                  <TagLabel>{ad.unittype}</TagLabel>
                 </Tag>
                 <Tag variant="subtle" colorScheme="blue">
                   <TagLeftIcon boxSize="16px" as={Couch} />
                   <TagLabel>
-                    {ad.attributes.furnished
+                    {ad.furnished
                       ? t('ad.attribute.furnished')
                       : t('ad.attribute.furnishedNo')}
                   </TagLabel>
@@ -97,7 +97,7 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
                 background="linear-gradient(to right, #8CA6DB, #B993D6)"
                 bgClip="text"
               >
-                {ad.attributes.price ? `$ ${ad.attributes.price}` : '--'}
+                {ad.price ? `$ ${ad.price}` : '--'}
               </Text>
             </Flex>
           </Flex>
@@ -111,22 +111,22 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
             alignItems="center"
             spacing={3}
           >
-            {ad.attributes.numberbedrooms !== 'Not Available' && (
+            {ad.numberbedrooms !== 'Not Available' && (
               <>
                 <AttributeCard
                   name="bedroom"
                   icon={<Bed fontSize="20px" />}
-                  value={ad.attributes.numberbedrooms}
+                  value={ad.numberbedrooms}
                 />
                 <Divider orientation="vertical" h="85%" />
               </>
             )}
-            {ad.attributes.numberparkingspots !== 'Not Available' && (
+            {ad.numberparkingspots !== 'Not Available' && (
               <>
                 <AttributeCard
                   name="parking"
                   icon={<Car fontSize="20px" />}
-                  value={ad.attributes.numberparkingspots}
+                  value={ad.numberparkingspots}
                 />
                 <Divider orientation="vertical" h="85%" />
               </>
@@ -134,21 +134,21 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
             <AttributeCard
               name="electric"
               icon={<Electric fontSize="20px" />}
-              value={ad.attributes.hydro}
+              value={ad.hydro}
               displayBoolean
             />
             <Divider orientation="vertical" h="85%" />
             <AttributeCard
               name="heat"
               icon={<Heat fontSize="20px" />}
-              value={ad.attributes.heat}
+              value={ad.heat}
               displayBoolean
             />
             <Divider orientation="vertical" h="85%" />
             <AttributeCard
               name="water"
               icon={<Water fontSize="20px" />}
-              value={ad.attributes.water}
+              value={ad.water}
               displayBoolean
             />
           </HStack>

@@ -5,3 +5,4 @@ Like favorites ads
 More filters
 Pagination
 Switch post call fro get (search)
+Test secured origin mapbox

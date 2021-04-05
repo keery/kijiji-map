@@ -1,4 +1,10 @@
 import { client } from '~api/api'
-import { SearchParameters } from 'kijiji-scraper'
 
-export const getAds = (params: SearchParameters) => client.get('/ads')
+export const getAds = (params) =>
+  client.get('/ads', {
+    params: {
+      _sort: 'date:desc',
+      ...params,
+    },
+  })
+export const getAdsCount = () => client.get('/ads/count')

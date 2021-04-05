@@ -1,20 +1,56 @@
 import React from 'react'
-import { VStack, Skeleton, Box, Flex, HStack, Divider } from '@chakra-ui/react'
+import { VStack, Box, Icon, Text, Flex } from '@chakra-ui/react'
 import { Ad } from 'kijiji-scraper'
 import AdCard from '~components/AdCard'
+import ReactPaginate from 'react-paginate'
+import ChevronLeft from 'public/assets/img/chevron-left.svg'
+import ChevronRight from 'public/assets/img/chevron-right.svg'
+import { PER_PAGE } from '~constants'
+import HomeIcon from 'public/assets/img/home.svg'
+import { useTranslation } from 'next-i18next'
 
 interface IListAds {
   ads: Ad[]
   setFocus: (ad: string | null) => void
+  nbAds?: number
+  page: number
+  handlePaginate: (page: { selected: number }) => void
 }
 
-const ListAds = ({ ads, setFocus }: IListAds) => {
+const ListAds = ({
+  ads,
+  setFocus,
+  nbAds = 0,
+  handlePaginate,
+  page,
+}: IListAds) => {
+  const { t } = useTranslation('common')
   return (
-    <VStack spacing={6} py={6}>
-      {ads.map((ad) => (
-        <AdCard ad={ad} key={ad.url} setFocus={setFocus} />
-      ))}
-    </VStack>
+    <Box>
+      <Flex alignItems="center" pt={5}>
+        <HomeIcon width="28px" height="28px" />
+        <Text pl={3} fontSize="xl" lineHeight={1}>
+          {t('adsFound', { nb: nbAds })}
+        </Text>
+      </Flex>
+      <VStack spacing={6} py={6}>
+        {ads.map((ad) => (
+          <AdCard ad={ad} key={ad.url} setFocus={setFocus} />
+        ))}
+      </VStack>
+      <Box pb={20} pt={10}>
+        <ReactPaginate
+          forcePage={page}
+          pageCount={Math.ceil(nbAds / PER_PAGE)}
+          containerClassName={'pagination'}
+          previousLabel={<Icon as={ChevronLeft} />}
+          nextLabel={<Icon as={ChevronRight} />}
+          pageRangeDisplayed={2}
+          marginPagesDisplayed={2}
+          onPageChange={handlePaginate}
+        />
+      </Box>
+    </Box>
   )
 }
 

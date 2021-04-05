@@ -5,6 +5,8 @@ import { SSRConfig } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import { useAds } from '~hooks/useAds'
+import { PER_PAGE } from '~constants'
+import { useAdsCount } from '~hooks/useAdsCount'
 import Filters from '~components/Filters'
 import Logo from '~components/Logo'
 import ListAds from '~components/ListAds'
@@ -14,11 +16,20 @@ import { data } from '~data'
 
 const Map = dynamic(() => import('~components/Map'), { ssr: false })
 
-const ads = data
-const isLoading = false
+// const ads = data
+// const isLoading = false
 const Home: NextPage = () => {
   const [adToFocus, setFocus] = useState(null)
-  const { data: ads, isLoading } = useAds()
+  const [page, setPage] = useState(0)
+  const { data: ads, isLoading } = useAds({
+    _limit: PER_PAGE,
+    _page: page,
+  })
+  const { data: nbAds } = useAdsCount()
+
+  const handlePaginate = ({ selected }) => {
+    setPage(selected)
+  }
 
   return (
     <Flex backgroundColor="gray.400" h="100vh" direction="column">
@@ -46,7 +57,13 @@ const Home: NextPage = () => {
         >
           <Loading isLoading={isLoading} skeleton={<ListAdsSkeleton />}>
             {/* @ts-ignore */}
-            <ListAds ads={ads} setFocus={setFocus} />
+            <ListAds
+              page={page}
+              ads={ads}
+              nbAds={nbAds}
+              setFocus={setFocus}
+              handlePaginate={handlePaginate}
+            />
           </Loading>
         </Box>
         {/* @ts-ignore */}

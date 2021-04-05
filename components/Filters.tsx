@@ -23,7 +23,7 @@ const Filters = () => {
   const onSubmit = async (data) => {
     localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(data))
     const params: SearchParameters = {
-      locationId: data.location,
+      // locationId: data.location,
       minPrice: data.min,
       maxPrice: data.max,
     }

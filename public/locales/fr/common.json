@@ -36,5 +36,6 @@
   "house": "Maison",
   "popup": {
     "seeMore": "Voir l'annonce"
-  }
+  },
+  "adsFound": "{{nb}} hébergements trouvés"
 }

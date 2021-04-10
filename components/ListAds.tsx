@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { VStack, Box, Icon, Text, Flex } from '@chakra-ui/react'
 import { Ad } from 'kijiji-scraper'
 import AdCard from '~components/AdCard'
@@ -24,7 +24,12 @@ const ListAds = ({
   handlePaginate,
   page,
 }: IListAds) => {
+  const pageCount = useMemo(() => Math.ceil(nbAds / PER_PAGE), [
+    nbAds,
+    PER_PAGE,
+  ])
   const { t } = useTranslation('common')
+
   return (
     <Box>
       <Flex alignItems="center" pt={5}>
@@ -38,18 +43,20 @@ const ListAds = ({
           <AdCard ad={ad} key={ad.url} setFocus={setFocus} />
         ))}
       </VStack>
-      <Box pb={20} pt={10}>
-        <ReactPaginate
-          forcePage={page}
-          pageCount={Math.ceil(nbAds / PER_PAGE)}
-          containerClassName={'pagination'}
-          previousLabel={<Icon as={ChevronLeft} />}
-          nextLabel={<Icon as={ChevronRight} />}
-          pageRangeDisplayed={2}
-          marginPagesDisplayed={2}
-          onPageChange={handlePaginate}
-        />
-      </Box>
+      {pageCount > 1 && (
+        <Box pb={20} pt={10}>
+          <ReactPaginate
+            forcePage={page}
+            pageCount={pageCount}
+            containerClassName={'pagination'}
+            previousLabel={<Icon as={ChevronLeft} />}
+            nextLabel={<Icon as={ChevronRight} />}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={2}
+            onPageChange={handlePaginate}
+          />
+        </Box>
+      )}
     </Box>
   )
 }

@@ -12,11 +12,11 @@ import { PER_PAGE } from '~constants'
 
 interface Props {
   setQuery: (page: any) => void
+  isLoading: boolean
 }
 
-const Filters = ({ setQuery }: Props) => {
+const Filters = ({ setQuery, isLoading }: Props) => {
   const form = useFormContext()
-  const [isLoading, setLoading] = useState(false)
   const { t } = useTranslation('common')
 
   const onSubmit = async (data) => {

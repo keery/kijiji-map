@@ -1,5 +1,6 @@
 import React from 'react'
 import { Skeleton, VStack, Divider, Flex, HStack } from '@chakra-ui/react'
+import HomeIcon from 'public/assets/img/home.svg'
 
 const AdCardSkeleton = () => (
   <Flex
@@ -58,14 +59,20 @@ const AdCardSkeleton = () => (
 
 const ListAdsSkeleton = () => {
   return (
-    <VStack spacing={6} py={6} w="100%" bg="white">
-      <AdCardSkeleton />
-      <AdCardSkeleton />
-      <AdCardSkeleton />
-      <AdCardSkeleton />
-      <AdCardSkeleton />
-      <AdCardSkeleton />
-    </VStack>
+    <>
+      <Flex alignItems="center" pt={5}>
+        <HomeIcon width="28px" height="28px" />
+        <Skeleton ml={3} h="20px" w="50%" />
+      </Flex>
+      <VStack spacing={6} py={6} w="100%" bg="white">
+        <AdCardSkeleton />
+        <AdCardSkeleton />
+        <AdCardSkeleton />
+        <AdCardSkeleton />
+        <AdCardSkeleton />
+        <AdCardSkeleton />
+      </VStack>
+    </>
   )
 }
 

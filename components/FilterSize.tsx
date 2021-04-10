@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import {
   useNumberInput,
   HStack,
@@ -13,11 +13,17 @@ import {
 import { useTranslation } from 'next-i18next'
 import { useFormContext, useController } from 'react-hook-form'
 
-const SizeButton = ({ children, disabled, ...rest }: ButtonProps) => {
+const SizeButton = ({ children, ...rest }: ButtonProps) => {
   const theme = useTheme()
   return (
     <Button
       {...rest}
+      opacity="1!important"
+      _hover={{
+        opacity: '1!important',
+      }}
+      cursor="pointer!important"
+      disabled={false}
       h="20px"
       w="20px"
       minW="0"
@@ -45,6 +51,7 @@ const FilterSize = () => {
     getIncrementButtonProps,
     getDecrementButtonProps,
   } = useNumberInput({
+    name: 'size',
     step: 1,
     min: 0,
     value: field.value,
@@ -69,9 +76,7 @@ const FilterSize = () => {
       px="10px"
       backgroundColor="white"
     >
-      <SizeButton {...dec} disabled={Number(field.value) === 0}>
-        -
-      </SizeButton>
+      <SizeButton {...dec}>-</SizeButton>
       <Flex direction="column" alignItems="flex-start" h="100%">
         <Text color="gray.300" fontSize="xs" whiteSpace="nowrap">
           {t('filters.size.nbRoom')}
@@ -80,7 +85,6 @@ const FilterSize = () => {
           <Input
             {...input}
             value={isDisabled ? '' : field.value}
-            name="size"
             border="none"
             px={0}
             h="20px"

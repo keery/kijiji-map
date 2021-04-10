@@ -19,7 +19,7 @@ const MapSearcher = () => {
   })
   const [adToFocus, setFocus] = useState(null)
   const { data: ads, isLoading } = useAds(query)
-  const { data: nbAds } = useAdsCount()
+  const { data: nbAds } = useAdsCount(query)
 
   const handlePaginate = ({ selected }) => {
     setQuery({ ...query, _page: selected })

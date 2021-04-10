@@ -1,6 +1,10 @@
 import { useQuery } from 'react-query'
-import { getAdsCount } from '~api/requests'
+import { client } from '~api/api'
 
-export const useAdsCount = () => {
-  return useQuery('adsCount', () => getAdsCount().then((res) => res.data))
+export const getAdsCount = (params) => client.get('/ads/count', { params })
+
+export const useAdsCount = ({ _page, ...params }) => {
+  return useQuery(['adsCount', params], () =>
+    getAdsCount(params).then((res) => res.data),
+  )
 }

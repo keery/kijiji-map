@@ -80,6 +80,9 @@ a {
   justify-content: center;
   align-items: center;
 }
+.pagination .break a {
+  pointer-events: none;
+}
 
 .pagination a:hover {
   background-color: #f7f7f7;

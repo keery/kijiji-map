@@ -12,7 +12,7 @@
 
 module.exports = {
   '*/5 * * * *': () => {
-    console.log('---- Start fetching:')
-    strapi.services.ad.scrape()
+    // console.log('---- Start fetching:')
+    // strapi.services.ad.scrape()
   },
 }

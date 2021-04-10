@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import {
   useNumberInput,
   HStack,
@@ -8,11 +8,12 @@ import {
   Text,
   useTheme,
   ButtonProps,
+  Flex,
 } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useController } from 'react-hook-form'
 
-const SizeButton = ({ children, ...rest }: ButtonProps) => {
+const SizeButton = ({ children, disabled, ...rest }: ButtonProps) => {
   const theme = useTheme()
   return (
     <Button
@@ -32,53 +33,71 @@ const SizeButton = ({ children, ...rest }: ButtonProps) => {
 }
 
 const FilterSize = () => {
-  const { register } = useFormContext()
+  const { control } = useFormContext()
+  const { field } = useController({
+    name: 'size',
+    control,
+  })
+
   const { t } = useTranslation()
-  const [size, setSize] = useState<number>(1)
   const {
     getInputProps,
     getIncrementButtonProps,
     getDecrementButtonProps,
   } = useNumberInput({
     step: 1,
-    defaultValue: 1,
-    min: 1,
-    max: 9,
+    min: 0,
+    value: field.value,
+    max: 7,
     inputMode: 'numeric',
     pattern: '[0-9]*',
     onChange: (value) => {
-      // @ts-ignore
-      setSize(Number(value).toFixed(0) as number)
+      field.onChange(Number(value).toFixed(0))
     },
   })
 
+  const isDisabled = useMemo(() => Number(field.value) === 0, [field.value])
   const inc = getIncrementButtonProps()
   const dec = getDecrementButtonProps()
   const input = getInputProps()
 
   return (
-    <HStack maxW="320px" layerStyle="filter" px="10px" backgroundColor="white">
-      <SizeButton {...dec}>-</SizeButton>
-      <Box>
+    <HStack
+      maxW="320px"
+      layerStyle="filter"
+      cursor="auto"
+      px="10px"
+      backgroundColor="white"
+    >
+      <SizeButton {...dec} disabled={Number(field.value) === 0}>
+        -
+      </SizeButton>
+      <Flex direction="column" alignItems="flex-start" h="100%">
         <Text color="gray.300" fontSize="xs" whiteSpace="nowrap">
           {t('filters.size.nbRoom')}
         </Text>
         <Box pos="relative" w="fit-content" m="0 auto">
           <Input
             {...input}
+            value={isDisabled ? '' : field.value}
             name="size"
-            ref={register}
             border="none"
             px={0}
-            value={size}
             h="20px"
             w="25px"
           />
-          <Text pos="absolute" right="0" top="50%" transform="translateY(-50%)">
-            ½
-          </Text>
+          {!isDisabled && (
+            <Text
+              pos="absolute"
+              right="0"
+              top="50%"
+              transform="translateY(-50%)"
+            >
+              ½
+            </Text>
+          )}
         </Box>
-      </Box>
+      </Flex>
       <SizeButton {...inc}>+</SizeButton>
     </HStack>
   )

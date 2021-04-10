@@ -1,11 +1,15 @@
-import { useQuery, UseQueryOptions } from 'react-query'
-import { getAds } from '~api/requests'
+import { useQuery } from 'react-query'
+import { client } from '~api/api'
 
-export const useAds = (params?: { _limit: number; _page: number }) => {
-  return useQuery(['ads', params._page], () =>
-    getAds({
-      _limit: params._limit,
-      _start: params._page * params._limit,
-    }).then((res) => res.data),
-  )
+export const getAds = ({ _page, ...params }) =>
+  client.get('/ads', {
+    params: {
+      ...params,
+      _sort: 'date:desc',
+      _start: _page * params._limit,
+    },
+  })
+
+export const useAds = (params) => {
+  return useQuery(['ads', params], () => getAds(params).then((res) => res.data))
 }

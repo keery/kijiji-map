@@ -11,9 +11,9 @@ import { useTranslation } from 'next-i18next'
 
 interface IListAds {
   ads: Ad[]
+  page: number
   setFocus: (ad: string | null) => void
   nbAds?: number
-  page: number
   handlePaginate: (page: { selected: number }) => void
 }
 

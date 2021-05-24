@@ -158,6 +158,25 @@
     },
     "images": {
       "type": "json"
+    },
+    "postcode": {
+      "type": "string"
+    },
+    "city": {
+      "via": "ads",
+      "model": "city"
+    },
+    "region": {
+      "via": "ads",
+      "model": "region"
+    },
+    "country": {
+      "model": "country",
+      "via": "ads"
+    },
+    "neighborhood": {
+      "via": "ads",
+      "model": "neighborhood"
     }
   }
 }

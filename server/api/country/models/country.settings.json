@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "countries",
+  "info": {
+    "name": "Country",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "ads": {
+      "via": "country",
+      "collection": "ad"
+    },
+    "shortcode": {
+      "type": "string"
+    },
+    "external_id": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "regions": {
+      "via": "country",
+      "collection": "region"
+    }
+  }
+}

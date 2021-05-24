@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "regions",
+  "info": {
+    "name": "Region",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "ads": {
+      "collection": "ad",
+      "via": "region"
+    },
+    "cities": {
+      "collection": "city",
+      "via": "region"
+    },
+    "country": {
+      "model": "country",
+      "via": "regions"
+    },
+    "shortcode": {
+      "type": "string"
+    },
+    "external_id": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    }
+  }
+}

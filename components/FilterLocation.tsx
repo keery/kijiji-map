@@ -2,16 +2,20 @@ import React, { useMemo } from 'react'
 import { useTheme } from '@chakra-ui/react'
 import ReactSelect from 'react-select'
 import { useController } from 'react-hook-form'
-import { locations, provinces } from '~filters'
 import { useTranslation } from 'next-i18next'
+import { useLocation } from '~hooks/useLocation'
 
-const getPicto = (value) => {
-  if (provinces.includes(value)) {
-    return 'city.svg'
-  } else if (value === 0) {
-    return 'canada.svg'
+const getPicto = (type) => {
+  switch (type) {
+    case 'region':
+      return 'region.svg'
+    case 'city':
+      return 'city.svg'
+    case 'country':
+      return 'canada.svg'
+    default:
+      return 'pin.svg'
   }
-  return 'pin.svg'
 }
 
 const getStyle = (theme) => {
@@ -78,10 +82,12 @@ const getStyle = (theme) => {
           ...before,
           width: '45px',
           height: '45px',
+          padding: '10px',
           marginRight: '10px',
           background: `url(/assets/img/${getPicto(
-            data.value,
+            data.type,
           )}) center no-repeat, ${theme.gradient.blueViolet}`,
+          backgroundSize: '40%, contain',
           borderRadius: '8px',
           backgroundColor: isSelected
             ? theme.colors.blue['200']
@@ -96,21 +102,13 @@ const getStyle = (theme) => {
   }
 }
 const FilterLocation = ({ control }) => {
+  const { data: location } = useLocation()
   const { t } = useTranslation('location')
   const theme = useTheme()
   const { field } = useController({
     name: 'location',
     control,
   })
-
-  const options = useMemo(
-    () =>
-      locations.map((location) => ({
-        value: location.value,
-        label: t(location.label),
-      })),
-    [t],
-  )
 
   const styles = useMemo(() => getStyle(theme), [theme])
 
@@ -122,7 +120,8 @@ const FilterLocation = ({ control }) => {
     <ReactSelect
       name="location"
       placeholder={t('common:filters.location.placeholder')}
-      options={options}
+      options={location}
+      menuIsOpen
       styles={styles}
       onChange={onChange}
       isClearable

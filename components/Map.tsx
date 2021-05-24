@@ -107,7 +107,7 @@ const Map = ({ ads = [], adToFocus, ...rest }: IMap) => {
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`}
-          id="mapbox/light-v9"
+          id="mapbox/streets-v11"
         />
         <MapContent ads={ads}>{markers}</MapContent>
       </MapContainer>

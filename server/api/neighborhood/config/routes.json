@@ -2,56 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/scrape/ads",
-      "handler": "ad.scrape",
+      "path": "/neighborhoods",
+      "handler": "neighborhood.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/ads",
-      "handler": "ad.find",
+      "path": "/neighborhoods/count",
+      "handler": "neighborhood.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/ads/count",
-      "handler": "ad.count",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/ads/:id",
-      "handler": "ad.findOne",
+      "path": "/neighborhoods/:id",
+      "handler": "neighborhood.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/ads",
-      "handler": "ad.create",
+      "path": "/neighborhoods",
+      "handler": "neighborhood.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/ads/:id",
-      "handler": "ad.update",
+      "path": "/neighborhoods/:id",
+      "handler": "neighborhood.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/ads/:id",
-      "handler": "ad.delete",
+      "path": "/neighborhoods/:id",
+      "handler": "neighborhood.delete",
       "config": {
         "policies": []
       }

@@ -9,7 +9,7 @@ const baseClient = mbxClient({
 const geocoder = geocodingService(baseClient)
 
 const DEFAULT_OPTIONS = {
-  maxResults: 1000,
+  maxResults: 50,
 }
 
 const DEFAULT_PARAMS = {
@@ -22,13 +22,137 @@ const DEFAULT_PARAMS = {
 const NOT_AVAILABLE = 'Not Available'
 
 module.exports = {
+  async getLocationContext(name, data) {
+    try {
+      const entity = await strapi.services[name].findOne({
+        external_id: data.external_id,
+      })
+      if (entity) {
+        return entity.id
+      } else {
+        const newEntity = await strapi.services[name].create(data)
+        return newEntity.id
+      }
+    } catch (err) {
+      console.log('[ERROR] In function getLocationContext', err.data)
+      return null
+    }
+  },
+  async getLocationDetails(results = []) {
+    if (!results || results.length === 0) {
+      console.log(`[NO GEOLOC] GPS coordinates not found ${ad.url}`)
+      return null
+    }
+    const result = results[0]
+    const context = {
+      postcode: null,
+      neighborhood: null,
+      city: null,
+      region: null,
+      country: null,
+    }
+
+    const location = {
+      latitude: result.geometry.coordinates[0],
+      longitude: result.geometry.coordinates[1],
+    }
+
+    if (result.context && result.context.length > 0) {
+      result.context.map(({ id, text, short_code }) => {
+        const splittedId = id.split('.')
+        const type = splittedId[0]
+        const external_id = splittedId[1]
+
+        // Loop on context in order to know what information I have and be able to link them together like Country > City > Neighborhood
+        switch (type) {
+          case 'postcode':
+            location['postcode'] = text
+            break
+          case 'neighborhood':
+            context['neighborhood'] = {
+              external_id,
+              name: text,
+            }
+            break
+          case 'place':
+            context['city'] = {
+              external_id,
+              name: text,
+            }
+            break
+          case 'region':
+            context['region'] = {
+              external_id,
+              name: text,
+              shortcode: short_code,
+            }
+            break
+          case 'country':
+            context['country'] = {
+              external_id,
+              name: text,
+              shortcode: short_code,
+            }
+            break
+        }
+      })
+
+      if (context.country) {
+        const id = await strapi.services.ad.getLocationContext(
+          'country',
+          context.country,
+        )
+        if (id) {
+          location['country'] = id
+          if (context.region) {
+            context.region['country'] = id
+          }
+        }
+      }
+      if (context.region) {
+        const id = await strapi.services.ad.getLocationContext(
+          'region',
+          context.region,
+        )
+        if (id) {
+          location['region'] = id
+          if (context.city) {
+            context.city['region'] = id
+          }
+        }
+      }
+      if (context.city) {
+        const id = await strapi.services.ad.getLocationContext(
+          'city',
+          context.city,
+        )
+        if (id) {
+          location['city'] = id
+          if (context.neighborhood) {
+            context.neighborhood['city'] = id
+          }
+        }
+      }
+      if (context.neighborhood) {
+        const id = await strapi.services.ad.getLocationContext(
+          'neighborhood',
+          context.neighborhood,
+        )
+        if (id) {
+          location['neighborhood'] = id
+        }
+      }
+    }
+
+    return location
+  },
   scrape: async (ctx) => {
     const ads = await search(DEFAULT_PARAMS, DEFAULT_OPTIONS).catch((err) =>
       console.error(err),
     )
 
     if (ads.length === 0) {
-      console.log('No ad founf from scrapper')
+      console.log('No ad found from scrapper')
       return
     }
 
@@ -47,9 +171,12 @@ module.exports = {
             countries: ['ca'],
           })
           .send()
-          .then((response) => {
-            if (response.body.features.length === 0) {
-              console.log(`[NO GEOLOC] GPS coordinates not found ${ad.url}`)
+          .then(async (response) => {
+            const location = await strapi.services.ad.getLocationDetails(
+              response.body.features,
+            )
+
+            if (!location) {
               return null
             }
 
@@ -71,8 +198,7 @@ module.exports = {
               .create({
                 ...ad,
                 ...transformedAttributes,
-                latitude: response.body.features[0].geometry.coordinates[0],
-                longitude: response.body.features[0].geometry.coordinates[1],
+                ...location,
               })
               .then(() => console.log(`[INSERTED] ${ad.url}`))
               .catch((err) => console.log(`[ERROR-CREATE-AD] ${ad.url}`, err))

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { HStack, Button } from '@chakra-ui/react'
 import FilterPrice from '~components/Price/FilterPrice'
 import FilterLocation from '~components/FilterLocation'
@@ -18,7 +18,6 @@ interface Props {
 const Filters = ({ setQuery, isLoading }: Props) => {
   const form = useFormContext()
   const { t } = useTranslation('common')
-
   const onSubmit = async (data) => {
     localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(data))
 

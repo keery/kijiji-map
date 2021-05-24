@@ -2,56 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/scrape/ads",
-      "handler": "ad.scrape",
+      "path": "/cities",
+      "handler": "city.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/ads",
-      "handler": "ad.find",
+      "path": "/cities/count",
+      "handler": "city.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/ads/count",
-      "handler": "ad.count",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/ads/:id",
-      "handler": "ad.findOne",
+      "path": "/cities/:id",
+      "handler": "city.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/ads",
-      "handler": "ad.create",
+      "path": "/cities",
+      "handler": "city.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/ads/:id",
-      "handler": "ad.update",
+      "path": "/cities/:id",
+      "handler": "city.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/ads/:id",
-      "handler": "ad.delete",
+      "path": "/cities/:id",
+      "handler": "city.delete",
       "config": {
         "policies": []
       }

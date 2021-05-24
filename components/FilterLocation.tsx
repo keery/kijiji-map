@@ -37,6 +37,10 @@ const getStyle = (theme, value) => {
       border: '1px solid',
       borderColor: theme.colors.gray['300'],
     }),
+    dropdownIndicator: (styles) => ({
+      ...styles,
+      display: Boolean(value) ? 'none' : 'flex',
+    }),
     placeholder: (styles) => ({
       ...styles,
       whiteSpace: 'nowrap',
@@ -135,10 +139,10 @@ const FilterLocation = ({ control }) => {
       name="location"
       placeholder={t('common:filters.location.placeholder')}
       options={location}
-      value={field.value}
+      value={isLoading ? false : field.value}
       styles={styles}
       onChange={onChange}
-      // isClearable
+      isClearable
       menuPlacement="auto"
     />
   )

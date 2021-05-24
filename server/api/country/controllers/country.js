@@ -33,7 +33,7 @@ module.exports = {
         sortByName(country.regions).map((region) => {
           total.push({
             type: 'region',
-            value: region.id,
+            value: `region.${region.id}`,
             label: `${region.name}, ${region.shortcode
               .toLowerCase()
               .replace(country.shortcode + '-', '')
@@ -44,7 +44,7 @@ module.exports = {
             sortByName(region.cities).map((city) => {
               total.push({
                 type: 'city',
-                value: city.id,
+                value: `city.${city.id}`,
                 label: city.name,
               })
 
@@ -52,7 +52,7 @@ module.exports = {
                 sortByName(city.neighborhoods).map((neighborhood) => {
                   total.push({
                     type: 'neighborhood',
-                    value: neighborhood.id,
+                    value: `neighborhood.${neighborhood.id}`,
                     label: `${neighborhood.name}, ${city.name}`,
                   })
                 })

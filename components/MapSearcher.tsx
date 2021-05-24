@@ -6,18 +6,15 @@ import ListAds from '~components/ListAds'
 import ListAdsSkeleton from '~components/ListAdsSkeleton'
 import Loading from '~components/Loading'
 import { useAds } from '~hooks/useAds'
-import { PER_PAGE } from '~constants'
 import { useAdsCount } from '~hooks/useAdsCount'
 import dynamic from 'next/dynamic'
+import { formatQuery, getDefaultValue } from '~utils/filters'
 
 const Map = dynamic(() => import('~components/Map'), { ssr: false })
 
 const MapSearcher = () => {
   const listRef = useRef(null)
-  const [query, setQuery] = useState({
-    _limit: PER_PAGE,
-    _page: 0,
-  })
+  const [query, setQuery] = useState(formatQuery(getDefaultValue()))
   const [adToFocus, setFocus] = useState(null)
   const { data: ads, isLoading } = useAds(query)
   const { data: nbAds, isLoading: countLoading } = useAdsCount(query)

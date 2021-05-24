@@ -1,4 +1,16 @@
 import { LOCAL_STORAGE_SEARCH } from '~constants'
+import { PER_PAGE } from '~constants'
+
+export const mapLocation = (location): Record<string, any> => {
+  if (typeof location === 'undefined' || !location || !location.value) return {}
+  const splittedLocation = location.value.split('.')
+  if (splittedLocation.length <= 1) return {}
+  const type = splittedLocation[0]
+  const id = splittedLocation[1]
+  return {
+    [`${type}_eq`]: id,
+  }
+}
 
 export const getDefaultValue = () => {
   try {
@@ -12,7 +24,7 @@ export const getDefaultValue = () => {
       size: 0,
       min: 0,
       max: 10000,
-      location: 1700281,
+      location: 1,
     }
   } catch {
     localStorage.removeItem(LOCAL_STORAGE_SEARCH)
@@ -47,5 +59,16 @@ export const getSize = (size: number = 0) => {
   return {
     numberbedrooms_gte: mappedSize[0],
     numberbedrooms_lte: mappedSize[1],
+  }
+}
+
+export const formatQuery = (data: Record<string, any>) => {
+  return {
+    ...getSize(data.size),
+    price_gte: data.min,
+    price_lte: data.max,
+    _page: 0,
+    _limit: PER_PAGE,
+    ...mapLocation(data?.location),
   }
 }

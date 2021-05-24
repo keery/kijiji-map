@@ -18,14 +18,15 @@ const getPicto = (type) => {
   }
 }
 
-const getStyle = (theme) => {
+const getStyle = (theme, value) => {
+  console.log('ici', value)
   const before = {
     content: '""',
     display: 'inline-block',
   }
 
   return {
-    menu: (styles, { getValue }) => ({
+    menu: (styles) => ({
       ...styles,
       width: '400px',
       borderRadius: theme.radii.xl,
@@ -35,6 +36,13 @@ const getStyle = (theme) => {
       boxShadow: 'none',
       border: '1px solid',
       borderColor: theme.colors.gray['300'],
+    }),
+    placeholder: (styles) => ({
+      ...styles,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      width: '95%',
+      textOverflow: 'ellipsis',
     }),
     menuList: (styles) => ({
       ...styles,
@@ -61,7 +69,10 @@ const getStyle = (theme) => {
           width: '35px',
           backgroundImage: ``,
           color: 'white',
-          background: `url(/assets/img/pin.svg) center no-repeat, ${theme.gradient.blueViolet}`,
+          background: `url(/assets/img/${getPicto(
+            value?.type,
+          )}) center no-repeat, ${theme.gradient.blueViolet}`,
+          backgroundSize: '40%, contain',
           borderRadius: '100%',
           marginRight: '5px',
         },
@@ -102,7 +113,7 @@ const getStyle = (theme) => {
   }
 }
 const FilterLocation = ({ control }) => {
-  const { data: location } = useLocation()
+  const { data: location, isLoading } = useLocation()
   const { t } = useTranslation('location')
   const theme = useTheme()
   const { field } = useController({
@@ -110,10 +121,13 @@ const FilterLocation = ({ control }) => {
     control,
   })
 
-  const styles = useMemo(() => getStyle(theme), [theme])
+  const styles = useMemo(
+    () => getStyle(theme, field.value),
+    [theme, field.value],
+  )
 
   const onChange = (data) => {
-    field.onChange(data?.value || '')
+    field.onChange(data || '')
   }
 
   return (
@@ -121,10 +135,10 @@ const FilterLocation = ({ control }) => {
       name="location"
       placeholder={t('common:filters.location.placeholder')}
       options={location}
-      menuIsOpen
+      value={field.value}
       styles={styles}
       onChange={onChange}
-      isClearable
+      // isClearable
       menuPlacement="auto"
     />
   )

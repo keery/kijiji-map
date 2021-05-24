@@ -12,6 +12,7 @@ import { Ad } from 'kijiji-scraper'
 import Leaflet from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import MapPlaceholder from './MapPlaceholder'
+import MapSearchButton from './MapSearchButton'
 import MapPopup from './MapPopup'
 
 interface IMarker {
@@ -47,7 +48,6 @@ const Marker = ({ geojson, ad, isFocus }: IMarker) => {
 const MapContent = ({ children, ads }) => {
   const map = useMap()
   const groupRef = useRef(null)
-
   useEffect(() => {
     if (
       groupRef.current &&
@@ -86,17 +86,19 @@ const convertAdsToMarker = (ads: Ad[], adToFocus: string | null) => {
 interface IMap extends BoxProps {
   ads?: Ad[]
   adToFocus: string | null
+  setQuery: (query: Record<string, any>) => void
 }
 
-const Map = ({ ads = [], adToFocus, ...rest }: IMap) => {
-  const markers = useMemo(() => convertAdsToMarker(ads, adToFocus), [
-    ads,
-    adToFocus,
-  ])
+const Map = ({ ads = [], adToFocus, setQuery, ...rest }: IMap) => {
+  const markers = useMemo(
+    () => convertAdsToMarker(ads, adToFocus),
+    [ads, adToFocus],
+  )
 
   return (
-    <Box width="100%" {...rest}>
+    <Box width="100%" pos="relative" {...rest}>
       <MapContainer
+        onTouchStart={() => console.log('dvd')}
         center={null}
         zoom={12}
         scrollWheelZoom={false}
@@ -104,6 +106,7 @@ const Map = ({ ads = [], adToFocus, ...rest }: IMap) => {
         placeholder={<MapPlaceholder />}
         className="map"
       >
+        <MapSearchButton setQuery={setQuery} />
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`}

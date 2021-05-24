@@ -20,7 +20,6 @@ const Filters = ({ setQuery, isLoading }: Props) => {
 
   const onSubmit = useCallback(async (data) => {
     localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(data))
-
     setQuery(formatQuery(data))
   }, [])
 

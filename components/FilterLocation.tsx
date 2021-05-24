@@ -19,7 +19,6 @@ const getPicto = (type) => {
 }
 
 const getStyle = (theme, value) => {
-  console.log('ici', value)
   const before = {
     content: '""',
     display: 'inline-block',

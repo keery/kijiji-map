@@ -37,5 +37,7 @@
   "popup": {
     "seeMore": "Voir l'annonce"
   },
-  "adsFound": "{{nb}} hébergements trouvés"
+  "searchBounds": "Rechercher dans cette zone",
+  "adsFound": "{{nb}} hébergement trouvé",
+  "adsFounds": "{{nb}} hébergements trouvés"
 }

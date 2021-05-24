@@ -6,7 +6,6 @@ import ListAds from '~components/ListAds'
 import ListAdsSkeleton from '~components/ListAdsSkeleton'
 import Loading from '~components/Loading'
 import { useAds } from '~hooks/useAds'
-import { useAdsCount } from '~hooks/useAdsCount'
 import dynamic from 'next/dynamic'
 import { formatQuery, getDefaultValue } from '~utils/filters'
 
@@ -16,8 +15,7 @@ const MapSearcher = () => {
   const listRef = useRef(null)
   const [query, setQuery] = useState(formatQuery(getDefaultValue()))
   const [adToFocus, setFocus] = useState(null)
-  const { data: ads, isLoading } = useAds(query)
-  const { data: nbAds, isLoading: countLoading } = useAdsCount(query)
+  const { data, isLoading } = useAds(query)
 
   const handlePaginate = ({ selected }) => {
     setQuery({ ...query, _page: selected })
@@ -39,7 +37,7 @@ const MapSearcher = () => {
         zIndex="10000"
       >
         <Logo />
-        <Filters setQuery={setQuery} isLoading={isLoading || countLoading} />
+        <Filters setQuery={setQuery} isLoading={isLoading} />
       </Container>
       <Flex overflow="hidden" flex={1}>
         <Box
@@ -51,22 +49,19 @@ const MapSearcher = () => {
           overflowY="auto"
           px={6}
         >
-          <Loading
-            isLoading={isLoading || countLoading}
-            skeleton={<ListAdsSkeleton />}
-          >
+          <Loading isLoading={isLoading} skeleton={<ListAdsSkeleton />}>
             {/* @ts-ignore */}
             <ListAds
               page={query._page}
-              ads={ads}
-              nbAds={nbAds}
+              ads={data?.ads}
+              nbAds={data?.count}
               setFocus={setFocus}
               handlePaginate={handlePaginate}
             />
           </Loading>
         </Box>
         {/* @ts-ignore */}
-        <Map ads={ads} adToFocus={adToFocus} />
+        <Map ads={data?.ads} adToFocus={adToFocus} setQuery={setQuery} />
       </Flex>
     </>
   )

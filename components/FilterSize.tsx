@@ -46,22 +46,19 @@ const FilterSize = () => {
   })
 
   const { t } = useTranslation()
-  const {
-    getInputProps,
-    getIncrementButtonProps,
-    getDecrementButtonProps,
-  } = useNumberInput({
-    name: 'size',
-    step: 1,
-    min: 0,
-    value: field.value,
-    max: 7,
-    inputMode: 'numeric',
-    pattern: '[0-9]*',
-    onChange: (value) => {
-      field.onChange(Number(value).toFixed(0))
-    },
-  })
+  const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
+    useNumberInput({
+      name: 'size',
+      step: 1,
+      min: 0,
+      value: field.value,
+      max: 7,
+      inputMode: 'numeric',
+      pattern: '[0-9]*',
+      onChange: (value) => {
+        field.onChange(Number(value).toFixed(0))
+      },
+    })
 
   const isDisabled = useMemo(() => Number(field.value) === 0, [field.value])
   const inc = getIncrementButtonProps()

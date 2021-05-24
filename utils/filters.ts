@@ -1,5 +1,6 @@
 import { LOCAL_STORAGE_SEARCH } from '~constants'
 import { PER_PAGE } from '~constants'
+import { LatLngBounds } from 'leaflet'
 
 export const mapLocation = (location): Record<string, any> => {
   if (typeof location === 'undefined' || !location || !location.value) return {}
@@ -9,6 +10,20 @@ export const mapLocation = (location): Record<string, any> => {
   const id = splittedLocation[1]
   return {
     [`${type}_eq`]: id,
+  }
+}
+
+export const mapBounds = (bounds: LatLngBounds): Record<string, any> => {
+  if (!bounds) return {}
+
+  const NE = bounds.getNorthEast()
+  const SW = bounds.getSouthWest()
+
+  return {
+    latNe: NE.lat,
+    lngNe: NE.lng,
+    latSw: SW.lat,
+    lngSw: SW.lng,
   }
 }
 
@@ -70,5 +85,6 @@ export const formatQuery = (data: Record<string, any>) => {
     _page: 0,
     _limit: PER_PAGE,
     ...mapLocation(data?.location),
+    ...mapBounds(data?.bounds),
   }
 }

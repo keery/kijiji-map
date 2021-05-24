@@ -24,10 +24,10 @@ const ListAds = ({
   handlePaginate,
   page,
 }: IListAds) => {
-  const pageCount = useMemo(() => Math.ceil(nbAds / PER_PAGE), [
-    nbAds,
-    PER_PAGE,
-  ])
+  const pageCount = useMemo(
+    () => Math.ceil(nbAds / PER_PAGE),
+    [nbAds, PER_PAGE],
+  )
   const { t } = useTranslation('common')
 
   return (
@@ -35,7 +35,7 @@ const ListAds = ({
       <Flex alignItems="center" pt={5}>
         <HomeIcon width="28px" height="28px" />
         <Text pl={3} fontSize="xl" lineHeight={1}>
-          {t('adsFound', { nb: nbAds })}
+          {t(`adsFound${nbAds > 1 ? 's' : ''}`, { nb: nbAds })}
         </Text>
       </Flex>
       <VStack spacing={6} py={6}>

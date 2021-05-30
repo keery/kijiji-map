@@ -98,7 +98,6 @@ const Map = ({ ads = [], adToFocus, setQuery, ...rest }: IMap) => {
   return (
     <Box width="100%" pos="relative" {...rest}>
       <MapContainer
-        onTouchStart={() => console.log('dvd')}
         center={null}
         zoom={12}
         scrollWheelZoom={false}

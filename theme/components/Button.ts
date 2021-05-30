@@ -6,6 +6,9 @@ const Button = {
     _hover: {
       textDecoration: 'none',
     },
+    _focus: {
+      boxShadow: 'none',
+    },
   },
   defaultProps: {
     colorScheme: 'white',

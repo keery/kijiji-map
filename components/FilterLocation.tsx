@@ -60,7 +60,8 @@ const getStyle = (theme, value) => {
         ...theme.layerStyles.filter,
         borderRadius: theme.radii.xl,
         backgroundColor: 'white',
-        width: '250px',
+        width: '350px',
+        fontWeight: value === 0 ? '600' : '400',
         paddingRight: 10,
         paddingLeft: 10,
         ':hover': {

@@ -37,6 +37,7 @@
   "popup": {
     "seeMore": "Voir l'annonce"
   },
+  "manualSearch": "Recherche manuelle",
   "searchBounds": "Rechercher dans cette zone",
   "adsFound": "{{nb}} hébergement trouvé",
   "adsFounds": "{{nb}} hébergements trouvés"

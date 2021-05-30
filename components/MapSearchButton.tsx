@@ -26,6 +26,10 @@ const MapSearchButton = ({ setQuery }: Props) => {
 
   const search = useCallback((map) => {
     setVisible(false)
+    form.setValue('location', {
+      value: 0,
+      label: t('manualSearch'),
+    })
     const query = formatQuery({
       ...form.getValues(),
       bounds: map.getBounds(),

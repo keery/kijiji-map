@@ -1,8 +1,0 @@
-Newsletter with daily selection
-Add backend to persist ads
-Home design
-Like favorites ads
-More filters
-Test secured origin mapbox
-Aggregation number results
-Hover sur les attributes (eau, elec, etc) afficher le picto + phrase pour savoir ce que c'est (ref https://shop.flixbus.fr/search?departureCity=40de6287-8646-11e6-9066-549f350fcb0c&arrivalCity=40de8964-8646-11e6-9066-549f350fcb0c&route=Bruxelles-Paris&rideDate=16.05.2021&adult=1&_locale=fr&features%5Bfeature.darken_page%5D=1&features%5Bfeature.enable_distribusion%5D=1&atb_pdid=73ca9afc-b567-4ebf-abfa-d276897ee08d&_sp=ed8199d6-d2a2-4fac-b043-498d6cf2038e#) sur une choix de bus

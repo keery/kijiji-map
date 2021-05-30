@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /**
  * Cron config that gives you an opportunity
@@ -11,9 +11,8 @@
  */
 
 module.exports = {
-  '*/1 * * * *': () => {
-    // '*/5 * * * *': () => {
-    // console.log('---- Start fetching:')
-    // strapi.services.ad.scrape()
+  "*/5 * * * *": () => {
+    console.log("---- Start fetching:");
+    strapi.services.ad.scrape();
   },
-}
+};

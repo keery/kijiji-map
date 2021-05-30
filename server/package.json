@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "Kijiji-map-server",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -22,6 +22,7 @@
     "strapi-connector-bookshelf": "3.5.4",
     "knex": "0.21.18",
     "@mapbox/mapbox-sdk": "^0.12.1",
+    "kijiji-scraper": "^6.1.4",
     "sqlite3": "5.0.0"
   },
   "author": {

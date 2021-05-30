@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'mabry';
+  src: url('/assets/fonts/Mabry Pro.otf');
+}
+@font-face {
+  font-family: 'mabry medium';
+  src: url('/assets/fonts/Mabry Pro Medium.otf');
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.custom-popup a {
+  color: white !important;
+}
+.swiper-container {
+  height: 100%;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important;
+  text-shadow: 0 0 1px #000000;
+}
+.adCard .swiper-button-next,
+.adCard .swiper-button-prev,
+.adCard .swiper-button-next.swiper-button-disabled,
+.adCard .swiper-button-prev.swiper-button-disabled {
+  opacity: 0;
+}
+.adCard:hover .swiper-button-next.swiper-button-disabled,
+.adCard:hover .swiper-button-prev.swiper-button-disabled {
+  opacity: 0.35;
+}
+.adCard:hover .swiper-button-next,
+.adCard:hover .swiper-button-prev {
+  opacity: 1;
+}
+
+.map .leaflet-popup-content p,
+.map .leaflet-popup-content {
+  margin: 0;
+}
+
+.map .leaflet-popup-content-wrapper {
+  border-radius: 30px;
+  padding: 0;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  display: none;
+}
+
+.pagination {
+  justify-content: center;
+  display: flex;
+  list-style: none;
+}
+
+.pagination a {
+  font-size: 14px;
+  width: 32px;
+  height: 32px;
+  margin: 0px;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 100%;
+  font-weight: bold;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination .break a {
+  pointer-events: none;
+}
+
+.pagination a:hover {
+  background-color: #f7f7f7;
+}
+
+.pagination .selected a {
+  background-color: black;
+  color: white;
+}

@@ -8,7 +8,9 @@
         "client:install": "cd client && yarn",
         "server:install": "cd server && yarn",
         "server:dev": "cd server && yarn develop",
-        "client:dev": "cd client && yarn dev"
+        "client:dev": "cd client && yarn dev",
+        "client:build": "cd client && yarn build",
+        "client:start": "cd client && yarn start"
     }
   }
   

@@ -34,7 +34,7 @@ export interface Ad {
   date: Date
   forrentbyhousing: string
   unittype: string
-  numberbedrooms: number
+  numberbedrooms: number | string
   numberbathrooms: number
   agreementtype: string
   dateavailable: Date
@@ -65,7 +65,7 @@ export interface Ad {
   water: boolean
   cabletv: boolean
   internet: boolean
-  numberparkingspots: number
+  numberparkingspots: number | string
   price: number
   location: string
   type: string

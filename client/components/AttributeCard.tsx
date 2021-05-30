@@ -4,9 +4,9 @@ import { useTranslation } from 'next-i18next'
 import Valid from 'public/assets/img/valid.svg'
 import Times from 'public/assets/img/times.svg'
 
-interface IAttributeCard {
+interface Props {
   name: string
-  value: string | number
+  value: string | number | boolean
   icon: JSX.Element
   displayBoolean?: boolean
 }
@@ -16,7 +16,7 @@ const AttributeCard = ({
   value,
   icon,
   displayBoolean = false,
-}: IAttributeCard) => {
+}: Props) => {
   const { t } = useTranslation('common')
   const { display_value, tooltip } = useMemo(() => {
     if (!displayBoolean)

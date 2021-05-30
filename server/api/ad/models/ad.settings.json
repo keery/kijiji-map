@@ -1,0 +1,182 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ads",
+  "info": {
+    "name": "Ad",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "forrentbyhousing": {
+      "type": "string"
+    },
+    "unittype": {
+      "type": "string"
+    },
+    "numberbedrooms": {
+      "type": "decimal"
+    },
+    "numberbathrooms": {
+      "type": "decimal"
+    },
+    "agreementtype": {
+      "type": "string"
+    },
+    "dateavailable": {
+      "type": "datetime"
+    },
+    "petsallowed": {
+      "type": "boolean"
+    },
+    "areainfeet": {
+      "type": "decimal"
+    },
+    "furnished": {
+      "type": "boolean"
+    },
+    "laundryinunit": {
+      "type": "boolean"
+    },
+    "laundryinbuilding": {
+      "type": "boolean"
+    },
+    "dishwasher": {
+      "type": "boolean"
+    },
+    "fridgefreezer": {
+      "type": "boolean"
+    },
+    "airconditioning": {
+      "type": "boolean"
+    },
+    "yard": {
+      "type": "boolean"
+    },
+    "balcony": {
+      "type": "integer"
+    },
+    "smokingpermitted": {
+      "type": "boolean"
+    },
+    "gym": {
+      "type": "boolean"
+    },
+    "pool": {
+      "type": "boolean"
+    },
+    "concierge": {
+      "type": "boolean"
+    },
+    "twentyfourhoursecurity": {
+      "type": "boolean"
+    },
+    "bicycleparking": {
+      "type": "boolean"
+    },
+    "storagelocker": {
+      "type": "boolean"
+    },
+    "wheelchairaccessible": {
+      "type": "boolean"
+    },
+    "braillelabels": {
+      "type": "boolean"
+    },
+    "barrierfreeentrancesandramps": {
+      "type": "boolean"
+    },
+    "visualaids": {
+      "type": "boolean"
+    },
+    "accessiblewashroomsinsuite": {
+      "type": "boolean"
+    },
+    "hydro": {
+      "type": "boolean"
+    },
+    "heat": {
+      "type": "boolean"
+    },
+    "water": {
+      "type": "boolean"
+    },
+    "cabletv": {
+      "type": "boolean"
+    },
+    "internet": {
+      "type": "boolean"
+    },
+    "numberparkingspots": {
+      "type": "integer"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "latitude": {
+      "type": "float",
+      "required": true
+    },
+    "longitude": {
+      "type": "float",
+      "required": true
+    },
+    "elevator": {
+      "type": "boolean"
+    },
+    "audioprompts": {
+      "type": "boolean"
+    },
+    "image": {
+      "type": "string"
+    },
+    "images": {
+      "type": "json"
+    },
+    "postcode": {
+      "type": "string"
+    },
+    "city": {
+      "via": "ads",
+      "model": "city"
+    },
+    "region": {
+      "via": "ads",
+      "model": "region"
+    },
+    "country": {
+      "model": "country",
+      "via": "ads"
+    },
+    "neighborhood": {
+      "via": "ads",
+      "model": "neighborhood"
+    }
+  }
+}

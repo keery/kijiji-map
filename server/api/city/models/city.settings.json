@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cities",
+  "info": {
+    "name": "City",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "ads": {
+      "collection": "ad",
+      "via": "city"
+    },
+    "region": {
+      "via": "cities",
+      "model": "region"
+    },
+    "external_id": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "neighborhoods": {
+      "collection": "neighborhood",
+      "via": "city"
+    }
+  }
+}

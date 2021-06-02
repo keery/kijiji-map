@@ -13,18 +13,24 @@ interface Props {
 const MapSearchButton = ({ setQuery }: Props) => {
   const map = useMap()
   const [isVisible, setVisible] = useState(false)
+  const [isSearching, setSearching] = useState(false)
   const form = useFormContext()
   const { t } = useTranslation('common')
 
   const eventCallback = useCallback(() => {
-    if (!isVisible) setVisible(true)
-  }, [isVisible])
+    if (!isVisible && !isSearching) setVisible(true)
+
+    setSearching(false)
+  }, [isVisible, isSearching])
 
   useMapEvents({
     dragstart: eventCallback,
+    zoomend: eventCallback,
+    moveend: eventCallback,
   })
 
   const search = useCallback((map) => {
+    setSearching(true)
     setVisible(false)
     form.setValue('location', {
       value: 0,

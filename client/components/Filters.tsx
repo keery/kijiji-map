@@ -17,6 +17,7 @@ interface Props {
 const Filters = ({ setQuery, isLoading }: Props) => {
   const form = useFormContext()
   const { t } = useTranslation('common')
+  const test = form.watch('bounds')
 
   const onSubmit = useCallback(async (data) => {
     localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(data))

@@ -37,6 +37,7 @@ export const getDefaultValue = () => {
       return JSON.parse(localStorage.getItem(LOCAL_STORAGE_SEARCH))
     }
     return {
+      bounds: null,
       size: 0,
       min: 0,
       max: 10000,

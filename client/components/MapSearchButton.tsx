@@ -58,6 +58,9 @@ const MapSearchButton = ({ setQuery }: Props) => {
       value: 0,
       label: t('manualSearch'),
     })
+    console.log(map.getBounds())
+    form.setValue('bounds', map.getBounds())
+
     const query = formatQuery({
       ...form.getValues(),
       bounds: map.getBounds(),
@@ -66,22 +69,24 @@ const MapSearchButton = ({ setQuery }: Props) => {
   }, [])
 
   return (
-    <Button
-      visibility={isVisible ? 'visible' : 'hidden'}
-      onClick={() => search(map)}
-      leftIcon={<Refresh />}
-      bg="white"
-      color="black"
-      pos="absolute"
-      left="50%"
-      right="50%"
-      top="10px"
-      transform="translateX(-50%)"
-      fontSize={12}
-      zIndex={999999}
-    >
-      {t('searchBounds')}
-    </Button>
+    <>
+      <Button
+        visibility={isVisible ? 'visible' : 'hidden'}
+        onClick={() => search(map)}
+        leftIcon={<Refresh />}
+        bg="white"
+        color="black"
+        pos="absolute"
+        left="50%"
+        right="50%"
+        top="10px"
+        transform="translateX(-50%)"
+        fontSize={12}
+        zIndex={999999}
+      >
+        {t('searchBounds')}
+      </Button>
+    </>
   )
 }
 

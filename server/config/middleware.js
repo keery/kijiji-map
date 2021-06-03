@@ -4,7 +4,7 @@ module.exports = {
   settings: {
     cors: {
       enabled: isProd,
-      origin: isProd ? [process.env.FRONT] : ["*"],
+      origin: isProd ? [process.env.FRONT_URL] : ["*"],
     },
   },
 };

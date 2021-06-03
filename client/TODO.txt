@@ -11,3 +11,4 @@ go top after search
 block redirection if click on arrows
 keep location if manual search
 Selection recap by email (daily, weekly, etc)
+Zindex selected marker

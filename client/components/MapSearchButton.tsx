@@ -58,7 +58,6 @@ const MapSearchButton = ({ setQuery }: Props) => {
       value: 0,
       label: t('manualSearch'),
     })
-    console.log(map.getBounds())
     form.setValue('bounds', map.getBounds())
 
     const query = formatQuery({

@@ -18,7 +18,7 @@ interface IListAds {
 }
 
 const ListAds = ({
-  ads,
+  ads = [],
   setFocus,
   nbAds = 0,
   handlePaginate,

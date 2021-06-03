@@ -13,6 +13,6 @@
 module.exports = {
   "*/5 * * * *": () => {
     console.log("---- Start fetching:");
-    // strapi.services.ad.scrape();
+    strapi.services.ad.scrape();
   },
 };

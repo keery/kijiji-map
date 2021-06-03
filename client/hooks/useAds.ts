@@ -11,5 +11,12 @@ export const getAds = ({ _page, ...params }) =>
   })
 
 export const useAds = (params) => {
-  return useQuery(['ads', params], () => getAds(params).then((res) => res.data))
+  return useQuery(['ads', params], () =>
+    getAds(params)
+      .then((res) => res.data)
+      .catch((err) => {
+        console.log(err)
+        return []
+      }),
+  )
 }

@@ -8,6 +8,8 @@
         "client:install": "cd client && yarn",
         "server:install": "cd server && yarn",
         "server:dev": "cd server && yarn develop",
+        "server:build": "cd server && yarn build",
+        "server:start": "cd server && yarn start",
         "client:dev": "cd client && yarn dev",
         "client:build": "cd client && yarn build",
         "client:start": "cd client && yarn start"

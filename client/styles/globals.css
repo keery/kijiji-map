@@ -47,6 +47,9 @@ a {
 .adCard:hover .swiper-button-prev {
   opacity: 1;
 }
+.leaflet-marker-icon.is-focus {
+  z-index: 999999 !important;
+}
 
 .map .leaflet-popup-content p,
 .map .leaflet-popup-content {

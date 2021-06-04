@@ -29,16 +29,17 @@ const Marker = ({ geojson, ad, isFocus }: IMarker) => {
       key={ad.url}
       ref={markerRef}
       data={geojson}
-      pointToLayer={(feature, latlng) => {
-        return Leaflet.marker(latlng, {
+      pointToLayer={(feature, latlng) =>
+        Leaflet.marker(latlng, {
           icon: Leaflet.icon({
             iconUrl: isFocus
               ? '/assets/img/pin-map-focus.svg'
               : '/assets/img/pin-map.svg',
             iconSize: [30, 30],
+            className: isFocus ? 'is-focus' : '',
           }),
         })
-      }}
+      }
     >
       <MapPopup ad={ad} />
     </GeoJSON>

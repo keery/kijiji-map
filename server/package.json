@@ -2,7 +2,7 @@
   "name": "Kijiji-map-server",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Kijiji map server",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -33,7 +33,7 @@
     "uuid": "f06c4acc-e066-41df-ac15-3e6d5d8162f7"
   },
   "engines": {
-    "node": ">=10.16.0 <=14.x.x",
+    "node": "14.x",
     "npm": "^6.0.0"
   },
   "license": "MIT"

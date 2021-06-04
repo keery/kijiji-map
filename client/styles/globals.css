@@ -95,3 +95,8 @@ a {
   background-color: black;
   color: white;
 }
+
+.adCard .swiper-button-next.swiper-button-disabled,
+.adCard .swiper-button-prev.swiper-button-disabled {
+  pointer-events: stroke;
+}

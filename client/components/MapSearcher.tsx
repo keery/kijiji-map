@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Container, Flex, Box } from '@chakra-ui/react'
 import Filters from '~components/Filters'
 import Logo from '~components/Logo'
@@ -8,6 +8,7 @@ import Loading from '~components/Loading'
 import { useAds } from '~hooks/useAds'
 import dynamic from 'next/dynamic'
 import { formatQuery, getDefaultValue } from '~utils/filters'
+import { useIsFetching } from 'react-query'
 
 const Map = dynamic(() => import('~components/Map'), { ssr: false })
 
@@ -16,13 +17,17 @@ const MapSearcher = () => {
   const [query, setQuery] = useState(formatQuery(getDefaultValue()))
   const [adToFocus, setFocus] = useState(null)
   const { data, isLoading } = useAds(query)
+  const isFetching = useIsFetching(['ads'])
 
   const handlePaginate = ({ selected }) => {
     setQuery({ ...query, _page: selected })
+  }
+
+  useEffect(() => {
     if (listRef.current) {
       listRef.current.scrollTo(0, 0)
     }
-  }
+  }, [isFetching])
 
   return (
     <>

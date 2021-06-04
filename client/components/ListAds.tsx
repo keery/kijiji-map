@@ -9,7 +9,7 @@ import { PER_PAGE } from '~constants'
 import HomeIcon from 'public/assets/img/home.svg'
 import { useTranslation } from 'next-i18next'
 
-interface IListAds {
+interface Props {
   ads: Ad[]
   page: number
   setFocus: (ad: string | null) => void
@@ -23,7 +23,7 @@ const ListAds = ({
   nbAds = 0,
   handlePaginate,
   page,
-}: IListAds) => {
+}: Props) => {
   const pageCount = useMemo(
     () => Math.ceil(nbAds / PER_PAGE),
     [nbAds, PER_PAGE],

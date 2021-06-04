@@ -17,11 +17,19 @@ interface Props {
 const Filters = ({ setQuery, isLoading }: Props) => {
   const form = useFormContext()
   const { t } = useTranslation('common')
-  const test = form.watch('bounds')
 
-  const onSubmit = useCallback(async (data) => {
-    localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(data))
-    setQuery(formatQuery(data))
+  const onSubmit = useCallback((data) => {
+    const filters = { ...data }
+
+    if (filters?.location?.value) {
+      delete filters.bounds
+      form.setValue('bounds', null)
+    } else {
+      delete filters.location
+      form.setValue('location', null)
+    }
+
+    setQuery(formatQuery(filters))
   }, [])
 
   return (

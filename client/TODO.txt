@@ -8,7 +8,7 @@ Hover sur les attributes (eau, elec, etc) afficher le picto + phrase pour savoir
 Display result in modal with framer translation
 go top after search
 block redirection if click on arrows
-keep location if manual search
 Selection recap by email (daily, weekly, etc)
 get ads from kangaloo
+script to clean old ads
 FAVICON

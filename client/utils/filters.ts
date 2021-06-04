@@ -14,11 +14,11 @@ export const mapLocation = (location): Record<string, any> => {
   }
 }
 
-export const mapBounds = (bounds: LatLngBounds): Record<string, any> => {
-  if (!bounds) return {}
+export const mapBounds = (bounds): Record<string, any> => {
+  if (!Boolean(bounds)) return {}
 
-  const NE = bounds.getNorthEast()
-  const SW = bounds.getSouthWest()
+  const NE = bounds._northEast
+  const SW = bounds._southWest
 
   return {
     latNe: NE.lat,
@@ -80,6 +80,9 @@ export const getSize = (size: number = 0) => {
 }
 
 export const formatQuery = (data: Record<string, any>) => {
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(data))
+  }
   return {
     ...getSize(data.size),
     price_gte: data.min,

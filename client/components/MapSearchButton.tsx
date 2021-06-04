@@ -3,7 +3,7 @@ import { Button } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import Refresh from 'public/assets/img/refresh.svg'
 import { useMap, useMapEvents } from 'react-leaflet'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useController } from 'react-hook-form'
 import { formatQuery } from '~utils/filters'
 import { useIsFetching } from 'react-query'
 
@@ -19,6 +19,11 @@ const MapSearchButton = ({ setQuery }: Props) => {
   const form = useFormContext()
   const { t } = useTranslation('common')
   const isFetching = useIsFetching(['ads'])
+
+  const { field } = useController({
+    name: 'bounds',
+    control: form.control,
+  })
 
   useEffect(() => {
     if (isFetching && !isSearching) {
@@ -54,15 +59,16 @@ const MapSearchButton = ({ setQuery }: Props) => {
   const search = useCallback((map) => {
     setSearching(true)
     setVisible(false)
+    const bounds = map.getBounds()
     form.setValue('location', {
       value: 0,
       label: t('manualSearch'),
     })
-    form.setValue('bounds', map.getBounds())
+    field.onChange(bounds)
 
     const query = formatQuery({
       ...form.getValues(),
-      bounds: map.getBounds(),
+      bounds,
     })
     setQuery(query)
   }, [])

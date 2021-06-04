@@ -5,6 +5,7 @@ const Button = {
     lineHeight: 1,
     _hover: {
       textDecoration: 'none',
+      opacity: 0.8,
     },
     _focus: {
       boxShadow: 'none',

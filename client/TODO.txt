@@ -1,5 +1,4 @@
 Newsletter with daily selection
-Add backend to persist ads
 Home design
 Like favorites ads
 More filters
@@ -12,3 +11,4 @@ block redirection if click on arrows
 keep location if manual search
 Selection recap by email (daily, weekly, etc)
 Zindex selected marker
+get ads from kangaloo

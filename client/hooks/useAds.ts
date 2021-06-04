@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 import { client } from '~api/api'
 
 export const getAds = ({ _page, ...params }) =>
-  client.get('/ads', {
+  client.get('/search', {
     params: {
       ...params,
       _sort: 'date:desc',

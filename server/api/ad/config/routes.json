@@ -10,7 +10,7 @@
     },
     {
       "method": "GET",
-      "path": "/ads",
+      "path": "/search",
       "handler": "ad.find",
       "config": {
         "policies": []

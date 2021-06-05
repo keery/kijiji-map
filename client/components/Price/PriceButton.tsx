@@ -3,9 +3,7 @@ import { Flex, Box, Text, Divider } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import { useWatch, useFormContext } from 'react-hook-form'
 
-interface IPriceButton {}
-
-const PriceButton = ({}: IPriceButton) => {
+const PriceButton = () => {
   const { t } = useTranslation()
   const { control } = useFormContext()
   const { min, max } = useWatch({

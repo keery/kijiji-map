@@ -4,6 +4,9 @@ const Input = {
     outline: {
       field: {
         borderColor: 'gray.300',
+        _hover: {
+          borderColor: 'inputHover',
+        },
       },
     },
   },

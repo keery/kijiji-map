@@ -19,14 +19,31 @@ import PriceSlider from '~components/Slider/PriceSlider'
 import { useTranslation } from 'next-i18next'
 import { useFormContext } from 'react-hook-form'
 
-interface IPricePopover {
+interface Props {
   children: React.ReactNode
 }
 
-const PricePopover = ({ children }: IPricePopover) => {
+const InputPrice = ({ name }) => {
+  const { register } = useFormContext()
+
+  return (
+    <Flex layerStyle="priceInput">
+      <Text>$</Text>
+      <Input
+        type="number"
+        fontSize="2xl"
+        fontWeight="600"
+        name={name}
+        ref={register}
+        variant="unstyled"
+      />
+    </Flex>
+  )
+}
+
+const PricePopover = ({ children }: Props) => {
   const { t } = useTranslation()
   const { onOpen, onClose, isOpen } = useDisclosure()
-  const { register } = useFormContext()
 
   return (
     <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
@@ -35,6 +52,7 @@ const PricePopover = ({ children }: IPricePopover) => {
       </PopoverTrigger>
       <PopoverContent
         borderRadius="xl"
+        zIndex={999}
         w="400px"
         _focus={{
           boxShadow: 'none',
@@ -51,48 +69,14 @@ const PricePopover = ({ children }: IPricePopover) => {
               <Stat>
                 <StatLabel>{t('filters.price.minFull')}</StatLabel>
                 <StatNumber>
-                  <Flex
-                    alignItems="center"
-                    border="1px solid"
-                    borderColor="gray.300"
-                    borderRadius="10px"
-                    py={2}
-                    px={2}
-                  >
-                    <Text>$</Text>
-                    <Input
-                      type="number"
-                      fontSize="2xl"
-                      fontWeight="600"
-                      name="min"
-                      ref={register}
-                      variant="unstyled"
-                    />
-                  </Flex>
+                  <InputPrice name="min" />
                 </StatNumber>
               </Stat>
               <Circle size="10px" mx={2.5} mt={5} />
               <Stat>
                 <StatLabel>{t('filters.price.maxFull')}</StatLabel>
                 <StatNumber>
-                  <Flex
-                    alignItems="center"
-                    border="1px solid"
-                    borderColor="gray.300"
-                    borderRadius="10px"
-                    py={2}
-                    px={2.5}
-                  >
-                    <Text>$</Text>
-                    <Input
-                      type="number"
-                      fontSize="2xl"
-                      fontWeight="600"
-                      name="max"
-                      ref={register}
-                      variant="unstyled"
-                    />
-                  </Flex>
+                  <InputPrice name="max" />
                 </StatNumber>
               </Stat>
             </Flex>

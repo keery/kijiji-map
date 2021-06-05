@@ -139,6 +139,17 @@ const theme = extendTheme({
     64: '16rem',
   },
   layerStyles: {
+    priceInput: {
+      alignItems: 'center',
+      border: '1px solid',
+      borderColor: 'gray.300',
+      borderRadius: '10px',
+      py: 2,
+      px: 2.5,
+      _hover: {
+        borderColor: 'inputHover',
+      },
+    },
     filter: {
       height: '52px',
       borderRadius: 'xl',

@@ -3,7 +3,7 @@
     "submit": "Rechercher",
     "searching": "En chargement",
     "price": {
-      "title": "Sélectionner son budget",
+      "title": "Sélectionner un budget",
       "min": "prix min",
       "max": "prix max",
       "minFull": "prix minimum",

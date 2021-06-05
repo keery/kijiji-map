@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import { Button } from '@chakra-ui/react'
+import { Button, Box } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import Refresh from 'public/assets/img/refresh.svg'
 import { useMap, useMapEvents } from 'react-leaflet'
@@ -74,24 +74,25 @@ const MapSearchButton = ({ setQuery }: Props) => {
   }, [])
 
   return (
-    <>
-      <Button
-        visibility={isVisible ? 'visible' : 'hidden'}
-        onClick={() => search(map)}
-        leftIcon={<Refresh />}
-        bg="white"
-        color="black"
-        pos="absolute"
-        left="50%"
-        right="50%"
-        top="10px"
-        transform="translateX(-50%)"
-        fontSize={12}
-        zIndex={999999}
-      >
-        {t('searchBounds')}
-      </Button>
-    </>
+    <Button
+      _hover={{
+        transform: 'translateX(-50%) scale(1.05)',
+      }}
+      visibility={isVisible ? 'visible' : 'hidden'}
+      onClick={() => search(map)}
+      leftIcon={<Refresh />}
+      bg="white"
+      color="black"
+      pos="absolute"
+      left="50%"
+      right="50%"
+      top="10px"
+      transform="translateX(-50%) scale(1)"
+      fontSize={12}
+      zIndex={999}
+    >
+      {t('searchBounds')}
+    </Button>
   )
 }
 

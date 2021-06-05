@@ -5,7 +5,6 @@ const Button = {
     lineHeight: 1,
     _hover: {
       textDecoration: 'none',
-      opacity: 0.8,
     },
     _focus: {
       boxShadow: 'none',
@@ -16,6 +15,9 @@ const Button = {
   },
   variants: {
     solid: {
+      _hover: {
+        opacity: 0.8,
+      },
       bg: 'linear-gradient(to right, #8CA6DB, #B993D6)',
     },
   },

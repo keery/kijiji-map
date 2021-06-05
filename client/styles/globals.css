@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'mabry';
-  src: url('/assets/fonts/Mabry Pro.otf');
+  src: url('/assets/fonts/mabry-pro.otf');
 }
 @font-face {
   font-family: 'mabry medium';
-  src: url('/assets/fonts/Mabry Pro Medium.otf');
+  src: url('/assets/fonts/mabry-pro-medium.otf');
 }
 
 html,

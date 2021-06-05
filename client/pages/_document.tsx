@@ -15,7 +15,20 @@ export default class CustomDocument extends Document {
   render() {
     return (
       <Html>
-        <Head></Head>
+        <Head>
+          <link
+            rel="preload"
+            href="/assets/fonts/mabry-pro.otf"
+            as="font"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/assets/fonts/mabry-pro-medium.otf"
+            as="font"
+            crossOrigin="anonymous"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

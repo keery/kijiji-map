@@ -3,7 +3,6 @@ import { HStack, Button } from '@chakra-ui/react'
 import FilterPrice from '~components/Price/FilterPrice'
 import FilterLocation from '~components/FilterLocation'
 import FilterSize from '~components/FilterSize'
-import { LOCAL_STORAGE_SEARCH } from '~constants'
 import { formatQuery } from '~utils/filters'
 import { useTranslation } from 'next-i18next'
 import Search from 'public/assets/img/search.svg'
@@ -24,9 +23,6 @@ const Filters = ({ setQuery, isLoading }: Props) => {
     if (filters?.location?.value) {
       delete filters.bounds
       form.setValue('bounds', null)
-    } else {
-      delete filters.location
-      form.setValue('location', null)
     }
 
     setQuery(formatQuery(filters))

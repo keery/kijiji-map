@@ -18,7 +18,7 @@ const getPicto = (type) => {
   }
 }
 
-const getStyle = (theme, value) => {
+const getStyle = (theme, location) => {
   const before = {
     content: '""',
     display: 'inline-block',
@@ -38,7 +38,7 @@ const getStyle = (theme, value) => {
     }),
     dropdownIndicator: (styles) => ({
       ...styles,
-      display: Boolean(value) ? 'none' : 'flex',
+      display: Boolean(location) ? 'none' : 'flex',
     }),
     placeholder: (styles) => ({
       ...styles,
@@ -51,6 +51,11 @@ const getStyle = (theme, value) => {
       ...styles,
       overflowX: 'hidden',
     }),
+    singleValue: (styles) => ({
+      ...styles,
+      fontFamily: location.value === 0 ? 'mabry medium' : 'mabry',
+      color: location.value === 0 ? theme.colors.gray['300'] : 'black',
+    }),
     indicatorSeparator: () => ({
       display: 'none',
     }),
@@ -61,7 +66,6 @@ const getStyle = (theme, value) => {
         borderRadius: theme.radii.xl,
         backgroundColor: 'white',
         width: '350px',
-        fontWeight: value === 0 ? '600' : '400',
         paddingRight: 10,
         paddingLeft: 10,
         ':hover': {
@@ -74,7 +78,7 @@ const getStyle = (theme, value) => {
           backgroundImage: ``,
           color: 'white',
           background: `url(/assets/img/${getPicto(
-            value?.type,
+            location?.type,
           )}) center no-repeat, ${theme.gradient.blueViolet}`,
           backgroundSize: '40%, contain',
           borderRadius: '100%',

@@ -31,7 +31,7 @@ const Filters = ({ setQuery, isLoading }: Props) => {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
       <HStack spacing={4} backgroundColor="white" display="inline-flex">
-        <FilterLocation control={form.control} />
+        <FilterLocation />
         <FilterPrice />
         <FilterSize />
         <Button

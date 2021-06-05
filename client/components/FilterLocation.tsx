@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useTheme } from '@chakra-ui/react'
 import ReactSelect from 'react-select'
-import { useController } from 'react-hook-form'
+import { useController, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'next-i18next'
 import { useLocation } from '~hooks/useLocation'
 
@@ -120,7 +120,8 @@ const getStyle = (theme, location) => {
     },
   }
 }
-const FilterLocation = ({ control }) => {
+const FilterLocation = () => {
+  const { control, setValue } = useFormContext()
   const { data: location, isLoading } = useLocation()
   const { t } = useTranslation('location')
   const theme = useTheme()
@@ -135,6 +136,9 @@ const FilterLocation = ({ control }) => {
   )
 
   const onChange = (data) => {
+    if (!data) {
+      setValue('bounds', null)
+    }
     field.onChange(data || '')
   }
 

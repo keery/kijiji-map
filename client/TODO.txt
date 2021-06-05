@@ -1,4 +1,3 @@
-Newsletter with daily selection
 Home design
 Like favorites ads
 More filters
@@ -9,4 +8,6 @@ Display result in modal with framer translation
 Selection recap by email (daily, weekly, etc)
 get ads from kangaloo
 script to clean old ads
+Set Cors when everything will be working well
+Add clusters
 FAVICON

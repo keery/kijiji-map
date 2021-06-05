@@ -9,7 +9,7 @@ const baseClient = mbxClient({
 const geocoder = geocodingService(baseClient);
 
 const DEFAULT_OPTIONS = {
-  maxResults: 50,
+  maxResults: 40,
 };
 
 const DEFAULT_PARAMS = {
@@ -147,52 +147,63 @@ module.exports = {
     return location;
   },
   scrape: async (ctx) => {
-    const ads = await search(DEFAULT_PARAMS, DEFAULT_OPTIONS).catch((err) =>
-      console.error(err)
-    );
-
-    if (ads.length === 0) {
-      throw new Error("No ad found from scrapper");
-    }
-
-    return Promise.all(
-      ads.map(async ({ attributes, ...ad }) => {
-        const isExists = await strapi.query("ad").findOne({ url: ad.url });
-        if (isExists) {
-          console.log(`[EXISTS] ${ad.url}`);
-          return null;
+    return search(DEFAULT_PARAMS, DEFAULT_OPTIONS)
+      .then(async (ads) => {
+        if (ads.length === 0) {
+          throw new Error("No ad found from scrapper");
         }
 
-        return geocoder
-          .forwardGeocode({
-            query: attributes.location,
-            limit: 1,
-            countries: ["ca"],
-          })
-          .send()
-          .then(async (response) => {
-            const location = await strapi.services.ad.getLocationDetails(
-              response.body.features
-            );
+        for (let i = 0; i < ads.length; i++) {
+          try {
+            const { attributes, ...ad } = ads[i];
 
-            if (!location) {
-              return null;
+            const isExists = await strapi.query("ad").findOne({ url: ad.url });
+            if (isExists) {
+              console.log(`[EXISTS] ${ad.url}`);
+              continue;
             }
 
-            const transformedAttributes = Object.fromEntries(
-              Object.entries(attributes).map(([key, value]) => {
-                let newValue = value;
-                if (value === NOT_AVAILABLE) newValue = false;
-                else if (
-                  adSettings.attributes[key] &&
-                  adSettings.attributes[key].type === "boolean"
-                )
-                  newValue = Boolean(value);
-                return [key, newValue];
+            const geolocation = await geocoder
+              .forwardGeocode({
+                query: attributes.location,
+                limit: 1,
+                countries: ["ca"],
               })
-            );
+              .send()
+              .then(async (response) => {
+                const location = await strapi.services.ad.getLocationDetails(
+                  response.body.features
+                );
 
-            return strapi
+                if (!location) {
+                  return null;
+                }
+
+                return {
+                  location,
+                  transformedAttributes: Object.fromEntries(
+                    Object.entries(attributes).map(([key, value]) => {
+                      let newValue = value;
+                      if (value === NOT_AVAILABLE) newValue = false;
+                      else if (
+                        adSettings.attributes[key] &&
+                        adSettings.attributes[key].type === "boolean"
+                      )
+                        newValue = Boolean(value);
+                      return [key, newValue];
+                    })
+                  ),
+                };
+              })
+              .catch((err) => {
+                console.log("[ERROR-GEOCODING]", err);
+                return null;
+              });
+
+            if (!geolocation) continue;
+            const { transformedAttributes, location } = geolocation;
+
+            await strapi
               .query("ad")
               .create({
                 ...ad,
@@ -201,11 +212,11 @@ module.exports = {
               })
               .then(() => console.log(`[INSERTED] ${ad.url}`))
               .catch((err) => console.log(`[ERROR-CREATE-AD] ${ad.url}`, err));
-          });
+          } catch (err) {
+            console.log("[ERROR-SCRAPPER]", err);
+          }
+        }
       })
-    ).catch((err) => {
-      console.log("[ERROR-SCRAPPER]", err);
-      return err;
-    });
+      .catch((err) => console.error(err));
   },
 };

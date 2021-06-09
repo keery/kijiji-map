@@ -1,4 +1,3 @@
-Home design
 Like favorites ads
 More filters
 Test secured origin mapbox
@@ -10,4 +9,6 @@ get ads from kangaloo
 script to clean old ads
 Set Cors when everything will be working well
 Add clusters
+Reset filters
+Room number minimum
 FAVICON

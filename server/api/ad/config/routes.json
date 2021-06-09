@@ -17,6 +17,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/check-ad",
+      "handler": "ad.checkAd",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "GET",
       "path": "/ads/count",
       "handler": "ad.count",

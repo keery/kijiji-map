@@ -1,5 +1,5 @@
 "use strict";
-const { search, categories } = require("kijiji-scraper");
+const { search, categories, Ad } = require("kijiji-scraper");
 const mbxClient = require("@mapbox/mapbox-sdk");
 const adSettings = require("../models/ad.settings.json");
 const geocodingService = require("@mapbox/mapbox-sdk/services/geocoding");
@@ -22,6 +22,17 @@ const DEFAULT_PARAMS = {
 const NOT_AVAILABLE = "Not Available";
 
 module.exports = {
+  async checkAd(url) {
+    try {
+      await Ad.Get(url);
+      return true;
+    } catch (err) {
+      if (err.message.includes("does not exist")) {
+        await strapi.services.ad.delete({ url });
+      }
+      return false;
+    }
+  },
   async getLocationContext(name, data) {
     try {
       const entity = await strapi.services[name].findOne({

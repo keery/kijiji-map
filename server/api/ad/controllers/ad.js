@@ -31,4 +31,7 @@ module.exports = {
   scrape() {
     return strapi.services.ad.scrape();
   },
+  checkAd(ctx) {
+    return strapi.services.ad.checkAd(ctx.request.body.url);
+  },
 };

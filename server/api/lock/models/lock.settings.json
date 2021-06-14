@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "locks",
+  "info": {
+    "name": "lock",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "isblocked": {
+      "type": "boolean",
+      "default": false
+    },
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    }
+  }
+}

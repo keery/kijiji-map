@@ -158,6 +158,7 @@ module.exports = {
     return location;
   },
   scrape: async (ctx) => {
+    await strapi.services.lock.set(true);
     return search(DEFAULT_PARAMS, DEFAULT_OPTIONS)
       .then(async (ads) => {
         if (ads.length === 0) {
@@ -228,6 +229,7 @@ module.exports = {
           }
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => strapi.services.lock.set(false));
   },
 };

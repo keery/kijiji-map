@@ -1,5 +1,4 @@
 "use strict";
-
 /**
  * Cron config that gives you an opportunity
  * to run scheduled jobs.
@@ -11,8 +10,17 @@
  */
 
 module.exports = {
-  "*/5 * * * *": () => {
-    console.log("---- Start fetching:");
-    strapi.services.ad.scrape();
+  "* */10 * * * *": {
+    task: async () => {
+      const lock = await strapi.services.lock.findOne({ name: "ad" });
+
+      if (lock.isblocked) {
+        console.log("---- Fetching was locked:");
+      } else {
+        console.log("---- Start fetching:");
+        await strapi.services.ad.scrape();
+        console.log("---- End fetching");
+      }
+    },
   },
 };

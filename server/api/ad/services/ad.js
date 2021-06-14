@@ -158,78 +158,80 @@ module.exports = {
     return location;
   },
   scrape: async (ctx) => {
-    await strapi.services.lock.set(true);
+    // await strapi.services.lock.set(true);
     return search(DEFAULT_PARAMS, DEFAULT_OPTIONS)
       .then(async (ads) => {
         if (ads.length === 0) {
           throw new Error("No ad found from scrapper");
+        } else {
+          console.log(ads.length, "new ads found");
         }
 
-        for (let i = 0; i < ads.length; i++) {
-          try {
-            const { attributes, ...ad } = ads[i];
+        // for (let i = 0; i < ads.length; i++) {
+        //   try {
+        //     const { attributes, ...ad } = ads[i];
 
-            const isExists = await strapi.query("ad").findOne({ url: ad.url });
-            if (isExists) {
-              console.log(`[EXISTS] ${ad.url}`);
-              continue;
-            }
+        //     const isExists = await strapi.query("ad").findOne({ url: ad.url });
+        //     if (isExists) {
+        //       console.log(`[EXISTS] ${ad.url}`);
+        //       continue;
+        //     }
 
-            const geolocation = await geocoder
-              .forwardGeocode({
-                query: attributes.location,
-                limit: 1,
-                countries: ["ca"],
-              })
-              .send()
-              .then(async (response) => {
-                const location = await strapi.services.ad.getLocationDetails(
-                  response.body.features
-                );
+        //     const geolocation = await geocoder
+        //       .forwardGeocode({
+        //         query: attributes.location,
+        //         limit: 1,
+        //         countries: ["ca"],
+        //       })
+        //       .send()
+        //       .then(async (response) => {
+        //         const location = await strapi.services.ad.getLocationDetails(
+        //           response.body.features
+        //         );
 
-                if (!location) {
-                  return null;
-                }
+        //         if (!location) {
+        //           return null;
+        //         }
 
-                return {
-                  location,
-                  transformedAttributes: Object.fromEntries(
-                    Object.entries(attributes).map(([key, value]) => {
-                      let newValue = value;
-                      if (value === NOT_AVAILABLE) newValue = false;
-                      else if (
-                        adSettings.attributes[key] &&
-                        adSettings.attributes[key].type === "boolean"
-                      )
-                        newValue = Boolean(value);
-                      return [key, newValue];
-                    })
-                  ),
-                };
-              })
-              .catch((err) => {
-                console.log("[ERROR-GEOCODING]", err);
-                return null;
-              });
+        //         return {
+        //           location,
+        //           transformedAttributes: Object.fromEntries(
+        //             Object.entries(attributes).map(([key, value]) => {
+        //               let newValue = value;
+        //               if (value === NOT_AVAILABLE) newValue = false;
+        //               else if (
+        //                 adSettings.attributes[key] &&
+        //                 adSettings.attributes[key].type === "boolean"
+        //               )
+        //                 newValue = Boolean(value);
+        //               return [key, newValue];
+        //             })
+        //           ),
+        //         };
+        //       })
+        //       .catch((err) => {
+        //         console.log("[ERROR-GEOCODING]", err);
+        //         return null;
+        //       });
 
-            if (!geolocation) continue;
-            const { transformedAttributes, location } = geolocation;
+        //     if (!geolocation) continue;
+        //     const { transformedAttributes, location } = geolocation;
 
-            await strapi
-              .query("ad")
-              .create({
-                ...ad,
-                ...transformedAttributes,
-                ...location,
-              })
-              .then(() => console.log(`[INSERTED] ${ad.url}`))
-              .catch((err) => console.log(`[ERROR-CREATE-AD] ${ad.url}`, err));
-          } catch (err) {
-            console.log("[ERROR-SCRAPPER]", err);
-          }
-        }
+        //     await strapi
+        //       .query("ad")
+        //       .create({
+        //         ...ad,
+        //         ...transformedAttributes,
+        //         ...location,
+        //       })
+        //       .then(() => console.log(`[INSERTED] ${ad.url}`))
+        //       .catch((err) => console.log(`[ERROR-CREATE-AD] ${ad.url}`, err));
+        //   } catch (err) {
+        //     console.log("[ERROR-SCRAPPER]", err);
+        //   }
+        // }
       })
-      .catch((err) => console.error(err))
-      .finally(() => strapi.services.lock.set(false));
+      .catch((err) => console.error(err));
+    // .finally(() => strapi.services.lock.set(false));
   },
 };

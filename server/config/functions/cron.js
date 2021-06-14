@@ -10,7 +10,7 @@
  */
 
 module.exports = {
-  "* */10 * * * *": {
+  "*/10 * * * *": {
     task: async () => {
       const lock = await strapi.services.lock.findOne({ name: "ad" });
 

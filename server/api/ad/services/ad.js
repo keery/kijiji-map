@@ -162,9 +162,9 @@ module.exports = {
     return search(DEFAULT_PARAMS, DEFAULT_OPTIONS)
       .then(async (ads) => {
         if (ads.length === 0) {
-          throw new Error("No ad found from scrapper");
+          // throw new Error("No ad found from scrapper");
         } else {
-          console.log(ads.length, "new ads found");
+          // console.log(ads.length, "new ads found");
         }
 
         for (let i = 0; i < ads.length; i++) {
@@ -173,7 +173,7 @@ module.exports = {
 
             const isExists = await strapi.query("ad").findOne({ url: ad.url });
             if (isExists) {
-              console.log(`[EXISTS] ${ad.url}`);
+              // console.log(`[EXISTS] ${ad.url}`);
               continue;
             }
 
@@ -217,15 +217,13 @@ module.exports = {
             if (!geolocation) continue;
             const { transformedAttributes, location } = geolocation;
 
-            await strapi
-              .query("ad")
-              .create({
-                ...ad,
-                ...transformedAttributes,
-                ...location,
-              })
-              .then(() => console.log(`[INSERTED] ${ad.url}`))
-              .catch((err) => console.log(`[ERROR-CREATE-AD] ${ad.url}`, err));
+            await strapi.query("ad").create({
+              ...ad,
+              ...transformedAttributes,
+              ...location,
+            });
+            // .then(() => console.log(`[INSERTED] ${ad.url}`))
+            // .catch((err) => console.log(`[ERROR-CREATE-AD] ${ad.url}`, err));
           } catch (err) {
             console.log("[ERROR-SCRAPPER]", err);
           }

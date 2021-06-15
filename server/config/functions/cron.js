@@ -17,9 +17,9 @@ module.exports = {
       if (lock.isblocked) {
         console.log("---- Fetching was locked:");
       } else {
-        console.log("---- Start fetching:");
+        // console.log("---- Start fetching:");
         await strapi.services.ad.scrape();
-        console.log("---- End fetching");
+        // console.log("---- End fetching");
       }
     },
   },

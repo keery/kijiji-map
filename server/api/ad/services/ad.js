@@ -1,5 +1,5 @@
 "use strict";
-const { search, categories, Ad } = require("kijiji-scraper");
+const { search } = require("kijiji-scraper");
 const mbxClient = require("@mapbox/mapbox-sdk");
 const adSettings = require("../models/ad.settings.json");
 const geocodingService = require("@mapbox/mapbox-sdk/services/geocoding");
@@ -15,7 +15,7 @@ const DEFAULT_OPTIONS = {
 const DEFAULT_PARAMS = {
   adType: "OFFERED",
   locationId: 0,
-  categoryId: categories.REAL_ESTATE.FOR_RENT.LONG_TERM_RENTALS,
+  categoryId: 37,
   sortType: "DATE_DESCENDING",
 };
 
@@ -162,7 +162,7 @@ module.exports = {
     return search(DEFAULT_PARAMS, DEFAULT_OPTIONS)
       .then(async (ads) => {
         if (ads.length === 0) {
-          // throw new Error("No ad found from scrapper");
+          throw new Error("No ad found from scrapper");
         } else {
           // console.log(ads.length, "new ads found");
         }

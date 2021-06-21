@@ -1,6 +1,5 @@
 import { LOCAL_STORAGE_SEARCH } from '~constants'
 import { PER_PAGE } from '~constants'
-import { LatLngBounds } from 'leaflet'
 
 export const mapLocation = (location): Record<string, any> => {
   if (typeof location === 'undefined' || !location || !location.value) return {}

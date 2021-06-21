@@ -14,6 +14,15 @@ export const useAds = (params) => {
   return useQuery(['ads', params], () =>
     getAds(params)
       .then((res) => res.data)
+      .then((res) => {
+        // Ads are checked after they got fetched, and wrong ones are set to null
+        const nbAds = res.ads.length
+        const validAds = res.ads.filter((ad) => ad)
+        return {
+          ads: validAds,
+          count: res.count - (nbAds - validAds.length),
+        }
+      })
       .catch((err) => {
         console.log(err)
         return []

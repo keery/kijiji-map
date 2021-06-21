@@ -1,5 +1,5 @@
 "use strict";
-const { search } = require("kijiji-scraper");
+const { search, Ad } = require("kijiji-scraper");
 const mbxClient = require("@mapbox/mapbox-sdk");
 const adSettings = require("../models/ad.settings.json");
 const geocodingService = require("@mapbox/mapbox-sdk/services/geocoding");

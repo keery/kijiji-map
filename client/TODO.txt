@@ -12,3 +12,4 @@ Add clusters
 Reset filters
 Room number minimum
 FAVICON
+Add bugsnag or sentry

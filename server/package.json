@@ -13,6 +13,7 @@
   "devDependencies": {},
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.13.0",
+    "date-fns": "^2.22.1",
     "kijiji-scraper": "^6.1.4",
     "knex": "0.21.18",
     "pg": "^8.6.0",

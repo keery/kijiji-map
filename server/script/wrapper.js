@@ -4,8 +4,10 @@ const start = async () => {
   const instance = await strapiLib;
   await instance
     .default()
-    .start()
-    .then(async (strapi) => {});
+    .load()
+    .then(async (strapi) => {
+      strapi.services.ad.scrape();
+    });
 };
 
 start();

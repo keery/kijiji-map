@@ -171,8 +171,8 @@
       "model": "region"
     },
     "country": {
-      "model": "country",
-      "via": "ads"
+      "via": "ads",
+      "model": "country"
     },
     "neighborhood": {
       "via": "ads",

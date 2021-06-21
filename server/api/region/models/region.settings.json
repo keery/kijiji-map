@@ -25,8 +25,8 @@
       "via": "region"
     },
     "country": {
-      "model": "country",
-      "via": "regions"
+      "via": "regions",
+      "model": "country"
     },
     "shortcode": {
       "type": "string"

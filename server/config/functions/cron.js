@@ -10,17 +10,11 @@
  */
 
 module.exports = {
-  "*/10 * * * *": {
+  "*/5 * * * *": {
     task: async () => {
-      const lock = await strapi.services.lock.findOne({ name: "ad" });
-
-      if (lock.isblocked) {
-        console.log("---- Fetching was locked:");
-      } else {
-        // console.log("---- Start fetching:");
-        await strapi.services.ad.scrape();
-        // console.log("---- End fetching");
-      }
+      console.log("---- Start fetching:");
+      await strapi.services.ad.scrape();
+      console.log("---- End fetching");
     },
   },
 };

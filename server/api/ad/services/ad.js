@@ -35,9 +35,13 @@ module.exports = {
   },
   async getLocationContext(name, data) {
     try {
-      const entity = await strapi.services[name].findOne({
-        external_id: data.external_id,
-      });
+      const entity = await strapi.query(name).findOne(
+        {
+          external_id: data.external_id,
+        },
+        []
+      );
+
       if (entity) {
         return entity.id;
       } else {
@@ -113,6 +117,7 @@ module.exports = {
           "country",
           context.country
         );
+
         if (id) {
           location["country"] = id;
           if (context.region) {
@@ -158,78 +163,77 @@ module.exports = {
     return location;
   },
   scrape: async (ctx) => {
-    // await strapi.services.lock.set(true);
     return search(DEFAULT_PARAMS, DEFAULT_OPTIONS)
       .then(async (ads) => {
         if (ads.length === 0) {
           throw new Error("No ad found from scrapper");
         } else {
-          // console.log(ads.length, "new ads found");
+          console.log(ads.length, "new ads found");
         }
 
         for (let i = 0; i < ads.length; i++) {
           try {
             const { attributes, ...ad } = ads[i];
 
-            const isExists = await strapi.query("ad").findOne({ url: ad.url });
+            const isExists = await strapi
+              .query("ad")
+              .findOne({ url: ad.url }, []);
             if (isExists) {
-              // console.log(`[EXISTS] ${ad.url}`);
+              console.log(`[EXISTS] ${ad.url}`);
               continue;
+            } else {
+              console.log(`[CREATING] ${ad.url}`);
             }
 
-            const geolocation = await geocoder
+            const geocoding = await geocoder
               .forwardGeocode({
                 query: attributes.location,
                 limit: 1,
                 countries: ["ca"],
               })
               .send()
-              .then(async (response) => {
-                const location = await strapi.services.ad.getLocationDetails(
-                  response.body.features
-                );
-
-                if (!location) {
-                  return null;
-                }
-
-                return {
-                  location,
-                  transformedAttributes: Object.fromEntries(
-                    Object.entries(attributes).map(([key, value]) => {
-                      let newValue = value;
-                      if (value === NOT_AVAILABLE) newValue = false;
-                      else if (
-                        adSettings.attributes[key] &&
-                        adSettings.attributes[key].type === "boolean"
-                      )
-                        newValue = Boolean(value);
-                      return [key, newValue];
-                    })
-                  ),
-                };
-              })
               .catch((err) => {
                 console.log("[ERROR-GEOCODING]", err);
                 return null;
               });
 
-            if (!geolocation) continue;
-            const { transformedAttributes, location } = geolocation;
+            if (!geocoding) continue;
 
-            await strapi.query("ad").create({
-              ...ad,
-              ...transformedAttributes,
-              ...location,
-            });
-            // .then(() => console.log(`[INSERTED] ${ad.url}`))
-            // .catch((err) => console.log(`[ERROR-CREATE-AD] ${ad.url}`, err));
+            const location = await strapi.services.ad.getLocationDetails(
+              geocoding.body.features
+            );
+
+            if (!location) {
+              return null;
+            }
+
+            const transformedAttributes = Object.fromEntries(
+              Object.entries(attributes).map(([key, value]) => {
+                let newValue = value;
+                if (value === NOT_AVAILABLE) newValue = false;
+                else if (
+                  adSettings.attributes[key] &&
+                  adSettings.attributes[key].type === "boolean"
+                )
+                  newValue = Boolean(value);
+                return [key, newValue];
+              })
+            );
+
+            await strapi
+              .query("ad")
+              .create({
+                ...ad,
+                ...transformedAttributes,
+                ...location,
+              })
+              .then(() => console.log(`[INSERTED] ${ad.url}`))
+              .catch((err) => console.log(`[ERROR-CREATE-AD] ${ad.url}`, err));
           } catch (err) {
             console.log("[ERROR-SCRAPPER]", err);
           }
         }
       })
       .catch((err) => console.error(err));
-    // .finally(() => strapi.services.lock.set(false));
   },
 };

@@ -161,8 +161,6 @@ module.exports = {
       .then(async (ads) => {
         if (ads.length === 0) {
           throw new Error("No ad found from scrapper");
-        } else {
-          console.log(ads.length, "new ads found");
         }
 
         for (let i = 0; i < ads.length; i++) {
@@ -175,8 +173,6 @@ module.exports = {
             if (isExists) {
               console.log(`[EXISTS] ${ad.url}`);
               continue;
-            } else {
-              console.log(`[CREATING] ${ad.url}`);
             }
 
             const geocoding = await geocoder

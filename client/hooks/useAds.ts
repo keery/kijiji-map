@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query'
 import { client } from '~api/api'
+import { Ad } from '~@types/api'
 
 export const getAds = ({ _page, ...params }) =>
   client.get('/search', {
@@ -16,8 +17,8 @@ export const useAds = (params) => {
       .then((res) => res.data)
       .then((res) => {
         // Ads are checked after they got fetched, and wrong ones are set to null
-        const nbAds = res.ads.length
-        const validAds = res.ads.filter((ad) => ad)
+        const nbAds: number = res.ads.length
+        const validAds: Ad[] = res.ads.filter((ad) => ad)
         return {
           ads: validAds,
           count: res.count - (nbAds - validAds.length),
@@ -25,7 +26,7 @@ export const useAds = (params) => {
       })
       .catch((err) => {
         console.log(err)
-        return []
+        return { ads: [] as Ad[], count: 0 }
       }),
   )
 }

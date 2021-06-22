@@ -55,7 +55,6 @@ const MapSearcher = () => {
           px={6}
         >
           <Loading isLoading={isLoading} skeleton={<ListAdsSkeleton />}>
-            {/* @ts-ignore */}
             <ListAds
               page={query._page}
               ads={data?.ads}
@@ -65,7 +64,6 @@ const MapSearcher = () => {
             />
           </Loading>
         </Box>
-        {/* @ts-ignore */}
         <Map ads={data?.ads} adToFocus={adToFocus} setQuery={setQuery} />
       </Flex>
     </>

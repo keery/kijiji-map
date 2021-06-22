@@ -6,7 +6,6 @@ Hover sur les attributes (eau, elec, etc) afficher le picto + phrase pour savoir
 Display result in modal with framer translation
 Selection recap by email (daily, weekly, etc)
 get ads from kangaloo
-script to clean old ads
 Set Cors when everything will be working well
 Add clusters
 Reset filters

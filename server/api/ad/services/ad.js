@@ -113,16 +113,10 @@ module.exports = {
       });
 
       if (context.country) {
-        const id = await strapi.services.ad.getLocationContext(
-          "country",
-          context.country
-        );
-
-        if (id) {
-          location["country"] = id;
-          if (context.region) {
-            context.region["country"] = id;
-          }
+        const countryId = 1;
+        location["country"] = countryId;
+        if (context.region) {
+          context.region["country"] = countryId;
         }
       }
       if (context.region) {

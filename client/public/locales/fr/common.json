@@ -14,7 +14,7 @@
     },
     "size": {
       "placeholder": "Taille",
-      "nbRoom": "nombre de pièce"
+      "nbRoom": "taille minimum"
     }
   },
   "ad": {

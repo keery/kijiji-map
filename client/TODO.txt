@@ -9,6 +9,5 @@ get ads from kangaloo
 Set Cors when everything will be working well
 Add clusters
 Reset filters
-Room number minimum
 FAVICON
 Add bugsnag or sentry

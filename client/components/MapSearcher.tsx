@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Container, Flex, Box, useBreakpointValue } from '@chakra-ui/react'
+import { Container, Flex, Box } from '@chakra-ui/react'
 import Filters from '~components/Filters'
 import Logo from '~components/Logo'
 import ListAds from '~components/ListAds'
@@ -14,7 +14,6 @@ const Map = dynamic(() => import('~components/Map'), { ssr: false })
 
 const MapSearcher = () => {
   const listRef = useRef(null)
-  const isMobile = useBreakpointValue({ base: true, md: false })
   const [query, setQuery] = useState(formatQuery(getDefaultValue()))
   const [adToFocus, setFocus] = useState(null)
   const { data, isLoading } = useAds(query)

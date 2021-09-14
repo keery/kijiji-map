@@ -19,6 +19,12 @@
   },
   "ad": {
     "attribute": {
+      "apartment": "Appartement",
+      "duplex-triplex": "Duplex-Triplex",
+      "basement-apartment": "Appartement RDC",
+      "house": "Maison",
+      "townhouse": "Maison de ville",
+      "condo": "Condo",
       "furnished": "Meublé",
       "furnishedNo": "Non meublé",
       "bedroom": "{{nb}} chambre(s)",
@@ -31,9 +37,6 @@
       "electricNo": "Electricité non comprise"
     }
   },
-  "apartment": "Appartement",
-  "basement-apartment": "RDC appartement",
-  "house": "Maison",
   "popup": {
     "seeMore": "Voir l'annonce"
   },

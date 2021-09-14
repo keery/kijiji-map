@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Container, Flex, Box } from '@chakra-ui/react'
+import { Container, Flex, Box, useBreakpointValue } from '@chakra-ui/react'
 import Filters from '~components/Filters'
 import Logo from '~components/Logo'
 import ListAds from '~components/ListAds'
@@ -14,6 +14,7 @@ const Map = dynamic(() => import('~components/Map'), { ssr: false })
 
 const MapSearcher = () => {
   const listRef = useRef(null)
+  const isMobile = useBreakpointValue({ base: true, md: false })
   const [query, setQuery] = useState(formatQuery(getDefaultValue()))
   const [adToFocus, setFocus] = useState(null)
   const { data, isLoading } = useAds(query)
@@ -48,11 +49,9 @@ const MapSearcher = () => {
         <Box
           ref={listRef}
           backgroundColor="white"
-          w="45vw"
-          minW="680px"
-          maxW="750px"
+          w={{ base: '100vw', md: '550px', lg: '680px' }}
           overflowY="auto"
-          px={6}
+          px={{ base: 2, md: 4, lg: 6 }}
         >
           <Loading isLoading={isLoading} skeleton={<ListAdsSkeleton />}>
             <ListAds
@@ -64,7 +63,12 @@ const MapSearcher = () => {
             />
           </Loading>
         </Box>
-        <Map ads={data?.ads} adToFocus={adToFocus} setQuery={setQuery} />
+        <Map
+          flex={1}
+          ads={data?.ads}
+          adToFocus={adToFocus}
+          setQuery={setQuery}
+        />
       </Flex>
     </>
   )

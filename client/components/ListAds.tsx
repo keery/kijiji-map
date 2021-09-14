@@ -38,7 +38,7 @@ const ListAds = ({
           {t(`adsFound${nbAds > 1 ? 's' : ''}`, { nb: nbAds })}
         </Text>
       </Flex>
-      <VStack spacing={6} py={6}>
+      <VStack spacing={{ base: 3, md: 6 }} py={6}>
         {ads.map((ad) => (
           <AdCard ad={ad} key={ad.url} setFocus={setFocus} />
         ))}

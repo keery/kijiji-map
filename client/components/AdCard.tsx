@@ -1,15 +1,17 @@
 import React, { useMemo } from 'react'
 import { Ad } from '~@types/api'
+import { MD, BASE, LG, SM } from '~constants'
 import {
   Flex,
   Text,
-  Box,
   HStack,
   Tag,
   TagLeftIcon,
   TagLabel,
-  Divider,
   Link,
+  StackDivider,
+  useBreakpointValue,
+  AspectRatio,
 } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
@@ -24,14 +26,19 @@ import Water from 'public/assets/img/water.svg'
 import Heat from 'public/assets/img/heat.svg'
 import Electric from 'public/assets/img/electric.svg'
 
-interface IAdCard {
+interface Props {
   ad: Ad
   setFocus: (ad: string | null) => void
 }
 
-const AdCard = ({ ad, setFocus }: IAdCard) => {
+const AdCard = ({ ad, setFocus }: Props) => {
   const { t, i18n } = useTranslation('common')
-
+  const breakpoint = useBreakpointValue({
+    base: BASE,
+    sm: SM,
+    md: MD,
+    lg: LG,
+  })
   const date = useMemo(
     () =>
       formatDistanceToNow(new Date(ad.date), {
@@ -48,28 +55,44 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
       _hover={{ textDecoration: 'none', boxShadow: '0px 0px 10px #9c9c9c' }}
       borderRadius="30px"
       p={2.5}
-      pr={4}
+      pr={{ base: 2.5, sm: 4 }}
       boxShadow="0px 0px 7px #ccc"
       overflow="hidden"
       isExternal
       onMouseEnter={() => setFocus(ad.url)}
       onMouseLeave={() => setFocus(null)}
     >
-      <Flex w="100%" className="adCard" role="group">
-        <Box w="250px" h="200px" borderRadius="20px" overflow="hidden">
+      <Flex
+        w="100%"
+        className="adCard"
+        role="group"
+        direction={{ base: 'column', sm: 'row' }}
+      >
+        <AspectRatio
+          borderRadius="20px"
+          overflow="hidden"
+          w={{ base: '100%', sm: '200px', md: '180px', lg: '250px' }}
+        >
           <Carousel slides={ad.images} />
-        </Box>
+        </AspectRatio>
         <Flex
-          pl={5}
           py={1}
-          w="1px"
+          pr={{ base: 2, sm: 0 }}
+          pl={{ base: 2, sm: 3 }}
+          pt={{ base: 3, sm: 0 }}
+          w={{ base: '100%', sm: '1px' }}
           flex={1}
           direction="column"
           justifyContent="space-between"
         >
           <Flex h="100%" direction="column" justifyContent="space-between">
             <Flex direction="column">
-              <Text isTruncated fontSize="lg" mb={2}>
+              <Text
+                isTruncated={breakpoint !== BASE}
+                noOfLines={breakpoint === BASE ? 2 : null}
+                fontSize="lg"
+                mb={2}
+              >
                 {ad.title}
               </Text>
               <HStack justifyContent="flex-start">
@@ -87,7 +110,11 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
                 </Tag>
               </HStack>
             </Flex>
-            <Flex justifyContent="space-between" alignItems="flex-end">
+            <Flex
+              justifyContent="space-between"
+              alignItems="flex-end"
+              pt={{ base: 2, sm: 0 }}
+            >
               <Text color="gray.300" pb={1}>
                 {date}
               </Text>
@@ -102,34 +129,36 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
             </Flex>
           </Flex>
           <HStack
+            divider={
+              <StackDivider
+                borderColor="gray.100"
+                h="18px"
+                alignSelf="center"
+              />
+            }
             justifyContent="space-between"
             borderTop="1px solid"
             borderColor="gray.100"
-            py={2}
+            pt={2}
+            pb={{ base: 0, sm: 2 }}
             px={1}
             color="gray.400"
             alignItems="center"
             spacing={3}
           >
             {ad.numberbedrooms !== 'Not Available' && (
-              <>
-                <AttributeCard
-                  name="bedroom"
-                  icon={<Bed fontSize="20px" />}
-                  value={ad.numberbedrooms}
-                />
-                <Divider orientation="vertical" h="85%" />
-              </>
+              <AttributeCard
+                name="bedroom"
+                icon={<Bed fontSize="20px" />}
+                value={ad.numberbedrooms}
+              />
             )}
-            {ad.numberparkingspots !== 'Not Available' && (
-              <>
-                <AttributeCard
-                  name="parking"
-                  icon={<Car fontSize="20px" />}
-                  value={ad.numberparkingspots}
-                />
-                <Divider orientation="vertical" h="85%" />
-              </>
+            {breakpoint === LG && ad.numberparkingspots !== 'Not Available' && (
+              <AttributeCard
+                name="parking"
+                icon={<Car fontSize="20px" />}
+                value={ad.numberparkingspots}
+              />
             )}
             <AttributeCard
               name="electric"
@@ -137,14 +166,12 @@ const AdCard = ({ ad, setFocus }: IAdCard) => {
               value={ad.hydro}
               displayBoolean
             />
-            <Divider orientation="vertical" h="85%" />
             <AttributeCard
               name="heat"
               icon={<Heat fontSize="20px" />}
               value={ad.heat}
               displayBoolean
             />
-            <Divider orientation="vertical" h="85%" />
             <AttributeCard
               name="water"
               icon={<Water fontSize="20px" />}

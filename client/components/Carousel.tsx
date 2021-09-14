@@ -35,7 +35,7 @@ const Carousel = ({ slides = [] }: ICarousel) => {
       ))}
       {slides.length > 1 && (
         <Text
-          opacity={0}
+          opacity={{ base: 1, md: 0 }}
           _groupHover={{
             opacity: 1,
           }}

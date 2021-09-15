@@ -108,6 +108,10 @@ a {
   pointer-events: stroke;
 }
 
+.adCarousel {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
 @media screen and (max-width: 48em) {
   .adCard .swiper-button-next,
   .adCard .swiper-button-prev {

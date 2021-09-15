@@ -69,6 +69,7 @@ const AdCard = ({ ad, setFocus }: Props) => {
         direction={{ base: 'column', sm: 'row' }}
       >
         <AspectRatio
+          className="adCarousel"
           borderRadius="20px"
           overflow="hidden"
           w={{ base: '100%', sm: '200px', md: '180px', lg: '250px' }}

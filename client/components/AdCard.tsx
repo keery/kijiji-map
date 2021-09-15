@@ -97,11 +97,11 @@ const AdCard = ({ ad, setFocus }: Props) => {
                 {ad.title}
               </Text>
               <HStack justifyContent="flex-start">
-                <Tag variant="subtle" colorScheme="blue">
+                <Tag variant="subtle" bgColor="#ffc360">
                   <TagLeftIcon boxSize="16px" as={Building} />
                   <TagLabel>{t(`ad.attribute.${ad.unittype}`)}</TagLabel>
                 </Tag>
-                <Tag variant="subtle" colorScheme="blue">
+                <Tag variant="subtle" bgColor="#2581db" color="white">
                   <TagLeftIcon boxSize="16px" as={Couch} />
                   <TagLabel>
                     {ad.furnished

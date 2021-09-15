@@ -1,5 +1,6 @@
 {
   "filters": {
+    "title": "Filtres",
     "submit": "Rechercher",
     "searching": "En chargement",
     "price": {
@@ -15,7 +16,11 @@
     "size": {
       "placeholder": "Taille",
       "nbRoom": "taille minimum"
-    }
+    },
+    "address":"Choisir une adresse",
+    "nbRoom": "Nombre de pièces minimum",
+    "bedroom": "Chambres",
+    "bathroom": "Salles de bain"
   },
   "ad": {
     "attribute": {

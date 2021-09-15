@@ -7,13 +7,12 @@ import { Handle } from './Handle'
 import { SliderRail } from './SliderRail'
 import { Track } from './Track'
 
-interface ISliderPrice {}
 const sliderStyle = {
   position: 'relative',
   width: '100%',
 }
 
-const SliderPrice = (props: ISliderPrice) => {
+const SliderPrice = (props) => {
   const { setValue, getValues } = useFormContext()
   const { max, min } = getValues(['max', 'min'])
 

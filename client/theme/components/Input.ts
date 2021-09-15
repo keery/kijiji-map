@@ -3,7 +3,7 @@ const Input = {
   variants: {
     outline: {
       field: {
-        borderColor: 'gray.300',
+        borderColor: 'gray.200',
         _hover: {
           borderColor: 'inputHover',
         },

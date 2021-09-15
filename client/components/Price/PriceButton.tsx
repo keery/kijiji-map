@@ -15,7 +15,7 @@ const PriceButton = () => {
     <Flex alignItems="center">
       <Flex layerStyle="filter" backgroundColor="white">
         <Box>
-          <Text color="gray.300" fontSize="xs" whiteSpace="nowrap">
+          <Text color="gray.200" fontSize="xs" whiteSpace="nowrap">
             {t('filters.price.min')}
           </Text>
           <Flex alignItems="center" fontSize="sm" w="60px">
@@ -29,7 +29,7 @@ const PriceButton = () => {
           <Divider orientation="vertical" h="85%" mx={4} />
         </Flex>
         <Box>
-          <Text color="gray.300" fontSize="xs" whiteSpace="nowrap">
+          <Text color="gray.200" fontSize="xs" whiteSpace="nowrap">
             {t('filters.price.max')}
           </Text>
           <Flex alignItems="center" fontSize="sm" w="60px">

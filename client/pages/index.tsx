@@ -10,6 +10,7 @@ import MapSearcher from '~components/MapSearcher'
 const Home: NextPage = () => {
   const form = useForm({
     defaultValues: getDefaultValue(),
+    shouldUnregister: false,
   })
 
   return (

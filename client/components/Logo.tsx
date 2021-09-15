@@ -22,7 +22,7 @@ const Logo = () => {
         background={theme.gradient.blueViolet}
         bgClip="text"
       >
-        sweet home
+        Jikiki
       </Text>
     </Flex>
   )

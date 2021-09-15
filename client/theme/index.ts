@@ -143,7 +143,7 @@ const theme = extendTheme({
     priceInput: {
       alignItems: 'center',
       border: '1px solid',
-      borderColor: 'gray.300',
+      borderColor: 'gray.200',
       borderRadius: '10px',
       py: 2,
       px: 2.5,
@@ -154,7 +154,7 @@ const theme = extendTheme({
     filter: {
       height: '52px',
       borderRadius: 'xl',
-      border: '1px solid #E5E5E5',
+      border: { base: 'none', lg: '1px solid #E5E5E5' },
       padding: '5px 25px',
       cursor: 'pointer',
       _hover: {

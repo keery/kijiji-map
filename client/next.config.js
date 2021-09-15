@@ -53,5 +53,6 @@ module.exports = {
 
     return config
   },
+  devtool: 'inline-source-map',
   env: envVars,
 }

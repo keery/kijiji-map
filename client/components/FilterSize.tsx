@@ -24,31 +24,38 @@ const SizeButton = ({ children, ...rest }: ButtonProps) => {
       }}
       cursor="pointer!important"
       disabled={false}
-      h="20px"
-      w="20px"
+      h={{ base: '32px', lg: '20px' }}
+      w={{ base: '32px', lg: '20px' }}
       minW="0"
       fontSize="xl"
       variant="unstyled"
       lineHeight={1}
       background={theme.gradient.blueViolet}
       bgClip="text"
+      border={{ base: '1px solid', lg: 'none' }}
+      borderColor="gray.100"
     >
       {children}
     </Button>
   )
 }
 
-const FilterSize = () => {
+interface Props {
+  name: string
+}
+
+const FilterSize = ({ name }: Props) => {
   const { control } = useFormContext()
   const { field } = useController({
-    name: 'size',
+    name,
     control,
+    defaultValue: 0,
   })
 
   const { t } = useTranslation()
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
-      name: 'size',
+      name,
       step: 1,
       min: 0,
       value: field.value,
@@ -74,21 +81,33 @@ const FilterSize = () => {
       backgroundColor="white"
     >
       <SizeButton {...dec}>-</SizeButton>
-      <Flex direction="column" alignItems="flex-start" h="100%">
-        <Text color="gray.300" fontSize="xs" whiteSpace="nowrap">
+      <Flex
+        direction="column"
+        alignItems="flex-start"
+        h={{ base: 'auto', lg: '100%' }}
+      >
+        <Text
+          color="gray.200"
+          fontSize="xs"
+          whiteSpace="nowrap"
+          display={{ base: 'none', lg: 'block' }}
+        >
           {t('filters.size.nbRoom')}
         </Text>
         <Box pos="relative" w="fit-content" m="0 auto">
           <Input
             {...input}
-            value={isDisabled ? '' : field.value}
+            value={field.value}
             border="none"
             px={0}
             h="20px"
             w="25px"
+            readOnly
+            textAlign={{ base: 'center', lg: 'left' }}
           />
           {!isDisabled && (
             <Text
+              display={{ base: 'none', lg: 'block' }}
               pos="absolute"
               right="0"
               top="50%"

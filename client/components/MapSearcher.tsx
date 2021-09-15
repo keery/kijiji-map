@@ -39,7 +39,7 @@ const MapSearcher = () => {
         boxShadow="1px 1px 3px #ccc"
         bg="white"
         pos="relative"
-        zIndex="10000"
+        zIndex="1005"
       >
         <Logo />
         <Filters setQuery={setQuery} isLoading={isLoading} />

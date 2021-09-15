@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { useTheme } from '@chakra-ui/react'
+import { useTheme, useBreakpointValue } from '@chakra-ui/react'
 import ReactSelect from 'react-select'
 import { useController, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'next-i18next'
@@ -18,7 +18,7 @@ const getPicto = (type) => {
   }
 }
 
-const getStyle = (theme, location) => {
+const getStyle = (theme, location, isMobile) => {
   const before = {
     content: '""',
     display: 'inline-block',
@@ -27,6 +27,7 @@ const getStyle = (theme, location) => {
   return {
     menu: (styles) => ({
       ...styles,
+      zIndex: 14,
       width: '400px',
       borderRadius: theme.radii.xl,
       overflow: 'hidden',
@@ -34,7 +35,7 @@ const getStyle = (theme, location) => {
       paddingBottom: '10px',
       boxShadow: 'none',
       border: '1px solid',
-      borderColor: theme.colors.gray['300'],
+      borderColor: theme.colors.gray['200'],
     }),
     dropdownIndicator: (styles) => ({
       ...styles,
@@ -54,18 +55,23 @@ const getStyle = (theme, location) => {
     singleValue: (styles) => ({
       ...styles,
       fontFamily: location.value === 0 ? 'mabry medium' : 'mabry',
-      color: location.value === 0 ? theme.colors.gray['300'] : 'black',
+      color: location.value === 0 ? theme.colors.gray['200'] : 'black',
     }),
     indicatorSeparator: () => ({
       display: 'none',
+    }),
+    container: (styles) => ({
+      ...styles,
+      width: isMobile ? '100%' : 'auto',
     }),
     control: (styles) => {
       return {
         ...styles,
         ...theme.layerStyles.filter,
+        border: '1px solid #E5E5E5',
         borderRadius: theme.radii.xl,
         backgroundColor: 'white',
-        width: '350px',
+        width: isMobile ? '100%' : '350px',
         paddingRight: 10,
         paddingLeft: 10,
         ':hover': {
@@ -121,6 +127,7 @@ const getStyle = (theme, location) => {
   }
 }
 const FilterLocation = () => {
+  const isMobile = useBreakpointValue({ base: true, lg: false })
   const { control, setValue } = useFormContext()
   const { data: location, isLoading } = useLocation()
   const { t } = useTranslation('location')
@@ -131,8 +138,8 @@ const FilterLocation = () => {
   })
 
   const styles = useMemo(
-    () => getStyle(theme, field.value),
-    [theme, field.value],
+    () => getStyle(theme, field.value, isMobile),
+    [theme, field.value, isMobile],
   )
 
   const onChange = (data) => {

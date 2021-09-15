@@ -47,7 +47,7 @@ export const getDefaultValue = () => {
   }
 }
 
-export const sizeMapping = {
+export const bedroomMapping = {
   1: 0,
   2: 0,
   3: 1,
@@ -57,15 +57,23 @@ export const sizeMapping = {
   7: 5,
 }
 
-export const getSize = (size: number = 0) => {
+export const getBedrooms = (size: number = 0) => {
   if (Number(size) === 0) return null
 
-  if (!sizeMapping[size]) {
+  if (!bedroomMapping[size]) {
     return console.log('ERROR Mapping size')
   }
 
   return {
-    numberbedrooms_gte: sizeMapping[size],
+    numberbedrooms_gte: bedroomMapping[size],
+  }
+}
+
+export const getBathrooms = (size: number = 0) => {
+  if (Number(size) === 0) return null
+
+  return {
+    numberbathrooms_gte: bedroomMapping[size],
   }
 }
 
@@ -74,7 +82,8 @@ export const formatQuery = (data: Record<string, any>) => {
     localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(data))
   }
   return {
-    ...getSize(data.size),
+    ...getBedrooms(data.bedrooms),
+    ...getBathrooms(data.bathrooms),
     price_gte: data.min,
     price_lte: data.max,
     _page: 0,

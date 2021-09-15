@@ -52,7 +52,7 @@ const AdCard = ({ ad, setFocus }: Props) => {
     <Link
       w="100%"
       href={ad.url}
-      _hover={{ textDecoration: 'none', boxShadow: '0px 0px 10px #9c9c9c' }}
+      _hover={{ textDecoration: 'none', boxShadow: '0px 0px 6px #9c9c9c' }}
       borderRadius="30px"
       p={2.5}
       pr={{ base: 2.5, sm: 4 }}
@@ -122,7 +122,7 @@ const AdCard = ({ ad, setFocus }: Props) => {
               <Text
                 fontWeight="bold"
                 fontSize="28px"
-                background="linear-gradient(to right, #8CA6DB, #B993D6)"
+                background="linear-gradient(to right, #373373, #554fa9)"
                 bgClip="text"
               >
                 {ad.price ? `$ ${ad.price}` : '--'}

@@ -87,7 +87,7 @@ const FilterSize = ({ name }: Props) => {
         h={{ base: 'auto', lg: '100%' }}
       >
         <Text
-          color="gray.200"
+          color="gray.400"
           fontSize="xs"
           whiteSpace="nowrap"
           display={{ base: 'none', lg: 'block' }}

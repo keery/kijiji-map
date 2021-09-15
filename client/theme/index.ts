@@ -92,7 +92,7 @@ const theme = extendTheme({
     xl: '87.5rem',
   },
   gradient: {
-    blueViolet: 'linear-gradient(to right, #8CA6DB, #B993D6)',
+    blueViolet: 'linear-gradient(to right, #373373, #554fa9)',
   },
   space: {
     full: '-1.5rem',

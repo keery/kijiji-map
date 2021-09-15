@@ -18,7 +18,7 @@ const Button = {
       _hover: {
         opacity: 0.8,
       },
-      bg: 'linear-gradient(to right, #8CA6DB, #B993D6)',
+      bg: 'linear-gradient(to right, #373373, #554fa9)',
     },
   },
   sizes: {

@@ -20,7 +20,7 @@ interface Props {
 }
 
 const MapPopup = ({ ad }: Props) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   return (
     <Popup maxWidth={300}>
@@ -44,7 +44,7 @@ const MapPopup = ({ ad }: Props) => {
             <Text
               fontWeight="bold"
               fontSize="28px"
-              background="linear-gradient(to right, #8CA6DB, #B993D6)"
+              background="linear-gradient(to right, #373373, #554fa9)"
               bgClip="text"
             >
               {ad.price ? `$ ${ad.price}` : '--'}

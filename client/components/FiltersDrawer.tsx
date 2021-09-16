@@ -44,6 +44,7 @@ const FiltersDrawer = ({ isLoading, onSubmit }: Props) => {
               borderColor="gray.100"
               display="flex"
               justifyContent="space-between"
+              minH="65px"
             >
               <div />
               <Text>{t('filters.title')}</Text>

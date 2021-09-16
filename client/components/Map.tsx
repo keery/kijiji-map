@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useMemo } from 'react'
-import { Box, BoxProps } from '@chakra-ui/react'
+import ReactDOMServer from 'react-dom/server'
+import { Box, BoxProps, Tag } from '@chakra-ui/react'
 import {
   MapContainer,
   TileLayer,
@@ -15,13 +16,13 @@ import MapPlaceholder from './MapPlaceholder'
 import MapSearchButton from './MapSearchButton'
 import MapPopup from './MapPopup'
 
-interface IMarker {
+interface Props {
   ad: Ad
   geojson: GeoJsonObject
   isFocus: boolean
 }
 
-const Marker = ({ geojson, ad, isFocus }: IMarker) => {
+const Marker = ({ geojson, ad, isFocus }: Props) => {
   const markerRef = useRef(null)
 
   return (
@@ -31,12 +32,27 @@ const Marker = ({ geojson, ad, isFocus }: IMarker) => {
       data={geojson}
       pointToLayer={(feature, latlng) =>
         Leaflet.marker(latlng, {
-          icon: Leaflet.icon({
-            iconUrl: isFocus
-              ? '/assets/img/pin-map-focus.svg'
-              : '/assets/img/pin-map.svg',
-            iconSize: [30, 30],
-            className: isFocus ? 'is-focus' : '',
+          icon: Leaflet.divIcon({
+            html: ReactDOMServer.renderToString(
+              <Box
+                className={isFocus ? 'is-focus' : ''}
+                borderRadius="20px"
+                bgColor={isFocus ? '#373373' : '#f1454f'}
+                border="2px solid"
+                borderColor={isFocus ? '#373373' : '#f38086'}
+                whiteSpace="nowrap"
+                color="white"
+                textAlign="center"
+                w="fit-content"
+                px={10}
+                py={2}
+                fontSize="14px"
+                fontWeight="bold"
+                transform="translateX(-50%) translateY(-50%)"
+              >
+                {`$ ${ad.price}`}
+              </Box>,
+            ),
           }),
         })
       }

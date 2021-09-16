@@ -42,6 +42,7 @@ const MapPopup = ({ ad }: Props) => {
               </TagLabel>
             </Tag>
             <Text
+              pl={4}
               fontWeight="bold"
               fontSize="28px"
               background="linear-gradient(to right, #373373, #554fa9)"

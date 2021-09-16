@@ -7,6 +7,13 @@
   src: url('/assets/fonts/mabry-pro-medium.otf');
 }
 
+::-moz-selection {
+  background: #b6b3ec;
+}
+::selection {
+  background: #b6b3ec;
+}
+
 html,
 body {
   padding: 0;
@@ -20,6 +27,16 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .custom-popup a {

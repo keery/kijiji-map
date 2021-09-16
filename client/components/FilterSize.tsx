@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import {
+  useBreakpointValue,
   useNumberInput,
   HStack,
   Button,
-  Input,
   Box,
   Text,
   ButtonProps,
@@ -38,6 +38,7 @@ interface Props {
 }
 
 const FilterSize = ({ name }: Props) => {
+  const isDesktop = useBreakpointValue({ base: false, lg: true })
   const { control } = useFormContext()
   const { field } = useController({
     name,
@@ -46,24 +47,22 @@ const FilterSize = ({ name }: Props) => {
   })
 
   const { t } = useTranslation()
-  const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
-    useNumberInput({
-      name,
-      step: 1,
-      min: 0,
-      value: field.value,
-      max: 7,
-      inputMode: 'numeric',
-      pattern: '[0-9]*',
-      onChange: (value) => {
-        field.onChange(Number(value).toFixed(0))
-      },
-    })
+  const { getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({
+    name,
+    step: 1,
+    min: 0,
+    value: field.value,
+    max: 7,
+    inputMode: 'numeric',
+    pattern: '[0-9]*',
+    onChange: (value) => {
+      field.onChange(Number(value).toFixed(0))
+    },
+  })
 
   const isDisabled = useMemo(() => Number(field.value) === 0, [field.value])
   const inc = getIncrementButtonProps()
   const dec = getDecrementButtonProps()
-  const input = getInputProps()
 
   return (
     <HStack
@@ -88,16 +87,17 @@ const FilterSize = ({ name }: Props) => {
           {t('filters.size.nbRoom')}
         </Text>
         <Box pos="relative" w="fit-content" m="0 auto">
-          <Input
-            {...input}
-            value={field.value}
-            border="none"
-            px={0}
-            h="20px"
-            w="25px"
-            readOnly
-            textAlign={{ base: 'center', lg: 'left' }}
-          />
+          {((isDesktop && +field.value !== 0) || !isDesktop) && (
+            <Text
+              px={0}
+              h="20px"
+              w="25px"
+              className="noselect"
+              textAlign={{ base: 'center', lg: 'left' }}
+            >
+              {field.value}
+            </Text>
+          )}
           {!isDisabled && (
             <Text
               display={{ base: 'none', lg: 'block' }}

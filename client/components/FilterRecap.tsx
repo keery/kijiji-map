@@ -27,15 +27,19 @@ const FilterRecap = () => {
       }}
     >
       <Text isTruncated>
-        {!!location && `${location.label}`}
-        <Box
-          display="inline-block"
-          fontSize="6px"
-          mx={1}
-          transform="translateY(-2px)"
-        >
-          {` ● `}
-        </Box>
+        {!!location && (
+          <>
+            {location.label}
+            <Box
+              display="inline-block"
+              fontSize="6px"
+              mx={1}
+              transform="translateY(-2px)"
+            >
+              {` ● `}
+            </Box>
+          </>
+        )}
         {`${min}$ - ${max}$`}
       </Text>
       <Divider orientation="vertical" h="20px" mx={3} />

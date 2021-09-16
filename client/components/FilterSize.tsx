@@ -6,7 +6,6 @@ import {
   Input,
   Box,
   Text,
-  useTheme,
   ButtonProps,
   Flex,
 } from '@chakra-ui/react'
@@ -14,14 +13,9 @@ import { useTranslation } from 'next-i18next'
 import { useFormContext, useController } from 'react-hook-form'
 
 const SizeButton = ({ children, ...rest }: ButtonProps) => {
-  const theme = useTheme()
   return (
     <Button
       {...rest}
-      opacity="1!important"
-      _hover={{
-        opacity: '1!important',
-      }}
       cursor="pointer!important"
       disabled={false}
       h={{ base: '32px', lg: '20px' }}
@@ -30,8 +24,7 @@ const SizeButton = ({ children, ...rest }: ButtonProps) => {
       fontSize="xl"
       variant="unstyled"
       lineHeight={1}
-      background={theme.gradient.blueViolet}
-      bgClip="text"
+      color="kijiji.main"
       border={{ base: '1px solid', lg: 'none' }}
       borderColor="gray.100"
     >

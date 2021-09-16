@@ -38,7 +38,7 @@ const FiltersDrawer = ({ isLoading, onSubmit }: Props) => {
       </Box>
       <Drawer placement="bottom" onClose={onClose} isOpen={isOpen} size="full">
         <form onSubmit={onSubmit}>
-          <DrawerContent zIndex="99999">
+          <DrawerContent zIndex="99999" className="drawer-mobile">
             <DrawerHeader
               borderBottomWidth="1px"
               borderColor="gray.100"

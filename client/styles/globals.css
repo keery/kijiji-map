@@ -38,6 +38,9 @@ a {
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+.drawer-mobile {
+  min-height: -webkit-fill-available;
+}
 
 .custom-popup a {
   color: white !important;

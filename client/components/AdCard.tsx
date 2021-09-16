@@ -32,7 +32,7 @@ interface Props {
 }
 
 const AdCard = ({ ad, setFocus }: Props) => {
-  const { t, i18n } = useTranslation('common')
+  const { t, i18n } = useTranslation()
   const breakpoint = useBreakpointValue({
     base: BASE,
     sm: SM,

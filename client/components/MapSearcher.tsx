@@ -34,7 +34,7 @@ const MapSearcher = () => {
       <Container
         py={4}
         display="flex"
-        alignItems="flex-start"
+        alignItems="center"
         justifyContent="space-between"
         boxShadow="1px 1px 3px #ccc"
         bg="white"

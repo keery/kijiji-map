@@ -33,6 +33,10 @@ const theme = extendTheme({
     '3xl': '2.15rem',
   },
   colors: {
+    kijiji: {
+      main: '#373373',
+      red: '#f1454f',
+    },
     inputHover: '#8ea4da',
     gray: {
       '50': '#F2F2F2',

@@ -8,6 +8,7 @@ import {
   useDisclosure,
   Button,
   Text,
+  Box,
   Flex,
   CloseButton,
   VStack,
@@ -16,6 +17,7 @@ import {
 import { useTranslation } from 'next-i18next'
 import PriceRange from '~components/Price/PriceRange'
 import FilterLocation from '~components/FilterLocation'
+import FilterRecap from '~components/FilterRecap'
 import FilterSize from '~components/FilterSize'
 import DrawerSection from '~components/DrawerSection'
 import Search from 'public/assets/img/search.svg'
@@ -31,9 +33,9 @@ const FiltersDrawer = ({ isLoading, onSubmit }: Props) => {
 
   return (
     <>
-      <Button colorScheme="blue" onClick={onOpen}>
-        Open
-      </Button>
+      <Box onClick={onOpen} minW="0">
+        <FilterRecap />
+      </Box>
       <Drawer placement="bottom" onClose={onClose} isOpen={isOpen} size="full">
         <form onSubmit={onSubmit}>
           <DrawerContent zIndex="99999">

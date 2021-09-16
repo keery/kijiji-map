@@ -100,10 +100,10 @@ const ListAdsSkeleton = () => {
   return (
     <>
       <Flex alignItems="center" pt={5}>
-        <HomeIcon width="28px" height="28px" />
+        <HomeIcon width="28px" height="28px" fill="#f1454f" />
         <Skeleton ml={3} h="20px" w="50%" />
       </Flex>
-      <VStack spacing={{ base: 3, md: 6 }} py={6} w="100%" bg="white">
+      <VStack spacing={{ base: 3, md: 6 }} pt={3} pb={6} w="100%" bg="white">
         <AdCardSkeleton />
         <AdCardSkeleton />
         <AdCardSkeleton />

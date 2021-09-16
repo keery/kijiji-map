@@ -32,13 +32,17 @@ const ListAds = ({
 
   return (
     <Box>
-      <Flex alignItems="center" pt={5}>
-        <HomeIcon width="28px" height="28px" />
-        <Text pl={3} fontSize="xl" lineHeight={1}>
+      <Flex alignItems="center" pt={5} color="kijiji.main">
+        <HomeIcon width="28px" height="28px" fill="#f1454f" />
+        <Text
+          pl={2}
+          fontSize={{ base: 'md', sm: 'lg', lg: 'xl' }}
+          lineHeight={1}
+        >
           {t(`adsFound${nbAds > 1 ? 's' : ''}`, { nb: nbAds })}
         </Text>
       </Flex>
-      <VStack spacing={{ base: 3, md: 6 }} py={6}>
+      <VStack spacing={{ base: 4, md: 6 }} pt={3} pb={6}>
         {ads.map((ad) => (
           <AdCard ad={ad} key={ad.url} setFocus={setFocus} />
         ))}

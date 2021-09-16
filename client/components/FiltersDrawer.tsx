@@ -36,7 +36,7 @@ const FiltersDrawer = ({ isLoading, onSubmit }: Props) => {
       <Box onClick={onOpen} minW="0">
         <FilterRecap />
       </Box>
-      <Drawer placement="bottom" onClose={onClose} isOpen={isOpen} size="full">
+      <Drawer placement="top" onClose={onClose} isOpen={isOpen} size="full">
         <form onSubmit={onSubmit}>
           <DrawerContent zIndex="99999" className="drawer-mobile">
             <DrawerHeader

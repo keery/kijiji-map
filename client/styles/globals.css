@@ -39,7 +39,7 @@ a {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 .drawer-mobile {
-  min-height: -webkit-fill-available;
+  height: -webkit-fill-available !important;
 }
 
 .custom-popup a {

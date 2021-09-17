@@ -11,12 +11,16 @@ interface Props {
 }
 
 const style: ButtonProps = {
+  _hover: {
+    opacity: 1,
+  },
   display: { base: 'flex', md: 'none' },
   pos: 'absolute',
   bottom: 4,
   left: '50%',
   zIndex: 1000,
   transform: 'translateX(-50%)',
+  bgColor: 'white',
 }
 
 const DisplayToggler = ({ mode, setter }: Props) => {

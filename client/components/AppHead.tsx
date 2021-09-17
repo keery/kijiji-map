@@ -44,9 +44,9 @@ const AppHead = () => {
           site_name: 'Jikiki',
           images: [
             {
-              url: process.env.NEXT_PUBLIC_URL + '/assets/img/jikiki-logo.png',
-              width: 100,
-              height: 52,
+              url: process.env.NEXT_PUBLIC_URL + '/assets/img/og-cover.png',
+              width: 300,
+              height: 169,
               alt: 'Jikiki logo',
             },
           ],

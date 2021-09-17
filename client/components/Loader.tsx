@@ -1,12 +1,13 @@
 import { Center, Text, Spinner, Flex, BoxProps } from '@chakra-ui/react'
 import React from 'react'
 
-interface ILoader extends BoxProps {
+interface Props extends BoxProps {
   text?: string
   isCentered?: boolean
   size?: string
 }
-const Loader = ({ text, isCentered, size = 'xl', ...rest }: ILoader) => {
+
+const Loader = ({ text, isCentered, size = 'xl', ...rest }: Props) => {
   return (
     <Center
       height={isCentered && '100%'}
@@ -27,8 +28,8 @@ const Loader = ({ text, isCentered, size = 'xl', ...rest }: ILoader) => {
         <Spinner
           thickness="3px"
           speed="0.65s"
-          emptyColor="gray.200"
-          color="gray.600"
+          emptyColor="kijiji.red"
+          color="kijiji.main"
           size={size}
         />
       </Flex>

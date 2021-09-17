@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useMemo } from 'react'
 import ReactDOMServer from 'react-dom/server'
-import { Box, BoxProps } from '@chakra-ui/react'
+import { Box, BoxProps, Flex } from '@chakra-ui/react'
 import {
   MapContainer,
   TileLayer,
@@ -12,10 +12,11 @@ import { GeoJsonObject } from 'geojson'
 import { Ad } from '~@types/api'
 import Leaflet from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import MapPlaceholder from './MapPlaceholder'
-import MapSearchButton from './MapSearchButton'
-import MapPopup from './MapPopup'
-import MapMarker from './MapMarker'
+import Loader from '~components/Loader'
+import MapPlaceholder from '~components/MapPlaceholder'
+import MapSearchButton from '~components/MapSearchButton'
+import MapPopup from '~components/MapPopup'
+import MapMarker from '~components/MapMarker'
 
 interface Props {
   ad: Ad
@@ -85,13 +86,20 @@ const convertAdsToMarker = (ads: Ad[], adToFocus: string | null) => {
     )
   })
 }
-interface IMap extends BoxProps {
+interface MapProps extends BoxProps {
   ads?: Ad[]
+  isLoading: boolean
   adToFocus: string | null
   setQuery: (query: Record<string, any>) => void
 }
 
-const Map = ({ ads = [], adToFocus, setQuery, ...rest }: IMap) => {
+const Map = ({
+  ads = [],
+  adToFocus,
+  setQuery,
+  isLoading,
+  ...rest
+}: MapProps) => {
   const markers = useMemo(
     () => convertAdsToMarker(ads, adToFocus),
     [ads, adToFocus],
@@ -99,9 +107,20 @@ const Map = ({ ads = [], adToFocus, setQuery, ...rest }: IMap) => {
 
   return (
     <Box width="100%" pos="relative" {...rest}>
+      {isLoading && (
+        <Flex
+          layerStyle="full"
+          zIndex="5000"
+          alignItems="center"
+          justifyContent="center"
+          bgColor="rgb(0 0 0 / 50%)"
+        >
+          <Loader />
+        </Flex>
+      )}
       <MapContainer
-        center={null}
-        zoom={12}
+        center={[48.9683098, -93.7246537]}
+        zoom={4}
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%', flexGrow: 1 }}
         placeholder={<MapPlaceholder />}

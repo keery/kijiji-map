@@ -91,3 +91,5 @@ export interface Ad {
     model: 'neighborhood'
   }
 }
+
+export type DisplayMode = 'map' | 'list'

@@ -53,5 +53,7 @@
   "manualSearch": "Recherche manuelle",
   "searchBounds": "Rechercher dans cette zone",
   "adsFound": "{{nb}} hébergement trouvé",
-  "adsFounds": "{{nb}} hébergements trouvés"
+  "adsFounds": "{{nb}} hébergements trouvés",
+  "displayMap": "Afficher la carte",
+  "displayList": "Afficher la liste"
 }

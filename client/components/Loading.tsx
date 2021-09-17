@@ -2,7 +2,7 @@ import React from 'react'
 import Loader from '~components/Loader'
 import { BoxProps } from '@chakra-ui/react'
 
-interface ILoading extends BoxProps {
+interface Props extends BoxProps {
   isLoading: boolean
   children: React.ReactNode
   skeleton?: React.ReactNode
@@ -17,7 +17,7 @@ const Loading = ({
   isCentered = false,
   size = 'xl',
   ...rest
-}: ILoading) => {
+}: Props) => {
   if (isLoading) {
     if (skeleton) return <>{skeleton}</>
     return <Loader isCentered={isCentered} size={size} {...rest} />

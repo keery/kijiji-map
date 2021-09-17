@@ -22,7 +22,7 @@ module.exports = {
   // Every day at 3am this task will remove ads older than 3 months
   "0 3 * * *": {
     task: async () => {
-      const date = subMonths(new Date(), 3);
+      const date = subMonths(new Date(), 1);
       const deleted = [];
       const ads = await strapi.services.ad.find({ date_lte: date }, []);
 

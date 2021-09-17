@@ -8,6 +8,5 @@ Selection recap by email (daily, weekly, etc)
 get ads from kangaloo
 Set Cors when everything will be working well
 Add clusters
-Reset filters
 FAVICON
 Add bugsnag or sentry

@@ -9,7 +9,6 @@ interface Props {
 const MapMarker = ({ isFocus, price }: Props) => {
   return (
     <Box
-      className={isFocus ? 'is-focus' : ''}
       borderRadius="20px"
       bgColor={isFocus ? '#373373' : '#f1454f'}
       border="2px solid"

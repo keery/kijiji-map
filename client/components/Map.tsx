@@ -34,6 +34,7 @@ const Marker = ({ geojson, ad, isFocus }: Props) => {
       pointToLayer={(feature, latlng) =>
         Leaflet.marker(latlng, {
           icon: Leaflet.divIcon({
+            className: isFocus ? 'is-focus' : '',
             html: ReactDOMServer.renderToString(
               <MapMarker isFocus={isFocus} price={ad.price} />,
             ),

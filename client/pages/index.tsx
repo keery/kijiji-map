@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   })
 
   return (
-    <Flex backgroundColor="gray.400" h="100vh" direction="column">
+    <Flex backgroundColor="gray.400" h="100%" direction="column">
       <FormProvider {...form}>
         <MapSearcher />
       </FormProvider>

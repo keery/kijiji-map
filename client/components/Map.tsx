@@ -122,6 +122,7 @@ const Map = ({
       {typeof showControl !== 'undefined' && (
         <MapContainer
           zoomControl={showControl}
+          attributionControl={showControl}
           center={[48.9683098, -93.7246537]}
           zoom={4}
           scrollWheelZoom={false}

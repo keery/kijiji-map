@@ -14,5 +14,4 @@
         "client:build": "cd client && yarn build",
         "client:start": "cd client && yarn start"
     }
-  }
-  
+}

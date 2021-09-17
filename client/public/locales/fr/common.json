@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Jikiki trouve ton prochain logement",
+    "description": "Jikiki regroupe les petites annonces d'appartements, maisons et condos de Kijiji. Une utilisation et une visibilité plus simple pour t'aider à trouver facilement ton prochain logement"
+  },
   "filters": {
     "reset": "Effacer",
     "title": "Filtres",

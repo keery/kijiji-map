@@ -25,7 +25,13 @@ const MapPopup = ({ ad }: Props) => {
   return (
     <Popup maxWidth={300}>
       <Flex w="100%" direction="column" className="custom-popup" role="group">
-        <Box w="100%" h="200px" borderTopRadius="20px" overflow="hidden">
+        <Box
+          w="100%"
+          h="200px"
+          borderTopRadius="20px"
+          overflow="hidden"
+          transform="translateZ(0)"
+        >
           <Carousel slides={ad.images} />
         </Box>
         <Box px={4} py={2} pb={3.5}>

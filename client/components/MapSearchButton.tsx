@@ -87,11 +87,11 @@ const MapSearchButton = ({ setQuery }: Props) => {
       left="50%"
       right="50%"
       top="10px"
-      px="20px"
+      px={4}
       transform="translateX(-50%)"
       fontSize={12}
       zIndex={999}
-      w="fit-content"
+      w="240px"
     >
       {t('searchBounds')}
     </Button>

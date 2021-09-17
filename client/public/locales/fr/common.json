@@ -1,5 +1,6 @@
 {
   "filters": {
+    "reset": "Effacer",
     "title": "Filtres",
     "submit": "Rechercher",
     "searching": "En chargement",

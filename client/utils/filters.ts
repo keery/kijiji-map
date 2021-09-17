@@ -1,6 +1,15 @@
 import { LOCAL_STORAGE_SEARCH } from '~constants'
 import { PER_PAGE } from '~constants'
 
+const DEFAULT_VALUES = {
+  bounds: null,
+  bedrooms: 0,
+  bathrooms: 0,
+  min: 0,
+  max: 10000,
+  location: null,
+}
+
 export const mapLocation = (location): Record<string, any> => {
   if (typeof location === 'undefined' || !location || !location.value) return {}
 
@@ -27,6 +36,13 @@ export const mapBounds = (bounds): Record<string, any> => {
   }
 }
 
+export const getResetValue = () => {
+  if (typeof localStorage !== 'undefined') {
+    localStorage.removeItem(LOCAL_STORAGE_SEARCH)
+  }
+  return DEFAULT_VALUES
+}
+
 export const getDefaultValue = () => {
   try {
     if (
@@ -35,13 +51,7 @@ export const getDefaultValue = () => {
     ) {
       return JSON.parse(localStorage.getItem(LOCAL_STORAGE_SEARCH))
     }
-    return {
-      bounds: null,
-      size: 0,
-      min: 0,
-      max: 10000,
-      location: 1,
-    }
+    return DEFAULT_VALUES
   } catch {
     localStorage.removeItem(LOCAL_STORAGE_SEARCH)
   }
@@ -60,7 +70,7 @@ export const bedroomMapping = {
 export const getBedrooms = (size: number = 0) => {
   if (Number(size) === 0) return null
 
-  if (!bedroomMapping[size]) {
+  if (!(size in bedroomMapping)) {
     return console.log('ERROR Mapping size')
   }
 

@@ -12,7 +12,7 @@ const sliderStyle = {
   width: '100%',
 }
 
-const SliderPrice = (props) => {
+const SliderPrice = () => {
   const { setValue, getValues } = useFormContext()
   const { max, min } = getValues(['max', 'min'])
 

@@ -21,6 +21,7 @@ import FilterRecap from '~components/FilterRecap'
 import FilterSize from '~components/FilterSize'
 import DrawerSection from '~components/DrawerSection'
 import Search from 'public/assets/img/search.svg'
+import ResetButton from './ResetButton'
 
 interface Props {
   isLoading: boolean
@@ -45,8 +46,9 @@ const FiltersDrawer = ({ isLoading, onSubmit }: Props) => {
               display="flex"
               justifyContent="space-between"
               minH="65px"
+              alignItems="center"
             >
-              <div />
+              <ResetButton />
               <Text>{t('filters.title')}</Text>
               <CloseButton onClick={onClose} />
             </DrawerHeader>

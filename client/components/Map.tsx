@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useMemo } from 'react'
 import ReactDOMServer from 'react-dom/server'
-import { Box, BoxProps, Tag } from '@chakra-ui/react'
+import { Box, BoxProps } from '@chakra-ui/react'
 import {
   MapContainer,
   TileLayer,
@@ -15,6 +15,7 @@ import 'leaflet/dist/leaflet.css'
 import MapPlaceholder from './MapPlaceholder'
 import MapSearchButton from './MapSearchButton'
 import MapPopup from './MapPopup'
+import MapMarker from './MapMarker'
 
 interface Props {
   ad: Ad
@@ -34,24 +35,7 @@ const Marker = ({ geojson, ad, isFocus }: Props) => {
         Leaflet.marker(latlng, {
           icon: Leaflet.divIcon({
             html: ReactDOMServer.renderToString(
-              <Box
-                className={isFocus ? 'is-focus' : ''}
-                borderRadius="20px"
-                bgColor={isFocus ? '#373373' : '#f1454f'}
-                border="2px solid"
-                borderColor={isFocus ? '#373373' : '#f38086'}
-                whiteSpace="nowrap"
-                color="white"
-                textAlign="center"
-                w="fit-content"
-                px={10}
-                py={2}
-                fontSize="14px"
-                fontWeight="bold"
-                transform="translateX(-50%) translateY(-50%)"
-              >
-                {`$ ${ad.price}`}
-              </Box>,
+              <MapMarker isFocus={isFocus} price={ad.price} />,
             ),
           }),
         })

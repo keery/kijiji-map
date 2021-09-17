@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useMemo } from 'react'
 import ReactDOMServer from 'react-dom/server'
-import { Box, BoxProps, Flex } from '@chakra-ui/react'
+import { Box, BoxProps, Flex, useBreakpointValue } from '@chakra-ui/react'
 import {
   MapContainer,
   TileLayer,
@@ -100,6 +100,7 @@ const Map = ({
   isLoading,
   ...rest
 }: MapProps) => {
+  const showControl = useBreakpointValue({ base: false, md: true })
   const markers = useMemo(
     () => convertAdsToMarker(ads, adToFocus),
     [ads, adToFocus],
@@ -118,22 +119,25 @@ const Map = ({
           <Loader />
         </Flex>
       )}
-      <MapContainer
-        center={[48.9683098, -93.7246537]}
-        zoom={4}
-        scrollWheelZoom={false}
-        style={{ height: '100%', width: '100%', flexGrow: 1 }}
-        placeholder={<MapPlaceholder />}
-        className="map"
-      >
-        <MapSearchButton setQuery={setQuery} />
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`}
-          id="mapbox/streets-v11"
-        />
-        <MapContent ads={ads}>{markers}</MapContent>
-      </MapContainer>
+      {typeof showControl !== 'undefined' && (
+        <MapContainer
+          zoomControl={showControl}
+          center={[48.9683098, -93.7246537]}
+          zoom={4}
+          scrollWheelZoom={false}
+          style={{ height: '100%', width: '100%', flexGrow: 1 }}
+          placeholder={<MapPlaceholder />}
+          className="map"
+        >
+          <MapSearchButton setQuery={setQuery} />
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`}
+            id="mapbox/streets-v11"
+          />
+          <MapContent ads={ads}>{markers}</MapContent>
+        </MapContainer>
+      )}
     </Box>
   )
 }

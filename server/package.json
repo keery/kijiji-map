@@ -8,7 +8,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "start:node": "node --inspect script/wrapper.js"
+    "start:node": "node script/wrapper.js"
   },
   "devDependencies": {},
   "dependencies": {

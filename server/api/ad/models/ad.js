@@ -8,12 +8,13 @@
 module.exports = {
   lifecycles: {
     async afterFind(ads) {
-      const res = await Promise.all(
-        ads.map(async (ad) => strapi.services.ad.checkAd(ad.url))
-      );
-      res.map((isValid, index) => {
-        ads[index] = isValid ? ads[index] : undefined;
-      });
+      // const res = await Promise.all(
+      //   ads.map(async (ad) => strapi.services.ad.checkAd(ad.url))
+      // );
+      // console.log(res);
+      // res.filter((isValid, index) => {
+      //   ads[index] = isValid ? ads[index] : undefined;
+      // });
     },
   },
 };

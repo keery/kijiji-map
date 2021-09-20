@@ -31,6 +31,7 @@ const FilterRecap = () => {
           <>
             {location.label}
             <Box
+              as="span"
               display="inline-block"
               fontSize="6px"
               mx={1}

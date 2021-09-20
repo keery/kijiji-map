@@ -6,7 +6,7 @@ export const getAds = ({ _page, ...params }) =>
   client.get('/search', {
     params: {
       ...params,
-      _sort: 'date:desc',
+      _sort: 'id:DESC',
       _start: _page * params._limit,
     },
   })

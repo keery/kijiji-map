@@ -37,7 +37,7 @@ module.exports = {
     try {
       const entity = await strapi.query(name).findOne(
         {
-          external_id: data.external_id,
+          name: data.name,
         },
         []
       );

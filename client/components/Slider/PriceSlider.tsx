@@ -24,7 +24,7 @@ const SliderPrice = () => {
   return (
     <Slider
       mode={2}
-      step={10}
+      step={1}
       domain={[+DEFAULT_MIN_PRICE, +DEFAULT_MAX_PRICE]}
       rootStyle={sliderStyle}
       onUpdate={throttle(onUpdate, 150)}

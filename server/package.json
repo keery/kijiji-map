@@ -1,8 +1,8 @@
 {
-  "name": "Kijiji-map-server",
+  "name": "Jikiki-map-server",
   "private": true,
   "version": "0.1.0",
-  "description": "Kijiji map server",
+  "description": "Jikiki map server",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",

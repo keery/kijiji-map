@@ -1,11 +1,12 @@
 import React from 'react'
-import { Flex, Image, Link } from '@chakra-ui/react'
+import { Flex, Link } from '@chakra-ui/react'
+import Couch from 'public/assets/img/jikiki-logo.svg'
 
 const Logo = () => {
   return (
     <Flex transform="translateY(2px)" minW="80px">
       <Link href="/">
-        <Image src="/assets/img/jikiki-logo.png" />
+        <Couch width="100px" />
       </Link>
     </Flex>
   )

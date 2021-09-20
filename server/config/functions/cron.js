@@ -19,7 +19,7 @@ module.exports = {
       console.log("---- End scraping");
     },
   },
-  // Every day at 3am this task will remove ads older than 3 months
+  // Every day at 3am this task will remove ads older than 1 month
   "0 3 * * *": {
     task: async () => {
       const date = subMonths(new Date(), 1);

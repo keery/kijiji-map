@@ -3,10 +3,9 @@ const isProd = process.env.NODE_ENV === "production";
 module.exports = {
   settings: {
     cors: {
-      enabled: true,
-      origin: "*",
+      enabled: isProd,
+      origin: isProd ? [process.env.FRONT_URL] : ["*"],
       headers: "*",
-      // origin: isProd ? [process.env.FRONT_URL] : ["*"],
     },
   },
 };

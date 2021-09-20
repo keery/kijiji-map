@@ -8,3 +8,4 @@ Selection recap by email (daily, weekly, etc)
 Set Cors when everything will be working well
 Add clusters
 Add bugsnag or sentry
+Check result when some ads are expired (see ad lifecycle)

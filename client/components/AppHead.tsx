@@ -5,7 +5,6 @@ import { DefaultSeo } from 'next-seo'
 
 const AppHead = () => {
   const { t } = useTranslation()
-
   return (
     <>
       <NextHead>

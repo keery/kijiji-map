@@ -45,10 +45,10 @@ const AppHead = () => {
           site_name: 'Jikiki',
           images: [
             {
-              type: 'image/png',
-              url: process.env.NEXT_PUBLIC_URL + '/assets/img/og-cover.png',
-              width: 711,
-              height: 400,
+              type: 'image/jpg',
+              url: process.env.NEXT_PUBLIC_URL + '/assets/img/og-cover.jpg',
+              width: 500,
+              height: 500,
               alt: 'Jikiki logo',
             },
           ],

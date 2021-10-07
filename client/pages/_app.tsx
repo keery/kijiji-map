@@ -8,8 +8,10 @@ import AppHead from '~components/AppHead'
 import { QueryClientProvider } from 'react-query'
 import { appWithTranslation } from 'next-i18next'
 import 'swiper/swiper-bundle.min.css'
+import mixpanel from 'mixpanel-browser'
 
 const App = ({ Component, pageProps }: AppProps) => {
+  mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN)
   const content = (
     <>
       <AppHead />

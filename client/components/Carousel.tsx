@@ -4,20 +4,22 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Image, Text } from '@chakra-ui/react'
 import FallbackImage from '~components/FallbackImage'
 
-interface ICarousel {
+interface Props {
   slides: string[]
 }
 SwiperCore.use([Navigation])
 
-const Carousel = ({ slides = [] }: ICarousel) => {
+const Carousel = ({ slides = [] }: Props) => {
   const [currentSlide, setCurrentSlide] = useState(1)
   if (slides.length === 0) return <FallbackImage />
+
   return (
     <Swiper
       slidesPerView="auto"
       navigation
       observer
       parallax
+      preventInteractionOnTransition
       onSlideChangeTransitionEnd={({ activeIndex }) =>
         setCurrentSlide(activeIndex + 1)
       }

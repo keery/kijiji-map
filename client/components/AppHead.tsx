@@ -39,14 +39,16 @@ const AppHead = () => {
         defaultTitle={t('seo.title')}
         description={t('seo.description')}
         openGraph={{
+          title: t('seo.title'),
           type: 'website',
           url: process.env.NEXT_PUBLIC_URL,
           site_name: 'Jikiki',
           images: [
             {
+              type: 'image/png',
               url: process.env.NEXT_PUBLIC_URL + '/assets/img/og-cover.png',
-              width: 356,
-              height: 200,
+              width: 711,
+              height: 400,
               alt: 'Jikiki logo',
             },
           ],

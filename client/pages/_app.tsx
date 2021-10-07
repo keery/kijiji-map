@@ -12,6 +12,11 @@ import mixpanel from 'mixpanel-browser'
 
 const App = ({ Component, pageProps }: AppProps) => {
   mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN)
+  console.log(
+    '%cJikiki\n' + '%ccontact@guillaumeesnault.fr',
+    'font-size: 23px;color: #deec1c;font-family:arial;font-weight:900;',
+    'font-size: 16px;color: #deec1c;font-family:arial;font-weight:bold;',
+  )
   const content = (
     <>
       <AppHead />

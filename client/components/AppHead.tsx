@@ -45,8 +45,8 @@ const AppHead = () => {
           images: [
             {
               url: process.env.NEXT_PUBLIC_URL + '/assets/img/og-cover.png',
-              width: 300,
-              height: 169,
+              width: 356,
+              height: 200,
               alt: 'Jikiki logo',
             },
           ],
